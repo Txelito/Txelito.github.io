@@ -63,23 +63,38 @@ h1, h2, h3 {
   transform: translateY(-2px);
 }
 
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
-  margin-top: 40px;
-}
-
 .project-card {
-  background: #020617;
+  position: relative;
+  border-radius: 16px;
   padding: 24px;
-  border-radius: 10px;
-  transition: 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  transition: transform 0.3s ease;
 }
 
 .project-card:hover {
   transform: translateY(-6px);
 }
+.project-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    conic-gradient(
+      from 180deg at 50% 50%,
+      rgba(255,255,255,0.15),
+      transparent 60%
+    );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  mask-image: radial-gradient(circle at var(--x) var(--y), black 0%, transparent 60%);
+}
+
+.project-card:hover::before {
+  opacity: 1;
+}
+
 
 .skills-grid {
   display: grid;
