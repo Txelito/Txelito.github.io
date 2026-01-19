@@ -104,3 +104,15 @@ a {
   opacity: 1;
   transform: translateY(0);
 }
+
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero img {
+    width: 220px;
+  }
+}
