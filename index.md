@@ -3,12 +3,11 @@ layout: default
 title: Michel Gonçalves
 ---
 
-# Michel Gonçalves 👋
+# Michel Silva Gonçalves 👋
 
 🎓 Mestrando em **Humanidades Digitais**  
-🌍 Tradutor Multilingue  
-👕 Fundador da **WéarU**  
-📍 Portugal
+🌍 Tradutor Multilingue    
+📍 Braga, Portugal
 
 ---
 
