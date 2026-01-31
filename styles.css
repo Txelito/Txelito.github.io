@@ -80,6 +80,7 @@ h1, h2, h3 {
   content: "";
   position: absolute;
   inset: 0;
+  pointer-events: none;
   background:
     conic-gradient(
       from 180deg at 50% 50%,
