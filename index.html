@@ -14,13 +14,17 @@
 </head>
 <body>
 
-  <!-- HERO -->
-  <section class="hero">
+<!-- HERO -->
+<section class="hero">
   <div class="hero-text">
-    <h1>Language, Data & Human-Centered AI — Turning linguistic insight into usable technology.</h1>
+    <h1>
+      Language, Data & Human-Centered AI<br>
+      <span>Turning linguistic insight into usable technology.</span>
+    </h1>
+
     <p>
-      I’m Michel Gonçalves, a Digital Humanities master’s student
-      working at the intersection of language, data analysis and human-centered AI.
+      I’m Michel Gonçalves, a Digital Humanities master’s student working at the
+      intersection of language, data analysis and human-centered AI.
     </p>
 
     <div class="cta">
@@ -30,116 +34,99 @@
   </div>
 
   <div class="hero-image">
-    <img src="assets/img/Michel.jpeg" alt="Michel Gonçalves" />
+    <img src="assets/img/Michel.jpeg" alt="Michel Gonçalves">
   </div>
 </section>
 
-
-  <!-- ABOUT -->
-  <section class="about" id="about">
-    <h2>About Me</h2>
-    <p>
-      I’m a Master’s student in Digital Humanities at the University of Minho, working at the intersection of language, data and technology.
-
-I’m especially interested in how AI and NLP can support human communication, trust and usability — from chatbots and analysis tools to cultural and social contexts.
-
-I’m currently looking for a curricular internship where I can grow, contribute and learn fast.
-    </p>
-
-  </section>
-
-  <!-- PROJECTS -->
-  <section class="projects" id="projects">
-    <h2>Projects</h2>
-
-    <div class="project-grid">
-
-      <div class="project-card">
-  <h3>NLP Analysis of Oral Narratives</h3>
+<!-- ABOUT -->
+<section class="about" id="about">
+  <h2>About Me</h2>
   <p>
-    Analysis of oral interviews focusing on linguistic patterns, sentiment
-    and discourse structure using NLP techniques.
+    I’m a Master’s student in Digital Humanities at the University of Minho,
+    working at the intersection of language, data and technology.
+    <br><br>
+    I’m especially interested in how AI and NLP can support human communication,
+    trust and usability — from chatbots and analysis tools to cultural and social contexts.
+    <br><br>
+    I’m currently looking for a <strong>curricular internship</strong> where I can grow,
+    contribute and learn fast.
   </p>
-  <span>Python · NLP · spaCy · XML · Data Analysis</span>
-  <div class="links">
-    <a href="#">GitHub</a>
-  </div>
-</div>
+</section>
 
+<!-- PROJECTS -->
+<section class="projects" id="projects">
+  <h2>Projects</h2>
 
-     <div class="project-card">
-  <h3>Institutional Chatbot for ICVS</h3>
-  <p>
-    Design and development of a conversational chatbot to improve access
-    to institutional information at ICVS, focusing on clarity, usability
-    and user trust.
-  </p>
-  <span>AI · NLP · UX · Information Design</span>
-  <div class="links">
-    <a href="#">Project</a>
-  </div>
-</div>
+  <div class="project-grid">
 
-    </div>
-  </section>
-
-
-
-
-
-
-<script>
-document.querySelectorAll('.project-card').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const rect = card.getBoundingClientRect();
-    card.style.setProperty('--x', `${e.clientX - rect.left}px`);
-    card.style.setProperty('--y', `${e.clientY - rect.top}px`);
-  });
-});
-</script>
-
-
-
-
-  
-  <!-- SKILLS -->
-  <section class="skills">
-    <h2>Skills</h2>
-
-    <div class="skills-grid">
-      <div>
-        <h4>Technical</h4>
-        <ul>
-          <li>Python</li>
-          <li>NLP</li>
-          <li>Data Analysis</li>
-          <li>AI (applied)</li>
-          <li>Git / GitHub</li>
-        </ul>
-      </div>
-
-      <div>
-        <h4>Human & Linguistic</h4>
-        <ul>
-          <li>Multilingual communication</li>
-          <li>Intercultural competence</li>
-          <li>UX writing</li>
-          <li>Linguistic Quality (LQA)</li>
-        </ul>
+    <!-- PROJECT CARD -->
+    <div class="project-card">
+      <div class="content">
+        <h3>Institutional Chatbot for ICVS</h3>
+        <p>
+          Design and development of a conversational chatbot to improve access
+          to institutional information, focusing on clarity, usability and user trust.
+        </p>
+        <span>AI · NLP · UX · Information Design</span>
+        <a href="#" class="project-link">View Project</a>
       </div>
     </div>
-  </section>
 
-  <!-- CONTACT -->
-  <section class="contact" id="contact">
-    <h2>Contact</h2>
-    <p>Email: michel@email.com</p>
-    <p>
-      <a href="https://github.com/Txelito">GitHub</a> ·
-      <a href="#">LinkedIn</a>
-    </p>
-  </section>
+    <!-- PROJECT CARD -->
+    <div class="project-card">
+      <div class="content">
+        <h3>NLP Analysis of Oral Narratives</h3>
+        <p>
+          Linguistic and sentiment analysis of oral interviews, exploring discourse
+          structure and emotional patterns using NLP techniques.
+        </p>
+        <span>Python · NLP · spaCy · XML · Data Analysis</span>
+        <a href="#" class="project-link">GitHub</a>
+      </div>
+    </div>
 
-  <script src="script.js"></script>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills">
+  <h2>Skills</h2>
+
+  <div class="skills-grid">
+    <div>
+      <h4>Technical</h4>
+      <ul>
+        <li>Python</li>
+        <li>NLP & AI (applied)</li>
+        <li>Data Analysis</li>
+        <li>R · Tableau · GGPlot</li>
+        <li>Git / GitHub</li>
+      </ul>
+    </div>
+
+    <div>
+      <h4>Human & Linguistic</h4>
+      <ul>
+        <li>Multilingual communication</li>
+        <li>Discourse & sentiment analysis</li>
+        <li>UX writing</li>
+        <li>Intercultural competence</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <h2>Contact</h2>
+  <p>Email: <a href="mailto:michel@email.com">michel@email.com</a></p>
+  <p>
+    <a href="https://github.com/Txelito" target="_blank">GitHub</a> ·
+    <a href="#" target="_blank">LinkedIn</a>
+  </p>
+</section>
+
+<script src="script.js"></script>
 </body>
 </html>
+
