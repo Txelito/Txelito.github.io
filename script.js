@@ -6,7 +6,10 @@ const observer = new IntersectionObserver(entries => {
   });
 });
 
-document.querySelectorAll("section").forEach(section => {
-  section.classList.add("hidden");
-  observer.observe(section);
+document.querySelectorAll('.project-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    card.style.setProperty('--x', `${e.clientX - rect.left}px`);
+    card.style.setProperty('--y', `${e.clientY - rect.top}px`);
+  });
 });
