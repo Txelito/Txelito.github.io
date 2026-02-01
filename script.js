@@ -5,3 +5,5 @@ document.querySelectorAll('.project-card').forEach(card => {
     card.style.setProperty('--y', `${e.clientY - rect.top}px`);
   });
 });
+
+lucide.createIcons();
