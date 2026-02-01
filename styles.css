@@ -204,40 +204,23 @@ h2 {
 }
 
 /* CONTACT */
-.contact {
-  text-align: center;
-}
-
-.contact-card {
-  max-width: 520px;
-  margin: 0 auto;
-  background: rgba(255,255,255,0.04);
-  border-radius: 20px;
-  padding: 32px;
-  backdrop-filter: blur(10px);
+.social-links {
   display: flex;
-  flex-direction: column;
-  gap: 18px;
+  gap: 22px;
+  margin-top: 28px;
 }
 
-.contact-item {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  color: #e5e7eb;
-  text-decoration: none;
-  font-size: 0.95rem;
-  transition: transform 0.2s ease, color 0.2s ease;
+.social-links a {
+  font-size: 1.35rem;
+  color: #b5b5b5;
+  transition: all 0.3s ease;
 }
 
-.contact-item:hover {
-  transform: translateX(4px);
-  color: #a5b4fc;
+.social-links a:hover {
+  color: #ffffff;
+  transform: translateY(-2px);
 }
 
-.contact-item .icon {
-  font-size: 1.2rem;
-}
 
 
 /* RESPONSIVE */
