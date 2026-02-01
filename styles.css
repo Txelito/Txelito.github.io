@@ -196,29 +196,41 @@ h2 {
 }
 
 /* CONTACT */
-.contact-icons {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
+.contact {
+  text-align: center;
 }
 
-.contact-icons a {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: rgba(255,255,255,0.05);
+.contact-card {
+  max-width: 520px;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.04);
+  border-radius: 20px;
+  padding: 32px;
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.contact-item {
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: #c7d2fe;
-  transition: all 0.25s ease;
+  gap: 14px;
+  color: #e5e7eb;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: transform 0.2s ease, color 0.2s ease;
 }
 
-.contact-icons a:hover {
-  background: #6366f1;
-  color: white;
-  transform: translateY(-4px);
+.contact-item:hover {
+  transform: translateX(4px);
+  color: #a5b4fc;
 }
+
+.contact-item .icon {
+  font-size: 1.2rem;
+}
+
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
