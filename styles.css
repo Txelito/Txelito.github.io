@@ -5,40 +5,41 @@
 }
 
 :root {
-            --primary: #4f46e5;
-            --primary-dark: #4338ca;
-            --primary-light: #6366f1;
-            --secondary: #64748b;
-            --accent: #818cf8;
-            --background: #0f172a;
-            --surface: #1e293b;
-            --surface-light: #334155;
-            --text-primary: #f1f5f9;
-            --text-secondary: #cbd5e1;
-            --gradient-start: #1e3a8a;
-            --gradient-end: #1e293b;
-        }
+  --background: #0f172a;
+  --surface: #1e293b;
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --accent: #6366f1;
+}
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--background);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-/* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--background);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* LOGO */
+.logo {
+  position: fixed;
+  top: 24px;
+  left: 32px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #818cf8;
+  z-index: 100;
+}
 
 /* SECTIONS */
 section {
   max-width: 1100px;
   margin: auto;
   padding: 80px 24px;
-}
-
-h1, h2, h3, h4 {
-  font-weight: 600;
 }
 
 h2 {
@@ -50,8 +51,8 @@ h2 {
 .hero {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
-  align-items: center;
   gap: 48px;
+  align-items: center;
 }
 
 .hero h1 {
@@ -60,19 +61,33 @@ h2 {
 }
 
 .hero h1 span {
+  font-size: 1.1rem;
   color: #94a3b8;
   font-weight: 400;
 }
 
 .hero p {
-  color: #cbd5f5;
   max-width: 520px;
+  color: #cbd5f5;
+}
+
+.hero-image {
+  position: relative;
+}
+
+.hero-image::before {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #6366f1, #22d3ee);
+  z-index: -1;
+  opacity: 0.7;
 }
 
 .hero-image img {
   width: 100%;
   border-radius: 16px;
-  filter: grayscale(10%);
 }
 
 /* BUTTONS */
@@ -86,7 +101,6 @@ h2 {
   border-radius: 999px;
   text-decoration: none;
   margin-right: 12px;
-  font-weight: 500;
 }
 
 .primary {
@@ -119,19 +133,16 @@ h2 {
   transform: translateY(-6px);
 }
 
-/* SHINY EFFECT */
 .project-card::before {
   content: "";
   position: absolute;
   inset: 0;
-  pointer-events: none;
   opacity: 0;
-  background:
-    radial-gradient(
-      600px circle at var(--x) var(--y),
-      rgba(99,102,241,0.15),
-      transparent 40%
-    );
+  background: radial-gradient(
+    600px circle at var(--x) var(--y),
+    rgba(99,102,241,0.15),
+    transparent 40%
+  );
   transition: opacity 0.4s ease;
 }
 
@@ -139,55 +150,74 @@ h2 {
   opacity: 1;
 }
 
-/* CONTENT */
 .project-card .content {
-  position: relative;
   padding: 28px;
-}
-
-.project-card h3 {
-  margin-bottom: 12px;
 }
 
 .project-card p {
   font-size: 0.95rem;
   color: #cbd5f5;
-  margin-bottom: 14px;
-}
-
-.project-card span {
-  font-size: 0.8rem;
-  color: #94a3b8;
-  display: block;
-  margin-bottom: 16px;
 }
 
 .project-link {
-  text-decoration: none;
   color: #818cf8;
+  text-decoration: none;
   font-weight: 500;
 }
 
 /* SKILLS */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 32px;
+.skill {
+  margin-bottom: 14px;
 }
 
-.skills ul {
-  list-style: none;
+.bar {
+  height: 8px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 999px;
+  overflow: hidden;
 }
 
-.skills li {
-  margin-bottom: 8px;
-  color: #cbd5f5;
+.fill {
+  height: 100%;
+  background: linear-gradient(90deg, #6366f1, #818cf8);
+}
+
+.fill.advanced { width: 90%; }
+.fill.intermediate { width: 65%; }
+
+.language {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.stars {
+  color: #facc15;
 }
 
 /* CONTACT */
-.contact a {
-  color: #818cf8;
-  text-decoration: none;
+.contact-icons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.contact-icons a {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #c7d2fe;
+  transition: all 0.25s ease;
+}
+
+.contact-icons a:hover {
+  background: #6366f1;
+  color: white;
+  transform: translateY(-4px);
 }
 
 /* RESPONSIVE */
@@ -196,4 +226,3 @@ h2 {
     grid-template-columns: 1fr;
   }
 }
-
