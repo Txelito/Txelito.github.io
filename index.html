@@ -1,129 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Michel Gonçalves | Digital Humanities</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Michel Gonçalves | Portfolio</title>
 
-    <!-- Fonts & Icons -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="styles.css">  
+  <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
 
-<nav id="navbar">
-    <div class="nav-container">
-        <div class="logo">MG</div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>
+        Language, Data & Human-Centered AI — turning linguistic insight into usable technology.
+      </h1>
 
-        <ul class="nav-links">
-            <li><a href="#hero">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+      <p>
+        I’m Michel Gonçalves, a Digital Humanities master’s student working at the
+        intersection of language, data analysis and human-centered AI.
+      </p>
 
-        <button class="mobile-menu-toggle" id="mobileMenuToggle">
-            <i class="fas fa-bars"></i>
-        </button>
-
-        <div class="mobile-menu" id="mobileMenu">
-            <a href="#hero">Home</a>
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#skills">Skills</a>
-            <a href="#contact">Contact</a>
-        </div>
+      <div class="cta">
+        <a href="#projects" class="btn primary">View Projects</a>
+        <a href="#contact" class="btn secondary">Contact</a>
+      </div>
     </div>
-</nav>
 
-<main>
+    <div class="hero-image">
+      <img src="assets/img/Michel.jpeg" alt="Michel Gonçalves">
+    </div>
+  </section>
 
-    <!-- HERO -->
-    <section id="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-content">
-            <h1 class="hero-name">Michel Gonçalves</h1>
-            <p class="hero-tagline">Language, Data & Human-Centered AI</p>
-            <p class="hero-description">
-                I work at the intersection of language, data and technology,
-                creating human-centered digital solutions.
-            </p>
-            <div class="hero-buttons">
-                <a href="#projects" class="btn btn-primary">View Projects</a>
-                <a href="#contact" class="btn btn-secondary">Contact</a>
-            </div>
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <h2>About Me</h2>
+
+    <p>
+      I’m a Master’s student in Digital Humanities at the University of Minho,
+      working at the intersection of language, data and technology.
+    </p>
+
+    <p>
+      I’m especially interested in how AI and NLP can support human communication,
+      trust and usability — from chatbots and analysis tools to cultural and social contexts.
+    </p>
+
+    <p>
+      I’m currently looking for a curricular internship where I can grow,
+      contribute and learn fast.
+    </p>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="projects" id="projects">
+    <h2>Projects</h2>
+
+    <div class="project-grid">
+
+      <div class="project-card">
+        <h3>NLP Analysis of Oral Narratives</h3>
+
+        <p>
+          Analysis of oral interviews focusing on linguistic patterns,
+          sentiment and discourse structure using NLP techniques.
+        </p>
+
+        <span>
+          Python · NLP · spaCy · XML · Data Analysis
+        </span>
+
+        <div class="links">
+          <a href="#">GitHub</a>
         </div>
-    </section>
+      </div>
 
-    <!-- ABOUT -->
-    <section id="about" class="fade-in">
-        <div class="about-content">
-            <p>
-                I’m a master’s student in Digital Humanities, passionate about
-                NLP, AI ethics and technology that connects people and cultures.
-                My work bridges data, language and real-world human needs.
-            </p>
+      <div class="project-card">
+        <h3>Institutional Chatbot for ICVS</h3>
+
+        <p>
+          Design and development of a conversational chatbot to improve access
+          to institutional information, focusing on clarity, usability and user trust.
+        </p>
+
+        <span>
+          AI · NLP · UX · Information Design
+        </span>
+
+        <div class="links">
+          <a href="#">Project</a>
         </div>
-    </section>
+      </div>
 
-    <!-- PROJECTS -->
-    <section id="projects" class="fade-in">
-        <h2 class="section-title">Projects</h2>
+    </div>
+  </section>
 
-        <div class="projects-grid">
-            <div class="project-card">
-                <h3>ICVS Chatbot</h3>
-                <p>Conversational assistant designed for academic and research contexts.</p>
-                <span class="project-link">View project →</span>
-            </div>
+  <!-- SKILLS -->
+  <section class="skills" id="skills">
+    <h2>Skills</h2>
 
-            <div class="project-card">
-                <h3>WearU</h3>
-                <p>Fashion + technology startup connecting physical identity to digital presence.</p>
-                <span class="project-link">View project →</span>
-            </div>
-        </div>
-    </section>
+    <div class="skills-grid">
+      <div>
+        <h4>Technical</h4>
+        <ul>
+          <li>Python</li>
+          <li>NLP</li>
+          <li>Data Analysis</li>
+          <li>Applied AI</li>
+          <li>Git / GitHub</li>
+        </ul>
+      </div>
 
-    <!-- SKILLS -->
-    <section id="skills" class="fade-in">
-        <h2 class="section-title">Skills</h2>
+      <div>
+        <h4>Human & Linguistic</h4>
+        <ul>
+          <li>Multilingual communication</li>
+          <li>Intercultural competence</li>
+          <li>UX writing</li>
+          <li>Linguistic Quality (LQA)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-        <div class="skills-container">
-            <div>
-                <h3>Technical</h3>
-                <p>Python · NLP · Data Analysis · Web</p>
-            </div>
-            <div>
-                <h3>Human</h3>
-                <p>UX · Ethics · Communication · Languages</p>
-            </div>
-        </div>
-    </section>
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <h2>Contact</h2>
 
-    <!-- CONTACT -->
-    <section id="contact" class="fade-in">
-        <h2 class="section-title">Get in touch</h2>
+    <p>Email: michel@email.com</p>
 
-        <div class="contact-links">
-            <a href="mailto:michel.goncalves@example.com"><i class="fas fa-envelope"></i></a>
-            <a href="https://github.com/username"><i class="fab fa-github"></i></a>
-            <a href="https://linkedin.com/in/username"><i class="fab fa-linkedin"></i></a>
-            <a href="tel:+351900000000"><i class="fas fa-phone"></i></a>
-        </div>
-    </section>
+    <p class="contact-links">
+      <a href="https://github.com/Txelito" target="_blank">GitHub</a> ·
+      <a href="#" target="_blank">LinkedIn</a>
+    </p>
+  </section>
 
-</main>
-
-<!-- Script -->
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
-
-
