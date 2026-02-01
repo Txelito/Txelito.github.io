@@ -117,6 +117,10 @@ h2 {
   color: #e5e7eb;
 }
 
+.btn.secondary:last-child {
+  border-style: dashed;
+}
+
 /* PROJECTS */
 .project-grid {
   display: grid;
