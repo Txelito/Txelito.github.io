@@ -242,6 +242,15 @@ h2 {
   background: rgba(255,255,255,0.04);
   border-radius: 18px;
   padding: 28px;
+  border: 1px solid rgba(255,255,255,0.06); /* NOVO: definição subtil */
+}
+
+.skill {
+  margin-bottom: 14px;
+}
+
+.skill span {
+  font-weight: 500; /* NOVO: melhor hierarquia visual */
 }
 
 .bar {
@@ -249,6 +258,7 @@ h2 {
   background: rgba(255,255,255,0.12);
   border-radius: 999px;
   overflow: hidden;
+  margin-top: 6px; /* NOVO: espaçamento mais limpo */
 }
 
 .fill {
