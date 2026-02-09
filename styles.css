@@ -24,13 +24,14 @@
   --accent-primary: #6366f1;
   --accent-secondary: #818cf8;
 
-  /* Gradients */
+  /* Gradients (keep for optional hero usage later) */
   --gradient-hero: radial-gradient(
-  circle at 20% 10%,
-  rgba(99, 102, 241, 0.14) 0%,
-  rgba(15, 23, 42, 1) 38%,
-  rgba(2, 6, 23, 1) 100%
-);
+    circle at 20% 10%,
+    rgba(99, 102, 241, 0.12) 0%,
+    rgba(15, 23, 42, 1) 40%,
+    rgba(2, 6, 23, 1) 100%
+  );
+
   --gradient-text: linear-gradient(135deg, #f1f5f9 0%, #a5b4fc 100%);
 }
 
@@ -40,24 +41,25 @@ html {
 
 body {
   font-family: var(--font-family);
-  background: var(--bg-primary);
+  background: var(--bg-primary) !important;
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
+  position: relative;
 }
 
-/* subtle extra depth */
+/* subtle extra depth (very light, never washes the page) */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: radial-gradient(
-    circle at 65% 35%,
-    rgba(129, 140, 248, 0.08),
-    transparent 60%
-  );
   pointer-events: none;
   z-index: -1;
+
+  /* two small glows instead of one big fog */
+  background:
+    radial-gradient(circle at 22% 12%, rgba(99,102,241,0.14), transparent 55%),
+    radial-gradient(circle at 78% 28%, rgba(129,140,248,0.06), transparent 60%);
 }
 
 /* LOGO */
@@ -112,25 +114,34 @@ h2 {
 
 .hero-image {
   position: relative;
+  display: flex;
+  justify-content: center;
 }
 
 .hero-image::before {
   content: "";
   position: absolute;
-  inset: -8px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, var(--accent-primary), #22d3ee);
+  inset: -10px;
+  border-radius: 22px;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(99,102,241,0.35),
+    rgba(99,102,241,0.08) 55%,
+    transparent 75%
+  );
+  filter: blur(18px);
   z-index: -1;
-  opacity: 0.45;
 }
 
 .hero-image img {
   width: 75%;
   max-width: 260px;
   border-radius: 18px;
-  filter: grayscale(15%);
-  box-shadow: 0 16px 32px rgba(0,0,0,0.35);
+  box-shadow: 
+    0 20px 40px rgba(0,0,0,0.45),
+    0 0 0 1px rgba(255,255,255,0.04);
 }
+
 
 /* BUTTONS */
 .cta {
