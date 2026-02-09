@@ -35,10 +35,20 @@ html {
 
 body {
   font-family: var(--font-family);
-  background: var(--bg-primary);
+  background: var(--gradient-hero); /* GLOBAL GRADIENT */
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
+}
+
+/* subtle extra depth */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 70% 30%, rgba(99,102,241,0.22), transparent 55%);
+  pointer-events: none;
+  z-index: -1;
 }
 
 /* LOGO */
@@ -71,7 +81,6 @@ h2 {
   gap: 40px;
   align-items: center;
   min-height: 80vh;
-  position: relative;
 }
 
 .hero h1 {
@@ -96,12 +105,14 @@ h2 {
   position: relative;
 }
 
-.hero::before {
+.hero-image::before {
   content: "";
   position: absolute;
-  inset: -80px -100vw 0 -100vw;
-  background: var(--gradient-hero);
+  inset: -8px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, var(--accent-primary), #22d3ee);
   z-index: -1;
+  opacity: 0.45;
 }
 
 .hero-image img {
@@ -131,7 +142,7 @@ h2 {
 }
 
 .secondary {
-  border: 1px solid #475569;
+  border: 1px solid rgba(148,163,184,0.35);
   color: #e5e7eb;
 }
 
@@ -153,6 +164,7 @@ h2 {
   display: flex;
   flex-direction: column;
   gap: 14px;
+  border: 1px solid rgba(255,255,255,0.06);
   transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
@@ -166,7 +178,7 @@ h2 {
   display: flex;
   justify-content: space-between;
   font-size: 0.75rem;
-  opacity: 0.7;
+  opacity: 0.75;
 }
 
 .project-title {
@@ -176,7 +188,7 @@ h2 {
 
 .project-tagline {
   font-size: 0.95rem;
-  opacity: 0.85;
+  opacity: 0.88;
 }
 
 .project-tech {
@@ -327,25 +339,63 @@ h2 {
   color: #cbd5f5;
 }
 
-/* CONTACT */
-.social-links {
+/* CONTACT (CARDS STYLE) */
+.contact h2 {
+  text-align: center;
+}
+
+.contact-subtitle {
+  max-width: 720px;
+  color: var(--text-muted);
+  margin: 0 auto 36px auto;
+  text-align: center;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+  align-items: stretch;
+}
+
+.contact-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 18px;
+  padding: 28px;
+  text-decoration: none;
+  color: var(--text-primary);
   display: flex;
-  gap: 22px;
-  margin-top: 28px;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.social-links a {
-  font-size: 1.6rem;
-  color: #b5b5b5;
-  transition: all 0.3s ease;
+.contact-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.25);
 }
 
-.social-links a:hover {
-  color: #ffffff;
-  transform: translateY(-2px);
+.contact-icon {
+  font-size: 2rem;
+  color: var(--accent-secondary);
+  margin-bottom: 8px;
 }
 
-/* FOOTER (se já adicionaste no HTML) */
+.contact-label {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.contact-value {
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+/* FOOTER */
 .footer {
   padding: 32px 24px;
   text-align: center;
@@ -354,16 +404,6 @@ h2 {
   border-top: 1px solid rgba(255,255,255,0.08);
   margin-top: 80px;
 }
-
-.contact a {
-  color: var(--text-secondary);
-  text-decoration: none;
-}
-
-.contact a:hover {
-  color: var(--text-primary);
-}
-
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
