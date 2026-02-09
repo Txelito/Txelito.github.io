@@ -7,3 +7,16 @@ document.querySelectorAll('.project-card').forEach(card => {
 });
 
 lucide.createIcons();
+
+(function rotateSeaumPhotos(){
+  const photos = document.querySelectorAll(".seaum-photo");
+  if (!photos.length) return;
+
+  let idx = 0;
+  setInterval(() => {
+    photos[idx].classList.remove("active");
+    idx = (idx + 1) % photos.length;
+    photos[idx].classList.add("active");
+  }, 2500);
+})();
+
