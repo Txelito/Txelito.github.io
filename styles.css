@@ -249,57 +249,48 @@ h2 {
   gap: 1.5rem;
 }
 
-.academic-card {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  padding: 1.5rem;
+.academic-card{
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  padding: 24px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
-.academic-header {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.8rem;
-  color: #6b7280;
-  margin-bottom: 0.5rem;
+.academic-card:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  background: rgba(255,255,255,0.06);
 }
 
-.academic-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
+.academic-header{
+  color: var(--text-muted);
 }
 
-.academic-description {
-  font-size: 0.95rem;
-  color: #374151;
-  margin-bottom: 1rem;
+.academic-title{
+  color: var(--text-primary);
 }
 
-.academic-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-bottom: 1rem;
-  list-style: none;
-  padding: 0;
+.academic-description{
+  color: var(--text-secondary);
 }
 
-.academic-tags li {
-  font-size: 0.75rem;
-  background: #f3f4f6;
-  padding: 0.25rem 0.6rem;
-  border-radius: 999px;
+.academic-tags li{
+  background: rgba(255,255,255,0.08);
+  color: var(--text-secondary);
 }
 
-.btn-secondary {
-  font-size: 0.85rem;
-  text-decoration: none;
-  padding: 0.45rem 0.9rem;
-  border: 1px solid #111827;
-  border-radius: 6px;
-  color: #111827;
+
+.btn-secondary{
+  border: 1px solid rgba(255,255,255,0.14);
+  color: var(--text-primary);
+  background: transparent;
 }
+
+.btn-secondary:hover{
+  background: rgba(255,255,255,0.06);
+}
+
 
 /* SKILLS */
 .skills-cards {
@@ -307,6 +298,18 @@ h2 {
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 32px;
 }
+
+.skill-card{
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.skill-card:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.10);
+}
+
 
 .skill-card {
   background: rgba(255,255,255,0.04);
