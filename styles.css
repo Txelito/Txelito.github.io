@@ -275,10 +275,25 @@ h2 {
   color: var(--text-secondary);
 }
 
-.academic-tags li{
+.academic-tags {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.academic-tags li {
+  list-style: none;
   background: rgba(255,255,255,0.08);
   color: var(--text-secondary);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
 }
+
 
 
 .btn-secondary{
