@@ -477,6 +477,14 @@ h2 {
   color: var(--text-primary);
 }
 
+
+.academic-logo{
+  width: 60px;
+  margin-bottom: 14px;
+  opacity: 0.95;
+}
+
+
 /* FOOTER */
 .footer {
   padding: 32px 24px;
