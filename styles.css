@@ -76,7 +76,11 @@ body::before {
   transform: scale(1.05);
 }
 
-
+.logo{
+  padding-left: 24px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
 
 /* SECTIONS */
 section {
