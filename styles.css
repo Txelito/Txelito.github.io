@@ -64,9 +64,8 @@ body::before {
 
 /* LOGO */
 .logo img{
-  width: 58px;
-  height: 58px;
-  border-radius: 50%;
+  width: 54px;
+  height: 54px;
   object-fit: cover;
   display: block;
   transition: transform 0.3s ease;
