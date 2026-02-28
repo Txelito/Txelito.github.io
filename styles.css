@@ -478,10 +478,16 @@ h2 {
 }
 
 
-.academic-logo{
-  width: 60px;
+.academic-thumb {
+  width: 72px;
+  height: 72px;
+  border-radius: 16px;
+  object-fit: cover;
+  display: block;
   margin-bottom: 14px;
-  opacity: 0.95;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.25);
 }
 
 
