@@ -63,15 +63,20 @@ body::before {
 }
 
 /* LOGO */
-.logo {
-  position: fixed;
-  top: 24px;
-  left: 32px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  color: var(--accent-secondary);
-  z-index: 100;
+.logo img{
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
 }
+
+.logo img:hover{
+  transform: scale(1.05);
+}
+
+
 
 /* SECTIONS */
 section {
