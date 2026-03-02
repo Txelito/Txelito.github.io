@@ -594,7 +594,7 @@ h2 {
   width: 42px;
   height: 42px;
   border-radius: 10px; /* quadrado suave */
-  object-fit: cover;
+  object-fit: contain;
   display: block;
 }
 
