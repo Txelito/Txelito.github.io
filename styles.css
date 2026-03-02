@@ -565,41 +565,19 @@ h2 {
 
 /* NAV */
 .nav{
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: relative; /* não fixed */
   width: 100%;
-  z-index: 999;
-  background: rgba(15,23,42,0.65);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  background: transparent;
+  border: none;
 }
 
 .nav-container{
   max-width: 1100px;
   margin: 0 auto;
-  padding: 14px 24px;
+  padding: 20px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.nav-logo{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  color: var(--text-primary);
-  font-weight: 700;
-  letter-spacing: 2px;
-}
-
-.nav-logo-img{
-  width: 42px;
-  height: 42px;
-  border-radius: 10px; /* quadrado suave */
-  object-fit: cover;
-  display: block;
 }
 
 .nav-menu{
@@ -661,4 +639,3 @@ h2 {
   .nav-menu.open{ display: flex; }
 }
 
-body{ padding-top: 70px; }
