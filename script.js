@@ -23,13 +23,6 @@ lucide.createIcons();
 const navToggle = document.getElementById("navToggle");
 const navMenu = document.getElementById("navMenu");
 
-if (navToggle && navMenu) {
-  navToggle.addEventListener("click", () => {
-    navMenu.classList.toggle("open");
-  });
-
-  // fechar menu ao clicar num link
-  document.querySelectorAll(".nav-link").forEach(link => {
-    link.addEventListener("click", () => navMenu.classList.remove("open"));
-  });
-}
+navToggle.addEventListener("click", () => {
+  navMenu.classList.toggle("open");
+});
