@@ -99,7 +99,8 @@ h2 {
   grid-template-columns: 1.3fr 0.7fr;
   gap: 40px;
   align-items: center;
-  min-height: 80vh;
+  position: relative;
+  min-height: 100vh;
 }
 
 .hero h1 {
@@ -639,4 +640,58 @@ h2 {
   }
 
   .nav-menu.open{ display: flex; }
+}
+
+
+/* === Scroll Indicator === */
+.scroll-indicator{
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.scroll-indicator:hover{
+  opacity: 1;
+}
+
+.scroll-indicator span{
+  display: block;
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+  color: rgba(241,245,249,0.7);
+  letter-spacing: 1px;
+}
+
+/* Mouse shape */
+.mouse{
+  width: 26px;
+  height: 42px;
+  border: 2px solid rgba(241,245,249,0.6);
+  border-radius: 14px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.wheel{
+  width: 4px;
+  height: 8px;
+  background: rgba(241,245,249,0.8);
+  border-radius: 2px;
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: scrollWheel 1.6s infinite;
+}
+
+@keyframes scrollWheel{
+  0%{ opacity: 0; top: 8px; }
+  30%{ opacity: 1; }
+  60%{ top: 20px; opacity: 0.6; }
+  100%{ opacity: 0; top: 8px; }
 }
