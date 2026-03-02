@@ -580,6 +580,24 @@ h2 {
   justify-content: space-between;
 }
 
+.nav-logo{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--text-primary);
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.nav-logo-img{
+  width: 42px;
+  height: 42px;
+  border-radius: 10px; /* quadrado suave */
+  object-fit: cover;
+  display: block;
+}
+
 .nav-menu{
   display: flex;
   gap: 18px;
