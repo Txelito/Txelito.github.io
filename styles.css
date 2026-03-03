@@ -737,6 +737,26 @@ h2 {
   .nav-toggle{ display: none !important; }
 }
 
+.nav-lang{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.lang-sep{
+  color: rgba(241,245,249,0.35);
+}
+
+.active-lang{
+  color: rgba(241,245,249,1);
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-color: rgba(129,140,248,0.8);
+}
+
+
+
+
 /* === Scroll Indicator === */
 .scroll-indicator{
   position: absolute;
