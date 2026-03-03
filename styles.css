@@ -622,7 +622,6 @@ h2 {
   }
 }
 
-/* NAV */
 /* NAV (sem fundo diferente, sem fixed) */
 .nav{
   position: relative;
@@ -633,13 +632,14 @@ h2 {
 .nav-container{
   max-width: 1100px;
   margin: 0 auto;
-  padding: 24px 24px 0; /* espaço só em cima */
+  padding: 24px 24px 0;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* LOGO ESQUERDA,menu à direita */
+  justify-content: space-between;
   gap: 16px;
 }
 
+/* LOGO */
 .nav-logo{
   display: inline-flex;
   align-items: center;
@@ -659,7 +659,7 @@ h2 {
   transform: scale(1.05);
 }
 
-/* MENU HORIZONTAL (default desktop) */
+/* MENU HORIZONTAL (desktop default) */
 .nav-menu{
   display: flex;
   list-style: none;
@@ -698,12 +698,15 @@ h2 {
   background: rgba(241,245,249,0.85);
 }
 
-/* MOBILE: esconde horizontal e ativa dropdown */
+/* MOBILE: esconde menu horizontal e ativa dropdown */
 @media (max-width: 900px){
   .nav-container{
     padding-top: 18px;
   }
-}
+
+  .nav-toggle{
+    display: block;
+  }
 
   .nav-menu{
     position: absolute;
@@ -719,7 +722,10 @@ h2 {
     min-width: 180px;
   }
 
-  .nav-menu.open{ display: flex; }
+  .nav-menu.open{
+    display: flex;
+  }
+}
 
 
 
