@@ -100,7 +100,8 @@ h2 {
   gap: 40px;
   align-items: center;
   position: relative;
-  min-height: 100vh;
+  min-height: 92vh;
+  padding-top: 40px;
 }
 
 .hero h1 {
