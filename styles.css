@@ -738,9 +738,20 @@ h2 {
 }
 
 .nav-lang{
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  margin-left: 32px; /* afasta do Contact */
+  padding-left: 20px;
+  border-left: 1px solid rgba(255,255,255,0.08);
+}
+
+/* Empurra idioma mais para a direita */
+.nav-container{
+  justify-content: space-between;
+}
+
+/* Opcional: mais leve visualmente */
+.nav-lang a{
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
 }
 
 .lang-sep{
