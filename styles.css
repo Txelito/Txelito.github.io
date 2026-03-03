@@ -727,7 +727,15 @@ h2 {
   }
 }
 
-
+/* FORCE DESKTOP NAV MENU (debug fix) */
+@media (min-width: 901px){
+  .nav-menu{
+    position: static !important;
+    display: flex !important;
+    flex-direction: row !important;
+  }
+  .nav-toggle{ display: none !important; }
+}
 
 /* === Scroll Indicator === */
 .scroll-indicator{
