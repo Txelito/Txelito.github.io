@@ -820,3 +820,40 @@ h2 {
   60%{ top: 20px; opacity: 0.6; }
   100%{ opacity: 0; top: 8px; }
 }
+
+
+
+
+.signature-container{
+margin-top:40px;
+text-align:right;
+opacity:0.9;
+}
+
+.signature-path{
+stroke-dasharray:400;
+stroke-dashoffset:400;
+animation:drawSignature 3s ease forwards;
+}
+
+@keyframes drawSignature{
+to{
+stroke-dashoffset:0;
+}
+}
+
+.signature-name{
+font-style:italic;
+font-size:14px;
+margin-top:-10px;
+letter-spacing:1px;
+opacity:0;
+animation:fadeName 2s ease forwards;
+animation-delay:2.5s;
+}
+
+@keyframes fadeName{
+to{
+opacity:1;
+}
+}
