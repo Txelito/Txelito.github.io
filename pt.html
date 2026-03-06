@@ -24,7 +24,7 @@
   <div class="nav-container">
 
     <!-- LOGO -->
-    <a href="#top" class="nav-logo">
+    <a href="pt.html" class="nav-logo">
       <img src="assets/LOGO.png" alt="MG Logo">
     </a>
 
@@ -392,6 +392,33 @@
 <footer class="footer">
   <p>&copy; 2026 Michel Gonçalves. Desenvolvido com HTML, CSS e curiosidade.</p>
 </footer>
-  
+
+<script>
+  const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+  const sections = Array.from(navLinks)
+    .map((link) => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
+
+  function setActiveNavLink() {
+    let currentId = sections[0]?.id || "";
+    const offset = window.innerHeight * 0.35;
+
+    sections.forEach((section) => {
+      const rect = section.getBoundingClientRect();
+      if (rect.top <= offset && rect.bottom > offset) {
+        currentId = section.id;
+      }
+    });
+
+    navLinks.forEach((link) => {
+      const isActive = link.getAttribute('href') === `#${currentId}`;
+      link.classList.toggle('is-active', isActive);
+    });
+  }
+
+  window.addEventListener('scroll', setActiveNavLink, { passive: true });
+  window.addEventListener('load', setActiveNavLink);
+</script>
+
 </body>
 </html>
