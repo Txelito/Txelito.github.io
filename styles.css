@@ -797,41 +797,32 @@ h2 {
 
 
 
-/* === Back To Top Indicator === */
+/* === Hero Explore Indicator === */
 .scroll-indicator{
   text-decoration: none;
   text-align: center;
 }
 
-.back-to-top{
-  position: fixed;
+.explore-indicator{
+  position: absolute;
+  bottom: 40px;
   left: 50%;
-  bottom: 24px;
-  transform: translate(-50%, 12px);
-  display: block;
-  opacity: 0;
-  pointer-events: none;
-  z-index: 20;
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transform: translateX(-50%);
+  opacity: 0.82;
+  transition: opacity 0.25s ease;
 }
 
-.back-to-top.is-visible{
-  opacity: 0.88;
-  pointer-events: auto;
-  transform: translate(-50%, 0);
-}
-
-.back-to-top:hover{
+.explore-indicator:hover{
   opacity: 1;
 }
 
-.back-to-top span{
+.explore-indicator span{
   display: block;
-  color: rgba(241,245,249,0.78);
-  letter-spacing: 0.7px;
+  color: rgba(241,245,249,0.75);
+  letter-spacing: 0.8px;
 }
 
-.back-to-top span:first-child{
+.explore-indicator span:first-child{
   font-size: 0.82rem;
 }
 
@@ -845,4 +836,18 @@ h2 {
 @keyframes backToTopFloat{
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-4px); }
+}
+
+/* Footer back-to-top link */
+.footer-back-to-top{
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: none;
+  color: rgba(241,245,249,0.7);
+  font-size: 0.86rem;
+  transition: color 0.2s ease;
+}
+
+.footer-back-to-top:hover{
+  color: rgba(241,245,249,1);
 }

@@ -78,8 +78,8 @@
     <img src="assets/img/Michel.jpeg" alt="Michel Gonçalves">
   </div>
 
-<a href="#top" class="scroll-indicator back-to-top" id="backToTop" aria-label="Voltar ao topo">
-  <span>Voltar ao topo</span>
+<a href="#projects" class="scroll-indicator explore-indicator" aria-label="Explorar">
+  <span>Explorar</span>
   <span class="arrow-indicator" aria-hidden="true">⌃</span>
 </a>
 
@@ -389,6 +389,7 @@
 <!-- Footer -->
 <footer class="footer">
   <p>&copy; 2026 Michel Gonçalves. Desenvolvido com HTML, CSS e curiosidade.</p>
+  <a href="#top" class="footer-back-to-top">Voltar ao topo ⌃</a>
 </footer>
 
 <script>
@@ -414,20 +415,10 @@
     });
   }
 
-  function toggleBackToTop() {
-    const backToTop = document.getElementById('backToTop');
-    if (!backToTop) return;
-    backToTop.classList.toggle('is-visible', window.scrollY > 420);
-  }
-
-  window.addEventListener('scroll', () => {
-    setActiveNavLink();
-    toggleBackToTop();
-  }, { passive: true });
+  window.addEventListener('scroll', setActiveNavLink, { passive: true });
 
   window.addEventListener('load', () => {
     setActiveNavLink();
-    toggleBackToTop();
   });
 </script>
 
