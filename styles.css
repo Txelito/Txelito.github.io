@@ -808,18 +808,15 @@ h2 {
     min-width: 0;
   }
 
-  .seaum-media,
-  .acfab-media{
-    position: relative;
-    width: 84px;
-    height: 84px;
-    margin-bottom: 12px;
-  }
-
+  .seaum-card .academic-header,
+  .seaum-card .academic-title,
+  .seaum-card .academic-description,
+  .seaum-card .academic-actions,
   .acfab-card .academic-header,
   .acfab-card .academic-title,
-  .acfab-card .academic-description{
-    padding-right: 0;
+  .acfab-card .academic-description,
+  .acfab-card .academic-actions{
+    padding-right: 120px;
   }
 }
 
@@ -846,6 +843,27 @@ h2 {
   .btn{
     width: 100%;
     text-align: center;
+  }
+
+  .seaum-media,
+  .acfab-media{
+    position: relative;
+    top: auto;
+    right: auto;
+    width: 84px;
+    height: 84px;
+    margin-bottom: 12px;
+  }
+
+  .seaum-card .academic-header,
+  .seaum-card .academic-title,
+  .seaum-card .academic-description,
+  .seaum-card .academic-actions,
+  .acfab-card .academic-header,
+  .acfab-card .academic-title,
+  .acfab-card .academic-description,
+  .acfab-card .academic-actions{
+    padding-right: 0;
   }
 }
 
