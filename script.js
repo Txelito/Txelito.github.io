@@ -6,7 +6,9 @@ document.querySelectorAll('.project-card').forEach(card => {
   });
 });
 
-lucide.createIcons();
+if (window.lucide && typeof window.lucide.createIcons === "function") {
+  window.lucide.createIcons();
+}
 
 (() => {
   const photos = document.querySelectorAll(".seaum-photo");
