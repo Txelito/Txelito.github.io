@@ -797,55 +797,52 @@ h2 {
 
 
 
-/* === Scroll Indicator === */
+/* === Back To Top Indicator === */
 .scroll-indicator{
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
+  text-decoration: none;
   text-align: center;
-  cursor: pointer;
-  opacity: 0.8;
-  transition: opacity 0.3s ease;
 }
 
-.scroll-indicator:hover{
+.back-to-top{
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translate(-50%, 12px);
+  display: block;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 20;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.back-to-top.is-visible{
+  opacity: 0.88;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+}
+
+.back-to-top:hover{
   opacity: 1;
 }
 
-.scroll-indicator span{
+.back-to-top span{
   display: block;
-  font-size: 0.85rem;
-  margin-bottom: 10px;
-  color: rgba(241,245,249,0.7);
-  letter-spacing: 1px;
+  color: rgba(241,245,249,0.78);
+  letter-spacing: 0.7px;
 }
 
-/* Mouse shape */
-.mouse{
-  width: 26px;
-  height: 42px;
-  border: 2px solid rgba(241,245,249,0.6);
-  border-radius: 14px;
-  margin: 0 auto;
-  position: relative;
+.back-to-top span:first-child{
+  font-size: 0.82rem;
 }
 
-.wheel{
-  width: 4px;
-  height: 8px;
-  background: rgba(241,245,249,0.8);
-  border-radius: 2px;
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  animation: scrollWheel 1.6s infinite;
+.arrow-indicator{
+  font-size: 1.15rem;
+  line-height: 1;
+  margin-top: 4px;
+  animation: backToTopFloat 1.6s ease-in-out infinite;
 }
 
-@keyframes scrollWheel{
-  0%{ opacity: 0; top: 8px; }
-  30%{ opacity: 1; }
-  60%{ top: 20px; opacity: 0.6; }
-  100%{ opacity: 0; top: 8px; }
+@keyframes backToTopFloat{
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
 }

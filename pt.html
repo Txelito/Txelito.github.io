@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
 
-<body>
+<body id="top">
 
 <!-- NAVIGATION -->
 <nav class="nav" id="nav">
@@ -78,12 +78,10 @@
     <img src="assets/img/Michel.jpeg" alt="Michel Gonçalves">
   </div>
 
-<div class="scroll-indicator">
-  <span>Explorar</span>
-  <div class="mouse">
-    <div class="wheel"></div>
-  </div>
-</div>
+<a href="#top" class="scroll-indicator back-to-top" id="backToTop" aria-label="Voltar ao topo">
+  <span>Voltar ao topo</span>
+  <span class="arrow-indicator" aria-hidden="true">⌃</span>
+</a>
 
 
 
@@ -416,8 +414,21 @@
     });
   }
 
-  window.addEventListener('scroll', setActiveNavLink, { passive: true });
-  window.addEventListener('load', setActiveNavLink);
+  function toggleBackToTop() {
+    const backToTop = document.getElementById('backToTop');
+    if (!backToTop) return;
+    backToTop.classList.toggle('is-visible', window.scrollY > 420);
+  }
+
+  window.addEventListener('scroll', () => {
+    setActiveNavLink();
+    toggleBackToTop();
+  }, { passive: true });
+
+  window.addEventListener('load', () => {
+    setActiveNavLink();
+    toggleBackToTop();
+  });
 </script>
 
 </body>
