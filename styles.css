@@ -618,7 +618,7 @@ h2 {
 }
 
 /* RESPONSIVE */
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   .hero {
     grid-template-columns: 1fr;
     min-height: auto;
@@ -630,6 +630,7 @@ h2 {
   position: relative;
   width: 100%;
   background: transparent;
+  z-index: 40;
 }
 
 .nav-container{
@@ -640,6 +641,7 @@ h2 {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+  position: relative;
 }
 
 /* LOGO */
@@ -716,6 +718,7 @@ h2 {
   border: 1px solid rgba(255,255,255,0.08);
   background: rgba(255,255,255,0.03);
   cursor: pointer;
+  z-index: 45;
 }
 
 .nav-toggle span{
@@ -727,7 +730,11 @@ h2 {
 }
 
 /* MOBILE: esconde menu horizontal e ativa dropdown */
-@media (max-width: 900px){
+@media (max-width: 1024px){
+  section {
+    padding: 68px 20px;
+  }
+
   .nav-container{
     padding-top: 18px;
   }
@@ -748,21 +755,98 @@ h2 {
     border: 1px solid rgba(255,255,255,0.08);
     display: none;
     min-width: 180px;
+    max-width: calc(100vw - 48px);
+    z-index: 44;
   }
 
   .nav-menu.open{
     display: flex;
   }
+
+  .nav-lang{
+    margin-left: 0;
+    padding-left: 0;
+    border-left: 0;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .hero {
+    gap: 28px;
+    padding-top: 24px;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.9rem, 8vw, 2.3rem);
+  }
+
+  .hero p {
+    max-width: 100%;
+  }
+
+  .hero-image img {
+    width: min(72vw, 280px);
+  }
+
+  .explore-indicator{
+    position: static;
+    transform: none;
+    margin: 4px auto 0;
+  }
+
+  .project-grid,
+  .academic-grid,
+  .skills-cards,
+  .contact-grid{
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .project-card,
+  .academic-card,
+  .skill-card,
+  .contact-card{
+    min-width: 0;
+  }
+
+  .seaum-media,
+  .acfab-media{
+    position: relative;
+    width: 84px;
+    height: 84px;
+    margin-bottom: 12px;
+  }
+
+  .acfab-card .academic-header,
+  .acfab-card .academic-title,
+  .acfab-card .academic-description{
+    padding-right: 0;
+  }
 }
 
 /* FORCE DESKTOP NAV MENU (debug fix) */
-@media (min-width: 901px){
+@media (min-width: 1025px){
   .nav-menu{
     position: static !important;
     display: flex !important;
     flex-direction: row !important;
   }
   .nav-toggle{ display: none !important; }
+}
+
+@media (max-width: 640px){
+  .nav-container{
+    padding: 14px 16px 0;
+  }
+
+  .nav-menu{
+    right: 16px;
+    max-width: calc(100vw - 32px);
+  }
+
+  .btn{
+    width: 100%;
+    text-align: center;
+  }
 }
 
 .nav-lang{
@@ -836,6 +920,14 @@ h2 {
   font-size: 1.6rem;
   margin-top: 2px;
   animation: exploreArrow 1.6s ease-in-out infinite;
+}
+
+@media (max-width: 1024px){
+  .explore-indicator{
+    position: static;
+    transform: none;
+    margin: 4px auto 0;
+  }
 }
 
 @keyframes exploreArrow{
