@@ -10,8 +10,8 @@ if (window.lucide && typeof window.lucide.createIcons === "function") {
   window.lucide.createIcons();
 }
 
-(() => {
-  const photos = document.querySelectorAll(".seaum-photo");
+const initPhotoSlider = (selector, delay = 2500) => {
+  const photos = document.querySelectorAll(selector);
   if (!photos.length) return;
 
   let idx = 0;
@@ -20,8 +20,11 @@ if (window.lucide && typeof window.lucide.createIcons === "function") {
     photos[idx].classList.remove("active");
     idx = (idx + 1) % photos.length;
     photos[idx].classList.add("active");
-  }, 2500);
-})();
+  }, delay);
+};
+
+initPhotoSlider(".seaum-photo");
+initPhotoSlider(".acfab-photo");
 
 const navToggle = document.getElementById("navToggle");
 const navMenu = document.getElementById("navMenu");
