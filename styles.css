@@ -145,7 +145,7 @@ h2 {
 }
 
 .hex i {
-  font-size: 1.4rem;
+  font-size: 1.55rem;
 }
 
 .hex-left {
@@ -175,7 +175,7 @@ h2 {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, calc(-50% + 72px));
+  transform: translate(-50%, calc(-50% + 58px));
   font-size: 0.8rem;
   color: rgba(226,232,240,0.8);
   letter-spacing: 0.04em;
@@ -193,14 +193,14 @@ h2 {
 }
 
 .about-left-label {
-  left: -8px;
+  left: -18px;
   top: 50%;
   transform: translateY(-50%);
   text-align: left;
 }
 
 .about-right-label {
-  right: -8px;
+  right: -18px;
   top: 50%;
   transform: translateY(-50%);
   text-align: right;
