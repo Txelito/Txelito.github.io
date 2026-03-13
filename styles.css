@@ -132,7 +132,7 @@ h2 {
   content: "";
   position: absolute;
   inset: -10px;
-  border-radius: 22px;
+  border-radius: 50%;
   background: radial-gradient(
     circle at 30% 30%,
     rgba(99,102,241,0.35),
@@ -144,9 +144,10 @@ h2 {
 }
 
 .hero-image img {
-  width: 75%;
-  max-width: 260px;
-  border-radius: 18px;
+  width: min(75%, 260px);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 50%;
   box-shadow: 
     0 20px 40px rgba(0,0,0,0.45),
     0 0 0 1px rgba(255,255,255,0.04);
@@ -679,6 +680,7 @@ h2 {
   color: rgba(241,245,249,0.75);
   font-weight: 500;
   padding-bottom: 4px;
+  font-size: 0.9rem;
   text-transform: uppercase;
   transition: color 0.2s ease;
 }
