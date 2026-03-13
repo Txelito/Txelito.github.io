@@ -164,7 +164,7 @@ h2 {
 .btn {
   display: inline-block;
   padding: 12px 22px;
-  border-radius: 999px;
+  border-radius: 8px;
   text-decoration: none;
   margin-right: 0;
 }
@@ -679,6 +679,7 @@ h2 {
   color: rgba(241,245,249,0.75);
   font-weight: 500;
   padding-bottom: 4px;
+  text-transform: uppercase;
   transition: color 0.2s ease;
 }
 
