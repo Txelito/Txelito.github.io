@@ -96,9 +96,9 @@ h2 {
 /* ABOUT */
 .about-grid {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 32px;
-  align-items: center;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  align-items: start;
 }
 
 .about-text p {
@@ -108,10 +108,11 @@ h2 {
 
 .about-graphic {
   position: relative;
-  width: 100%;
+  width: min(520px, 100%);
   height: 280px;
   display: grid;
   place-items: center;
+  margin: 0 auto;
 }
 
 .about-graphic::before {
@@ -168,6 +169,19 @@ h2 {
   font-size: 0.82rem;
   color: rgba(226,232,240,0.82);
   line-height: 1.2;
+}
+
+.about-center-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, calc(-50% + 72px));
+  font-size: 0.8rem;
+  color: rgba(226,232,240,0.8);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .about-left-label strong,
