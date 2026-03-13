@@ -150,7 +150,7 @@ h2 {
 
 .hex-left {
   left: 18px;
-  transform: translateY(6px);
+  transform: translateY(0);
 }
 
 .hex-center {
@@ -159,16 +159,18 @@ h2 {
 
 .hex-right {
   right: 18px;
-  transform: translateY(6px);
+  transform: translateY(0);
 }
 
 .about-left-label,
 .about-right-label {
   position: absolute;
   width: 170px;
-  font-size: 0.82rem;
+  font-size: 0.9rem;
   color: rgba(226,232,240,0.82);
   line-height: 1.2;
+  font-family: inherit;
+  letter-spacing: 0.01em;
 }
 
 .about-center-label {
@@ -188,19 +190,19 @@ h2 {
 .about-right-label strong {
   display: block;
   color: rgba(248,250,252,0.95);
-  margin-bottom: 6px;
+  margin-bottom: 2px;
   font-weight: 600;
 }
 
 .about-left-label {
-  left: -18px;
+  left: -6px;
   top: 50%;
   transform: translateY(-50%);
   text-align: left;
 }
 
 .about-right-label {
-  right: -18px;
+  right: -6px;
   top: 50%;
   transform: translateY(-50%);
   text-align: right;
@@ -214,12 +216,12 @@ h2 {
 
 .about-graphic:hover .hex-left,
 .about-graphic:focus-within .hex-left {
-  transform: translateY(0);
+  transform: translateY(-4px);
 }
 
 .about-graphic:hover .hex-right,
 .about-graphic:focus-within .hex-right {
-  transform: translateY(0);
+  transform: translateY(-4px);
 }
 
 /* HERO */
