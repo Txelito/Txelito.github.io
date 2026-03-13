@@ -218,9 +218,7 @@ h2 {
   color: #e5e7eb;
 }
 
-.btn.secondary:last-child {
-  border-style: dashed;
-}
+/* keep secondary buttons consistent (no dashed last-child) */
 
 /* PROJECTS */
 .project-grid {
