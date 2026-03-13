@@ -131,17 +131,6 @@ h2 {
   z-index: 0;
 }
 
-.about-top-label {
-  position: absolute;
-  top: -6px;
-  font-size: 0.85rem;
-  color: rgba(226,232,240,0.72);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  text-align: center;
-  z-index: 2;
-}
-
 .hex {
   position: absolute;
   width: 190px;
@@ -154,6 +143,9 @@ h2 {
   color: rgba(226,232,240,0.85);
   transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hex i {
@@ -174,38 +166,40 @@ h2 {
   transform: translateY(6px);
 }
 
-.about-left-label,
-.about-right-label {
-  position: absolute;
-  width: 200px;
+.hex-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-size: 0.95rem;
-  color: rgba(226,232,240,0.82);
-  line-height: 1.2;
-  font-family: inherit;
-  letter-spacing: 0.01em;
-  z-index: 3;
-}
-
-.about-left-label strong,
-.about-right-label strong {
-  display: block;
   color: rgba(248,250,252,0.95);
-  margin-bottom: 2px;
-  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
 }
 
-.about-left-label {
-  left: -10px;
-  top: 50%;
-  transform: translateY(-50%);
-  text-align: left;
+.hex-row i {
+  font-size: 1.4rem;
+  color: rgba(226,232,240,0.85);
 }
 
-.about-right-label {
-  right: -10px;
-  top: 50%;
-  transform: translateY(-50%);
-  text-align: right;
+.hex-row-left {
+  transform: translateX(-6px);
+}
+
+.hex-row-right {
+  transform: translateX(6px);
+}
+
+.hex-center {
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hex-center-label {
+  font-size: 0.78rem;
+  color: rgba(226,232,240,0.8);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
 }
 
 .about-graphic:hover .hex,
@@ -803,15 +797,8 @@ h2 {
     height: 240px;
   }
 
-  .about-left-label,
-  .about-right-label {
-    width: 100%;
-    left: 0;
-    right: 0;
-    text-align: center;
-    top: auto;
-    bottom: -6px;
-    transform: none;
+  .hex-row {
+    font-size: 0.85rem;
   }
 }
 
