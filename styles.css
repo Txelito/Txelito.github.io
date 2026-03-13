@@ -239,6 +239,14 @@ h2 {
   line-height: 1.25;
 }
 
+.hero-label {
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(226,232,240,0.7);
+  margin-bottom: 12px;
+}
+
 .hero h1 span {
   font-size: 1.1rem;
   color: var(--text-muted);
