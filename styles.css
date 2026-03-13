@@ -108,8 +108,8 @@ h2 {
 
 .about-graphic {
   position: relative;
-  width: min(520px, 100%);
-  height: 280px;
+  width: min(720px, 100%);
+  height: 200px;
   display: grid;
   place-items: center;
   margin: 0 auto;
@@ -118,21 +118,16 @@ h2 {
 .about-graphic::before {
   content: "";
   position: absolute;
-  inset: 18px;
+  inset: -12px;
   border-radius: 50%;
-  background: radial-gradient(
-    circle at 30% 30%,
-    rgba(99,102,241,0.22),
-    rgba(99,102,241,0.08) 55%,
-    transparent 75%
-  );
-  filter: blur(16px);
+  background: radial-gradient(circle, rgba(99,102,241,0.12), rgba(99,102,241,0.06) 55%, transparent 70%);
+  filter: blur(10px);
   z-index: 0;
 }
 
 .hex {
   position: absolute;
-  width: 170px;
+  width: 200px;
   aspect-ratio: 1 / 1;
   clip-path: polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0 50%);
   border: 1px solid rgba(148,163,184,0.45);
@@ -145,11 +140,11 @@ h2 {
 }
 
 .hex i {
-  font-size: 1.55rem;
+  font-size: 1.6rem;
 }
 
 .hex-left {
-  left: 18px;
+  left: 0;
   transform: translateY(0);
 }
 
@@ -158,15 +153,15 @@ h2 {
 }
 
 .hex-right {
-  right: 18px;
+  right: 0;
   transform: translateY(0);
 }
 
 .about-left-label,
 .about-right-label {
   position: absolute;
-  width: 170px;
-  font-size: 0.9rem;
+  width: 230px;
+  font-size: 1rem;
   color: rgba(226,232,240,0.82);
   line-height: 1.2;
   font-family: inherit;
@@ -177,10 +172,10 @@ h2 {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, calc(-50% + 58px));
-  font-size: 0.8rem;
+  transform: translate(-50%, calc(-50% + 42px));
+  font-size: 0.85rem;
   color: rgba(226,232,240,0.8);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   text-align: center;
   white-space: nowrap;
@@ -195,14 +190,14 @@ h2 {
 }
 
 .about-left-label {
-  left: -6px;
+  left: 10px;
   top: 50%;
   transform: translateY(-50%);
   text-align: left;
 }
 
 .about-right-label {
-  right: -6px;
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
   text-align: right;
@@ -216,12 +211,12 @@ h2 {
 
 .about-graphic:hover .hex-left,
 .about-graphic:focus-within .hex-left {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
 }
 
 .about-graphic:hover .hex-right,
 .about-graphic:focus-within .hex-right {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
 }
 
 /* HERO */
@@ -800,6 +795,7 @@ h2 {
 
   .about-graphic {
     height: 240px;
+    width: min(520px, 100%);
   }
 
   .about-left-label,
