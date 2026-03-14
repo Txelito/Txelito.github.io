@@ -115,6 +115,8 @@ h2 {
   align-items: center;
   margin: 0 auto;
   overflow: visible;
+  --hex-left-x: -55px;
+  --hex-right-x: 55px;
 }
 
 .about-graphic::before {
@@ -138,7 +140,7 @@ h2 {
   left: 50%;
   width: 200px;
   height: 220px;
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  border-radius: 50%;
   border: 1px solid rgba(148,163,184,0.5);
   background: rgba(255,255,255,0.02);
   display: flex;
@@ -155,12 +157,12 @@ h2 {
 }
 
 .hex-left {
-  --hex-x: -70px;
+  --hex-x: var(--hex-left-x);
   z-index: 1;
 }
 
 .hex-right {
-  --hex-x: 70px;
+  --hex-x: var(--hex-right-x);
   z-index: 1;
 }
 
@@ -169,7 +171,6 @@ h2 {
 .about-center-label {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
   font-size: 0.82rem;
   color: rgba(248,250,252,0.95);
   letter-spacing: 0.02em;
@@ -179,21 +180,20 @@ h2 {
 }
 
 .about-left-label {
-  left: -2px;
-  transform: translate(-100%, -50%);
+  left: 50%;
+  transform: translate(calc(-50% + var(--hex-left-x)), 120px);
   text-align: right;
 }
 
 .about-right-label {
-  right: -2px;
-  transform: translate(100%, -50%);
+  left: 50%;
+  transform: translate(calc(-50% + var(--hex-right-x)), 120px);
   text-align: left;
 }
 
 .about-center-label {
-  top: calc(50% - 86px);
   left: 50%;
-  transform: translate(-50%, 0);
+  transform: translate(-50%, -130px);
   text-align: center;
   white-space: nowrap;
 }
@@ -202,7 +202,7 @@ h2 {
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -56%);
   color: rgba(226,232,240,0.9);
   z-index: 2;
   font-size: 1.6rem;
