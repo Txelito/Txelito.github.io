@@ -151,16 +151,12 @@ h2 {
 }
 
 .hex-left {
-  left: 70px;
+  left: 90px;
   transform: translateY(0);
 }
 
-.hex-center {
-  z-index: 2;
-}
-
 .hex-right {
-  right: 70px;
+  right: 90px;
   transform: translateY(0);
 }
 
@@ -175,7 +171,7 @@ h2 {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 0.92rem;
+  font-size: 0.82rem;
   color: rgba(248,250,252,0.95);
   letter-spacing: 0.02em;
   font-weight: 500;
@@ -196,11 +192,21 @@ h2 {
 }
 
 .about-center-label {
-  top: calc(50% + 78px);
+  top: calc(50% - 86px);
   left: 50%;
   transform: translate(-50%, 0);
   text-align: center;
   white-space: nowrap;
+}
+
+.about-center-icon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: rgba(226,232,240,0.9);
+  z-index: 2;
+  font-size: 1.6rem;
 }
 
 .about-graphic:hover .hex,
