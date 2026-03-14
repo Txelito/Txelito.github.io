@@ -246,6 +246,9 @@ h2 {
   font-size: 1.1rem;
   color: var(--text-muted);
   font-weight: 400;
+  display: block;
+  margin-top: 10px;
+  line-height: 1.4;
 }
 
 .hero p {
