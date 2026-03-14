@@ -155,12 +155,12 @@ h2 {
 }
 
 .hex-left {
-  --hex-x: -85px;
+  --hex-x: -70px;
   z-index: 1;
 }
 
 .hex-right {
-  --hex-x: 85px;
+  --hex-x: 70px;
   z-index: 1;
 }
 
