@@ -109,9 +109,10 @@ h2 {
 .about-graphic {
   position: relative;
   width: min(680px, 100%);
-  height: 260px;
-  display: grid;
-  place-items: center;
+  height: 280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 0 auto;
   overflow: visible;
 }
@@ -133,9 +134,11 @@ h2 {
 
 .hex {
   position: absolute;
-  width: 220px;
-  aspect-ratio: 1 / 1;
-  clip-path: polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0 50%);
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 220px;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
   border: 1px solid rgba(148,163,184,0.5);
   background: rgba(255,255,255,0.02);
   display: flex;
@@ -143,6 +146,7 @@ h2 {
   justify-content: center;
   color: rgba(226,232,240,0.85);
   transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  transform: translate(-50%, -50%) translateX(var(--hex-x, 0px)) translateY(calc(var(--hex-y, 0px) + var(--hex-hover, 0px)));
   z-index: 1;
 }
 
@@ -151,18 +155,18 @@ h2 {
 }
 
 .hex-left {
-  left: 90px;
-  transform: translateY(0);
+  --hex-x: -110px;
+  z-index: 1;
 }
 
 .hex-right {
-  right: 90px;
-  transform: translateY(0);
+  --hex-x: 110px;
+  z-index: 1;
 }
 
 .hex-center {
-  flex-direction: column;
-  gap: 10px;
+  --hex-y: -12px;
+  z-index: 2;
 }
 
 .about-left-label,
@@ -217,12 +221,12 @@ h2 {
 
 .about-graphic:hover .hex-left,
 .about-graphic:focus-within .hex-left {
-  transform: translateY(2px);
+  --hex-hover: 2px;
 }
 
 .about-graphic:hover .hex-right,
 .about-graphic:focus-within .hex-right {
-  transform: translateY(2px);
+  --hex-hover: 2px;
 }
 
 /* HERO */
