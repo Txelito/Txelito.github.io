@@ -155,18 +155,13 @@ h2 {
 }
 
 .hex-left {
-  --hex-x: -110px;
+  --hex-x: -85px;
   z-index: 1;
 }
 
 .hex-right {
-  --hex-x: 110px;
+  --hex-x: 85px;
   z-index: 1;
-}
-
-.hex-center {
-  --hex-y: -12px;
-  z-index: 2;
 }
 
 .about-left-label,
