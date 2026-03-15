@@ -192,13 +192,13 @@ h2 {
 
 .about-left-label {
   left: 50%;
-  transform: translate(calc(-50% + var(--hex-left-x) - 130px), -50%);
+  transform: translate(calc(-50% + var(--hex-left-x) - 155px), -50%);
   text-align: right;
 }
 
 .about-right-label {
   left: 50%;
-  transform: translate(calc(-50% + var(--hex-right-x) + 130px), -50%);
+  transform: translate(calc(-50% + var(--hex-right-x) + 155px), -50%);
   text-align: left;
 }
 
