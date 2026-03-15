@@ -117,6 +117,8 @@ h2 {
   overflow: visible;
   --hex-left-x: -55px;
   --hex-right-x: 55px;
+  --icon-left-x: -18px;
+  --icon-right-x: 18px;
 }
 
 .about-graphic::before {
@@ -154,6 +156,14 @@ h2 {
 
 .hex i {
   font-size: 1.9rem;
+}
+
+.hex-left i {
+  transform: translateX(var(--icon-left-x));
+}
+
+.hex-right i {
+  transform: translateX(var(--icon-right-x));
 }
 
 .hex-left {
