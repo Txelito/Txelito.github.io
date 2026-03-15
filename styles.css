@@ -198,7 +198,7 @@ h2 {
 
 .about-right-label {
   left: 50%;
-  transform: translate(calc(-50% + var(--hex-right-x) + 155px), -50%);
+  transform: translate(calc(-50% + var(--hex-right-x) + 165px), -50%);
   text-align: left;
 }
 
