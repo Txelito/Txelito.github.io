@@ -48,6 +48,13 @@ body {
   position: relative;
 }
 
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 /* subtle extra depth (very light, never washes the page) */
 body::before {
   content: "";
@@ -819,14 +826,34 @@ h2 {
 
   .about-graphic {
     width: min(520px, 100%);
-    height: 240px;
+    height: 260px;
+    --hex-left-x: -40px;
+    --hex-right-x: 40px;
+  }
+
+  .hex {
+    width: 160px;
+    height: 160px;
   }
 
   .about-left-label,
-  .about-right-label {
-    position: static;
-    transform: none;
+  .about-right-label,
+  .about-center-label {
+    font-size: 0.72rem;
+  }
+
+  .about-left-label {
+    transform: translate(calc(-50% + var(--hex-left-x)), 96px);
     text-align: center;
+  }
+
+  .about-right-label {
+    transform: translate(calc(-50% + var(--hex-right-x)), 96px);
+    text-align: center;
+  }
+
+  .about-center-label {
+    transform: translate(-50%, -105px);
   }
 }
 
@@ -1052,6 +1079,21 @@ h2 {
     text-align: center;
   }
 
+  .project-header{
+    flex-wrap: wrap;
+    gap: 6px 12px;
+  }
+
+  .skill-top{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .language{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   .seaum-media,
   .acfab-media{
     position: relative;
@@ -1071,6 +1113,47 @@ h2 {
   .acfab-card .academic-description,
   .acfab-card .academic-actions{
     padding-right: 0;
+  }
+}
+
+@media (max-width: 480px){
+  section {
+    padding: 56px 16px;
+  }
+
+  h2 {
+    font-size: clamp(1.4rem, 6vw, 1.8rem);
+  }
+
+  .about-graphic {
+    height: 230px;
+    --hex-left-x: -32px;
+    --hex-right-x: 32px;
+  }
+
+  .hex {
+    width: 140px;
+    height: 140px;
+  }
+
+  .hex i {
+    font-size: 1.6rem;
+  }
+
+  .about-center-icon {
+    font-size: 1.6rem;
+  }
+
+  .about-left-label {
+    transform: translate(calc(-50% + var(--hex-left-x)), 86px);
+  }
+
+  .about-right-label {
+    transform: translate(calc(-50% + var(--hex-right-x)), 86px);
+  }
+
+  .about-center-label {
+    transform: translate(-50%, -92px);
   }
 }
 
