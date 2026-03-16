@@ -712,6 +712,7 @@ h2 {
   gap: 14px;
   margin-bottom: 12px;
   color: rgba(241,245,249,0.82);
+  flex-wrap: nowrap;
 }
 
 .stars{
@@ -829,6 +830,8 @@ h2 {
     height: 260px;
     --hex-left-x: -40px;
     --hex-right-x: 40px;
+    --label-left-x: -95px;
+    --label-right-x: 95px;
   }
 
   .hex {
@@ -843,12 +846,12 @@ h2 {
   }
 
   .about-left-label {
-    transform: translate(calc(-50% + var(--hex-left-x)), 96px);
+    transform: translate(calc(-50% + var(--label-left-x, var(--hex-left-x))), 96px);
     text-align: center;
   }
 
   .about-right-label {
-    transform: translate(calc(-50% + var(--hex-right-x)), 96px);
+    transform: translate(calc(-50% + var(--label-right-x, var(--hex-right-x))), 96px);
     text-align: center;
   }
 
@@ -1089,10 +1092,6 @@ h2 {
     align-items: flex-start;
   }
 
-  .language{
-    flex-direction: column;
-    align-items: flex-start;
-  }
 
   .seaum-media,
   .acfab-media{
@@ -1129,6 +1128,8 @@ h2 {
     height: 230px;
     --hex-left-x: -32px;
     --hex-right-x: 32px;
+    --label-left-x: -110px;
+    --label-right-x: 110px;
   }
 
   .hex {
