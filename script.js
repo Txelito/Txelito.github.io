@@ -1,8 +1,8 @@
-document.querySelectorAll('.project-card').forEach(card => {
-  card.addEventListener('mousemove', e => {
+document.querySelectorAll(".project-card").forEach((card) => {
+  card.addEventListener("mousemove", (e) => {
     const rect = card.getBoundingClientRect();
-    card.style.setProperty('--x', `${e.clientX - rect.left}px`);
-    card.style.setProperty('--y', `${e.clientY - rect.top}px`);
+    card.style.setProperty("--x", `${e.clientX - rect.left}px`);
+    card.style.setProperty("--y", `${e.clientY - rect.top}px`);
   });
 });
 
@@ -35,7 +35,7 @@ if (navToggle && navMenu) {
   });
 
   // fecha ao clicar num link (mobile)
-  document.querySelectorAll(".nav-link").forEach(link => {
+  document.querySelectorAll(".nav-link").forEach((link) => {
     link.addEventListener("click", () => navMenu.classList.remove("open"));
   });
 }
