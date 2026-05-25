@@ -25,6 +25,7 @@ const initPhotoSlider = (selector, delay = 2500) => {
 
 initPhotoSlider(".seaum-photo");
 initPhotoSlider(".acfab-photo");
+initPhotoSlider(".joy-photo");
 
 const navToggle = document.getElementById("navToggle");
 const navMenu = document.getElementById("navMenu");
