@@ -61,7 +61,7 @@ function setMode(mode) {
   const fromUrl = urlParams.get("v");
   const saved = fromUrl === "pro" || fromUrl === "personal"
     ? fromUrl
-    : (localStorage.getItem("portfolioMode") || "personal");
+    : (localStorage.getItem("portfolioMode") || "pro");
   setMode(saved);
 })();
 
