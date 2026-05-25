@@ -39,3 +39,32 @@ if (navToggle && navMenu) {
     link.addEventListener("click", () => navMenu.classList.remove("open"));
   });
 }
+
+// =====================
+// MODE SWITCHER
+// =====================
+
+function setMode(mode) {
+  if (mode === "pro") {
+    document.body.classList.add("mode-pro");
+  } else {
+    document.body.classList.remove("mode-pro");
+  }
+  document.querySelectorAll(".mode-btn").forEach((btn) => {
+    btn.classList.toggle("active", btn.dataset.target === mode);
+  });
+  localStorage.setItem("portfolioMode", mode);
+}
+
+(function initMode() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const fromUrl = urlParams.get("v");
+  const saved = fromUrl === "pro" || fromUrl === "personal"
+    ? fromUrl
+    : (localStorage.getItem("portfolioMode") || "personal");
+  setMode(saved);
+})();
+
+document.querySelectorAll(".mode-btn").forEach((btn) => {
+  btn.addEventListener("click", () => setMode(btn.dataset.target));
+});

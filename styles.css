@@ -1190,3 +1190,220 @@ body .page-back-to-top:hover {
     transform: translateY(-3px);
   }
 }
+
+/* =====================
+   MODE SWITCHER
+   ===================== */
+
+body:not(.mode-pro) [data-mode="pro"] { display: none !important; }
+body.mode-pro [data-mode="personal"] { display: none !important; }
+
+.nav-mode {
+  margin-left: 12px;
+}
+
+.mode-switcher {
+  display: flex;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.mode-btn {
+  background: transparent;
+  border: none;
+  color: rgba(241, 245, 249, 0.55);
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 5px 11px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: background 0.2s ease, color 0.2s ease;
+  font-family: var(--font-family);
+  white-space: nowrap;
+}
+
+.mode-btn.active {
+  background: rgba(99, 102, 241, 0.9);
+  color: #fff;
+}
+
+.mode-btn:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(241, 245, 249, 0.9);
+}
+
+@media (max-width: 1024px) {
+  .nav-mode {
+    margin-left: 0;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+}
+
+/* =====================
+   INTERNAL PROJECT BADGE
+   ===================== */
+
+.btn-internal {
+  cursor: default;
+  opacity: 0.6;
+}
+
+/* =====================
+   EXPERIENCE TIMELINE
+   ===================== */
+
+.experience-section {
+  margin-top: 4rem;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 32px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: rgba(99, 102, 241, 0.3);
+  border-radius: 2px;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 48px;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -28px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  border: 2px solid var(--bg-primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+}
+
+.timeline-meta {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 8px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+}
+
+.timeline-period {
+  color: var(--accent-secondary);
+  font-weight: 500;
+}
+
+.timeline-role {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.timeline-company {
+  font-size: 0.9rem;
+  color: var(--accent-secondary);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.timeline-company-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.timeline-company-logo img {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.9;
+  filter: brightness(0) invert(1);
+}
+
+.timeline-desc {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 16px;
+  line-height: 1.65;
+}
+
+.timeline-highlights {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+}
+
+.timeline-highlights li {
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  padding: 4px 0 4px 18px;
+  position: relative;
+}
+
+.timeline-highlights li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent-primary);
+  opacity: 0.75;
+}
+
+.timeline-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.timeline-tags li {
+  font-size: 0.7rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary);
+}
+
+/* PROGEST logo badge in pro hero */
+.pro-company-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding: 6px 14px 6px 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.pro-company-badge img {
+  height: 20px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
+}

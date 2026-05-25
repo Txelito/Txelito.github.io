@@ -7,7 +7,7 @@
 
 <!-- FAVICON -->
   <link rel="icon" type="image/png" sizes="96x96" href="assets/LOGO.png">
-  
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +23,6 @@
 <nav class="nav" id="nav">
   <div class="nav-container">
 
-    <!-- LOGO -->
     <a href="index.html" class="nav-logo">
       <img src="assets/LOGO.png" alt="MG Logo">
     </a>
@@ -33,12 +32,22 @@
       <li><a href="#what-i-do" class="nav-link">What I Do</a></li>
       <li><a href="#projects" class="nav-link">Projects</a></li>
       <li><a href="#skills" class="nav-link">Skills</a></li>
-      <li><a href="#academic-activities" class="nav-link">Academic</a></li>
+      <li data-mode="personal"><a href="#academic-activities" class="nav-link">Academic</a></li>
+      <li data-mode="pro"><a href="#experience" class="nav-link">Experience</a></li>
       <li><a href="#contact" class="nav-link">Contact</a></li>
 
-      <li class="nav-lang"><a href="index.html" class="nav-link active-lang">EN</a>
-      <span class="lang-sep">|</span><a href="pt.html" class="nav-link">PT</a></li>
+      <li class="nav-lang">
+        <a href="index.html" class="nav-link active-lang">EN</a>
+        <span class="lang-sep">|</span>
+        <a href="pt.html" class="nav-link">PT</a>
+      </li>
 
+      <li class="nav-mode">
+        <div class="mode-switcher" id="modeSwitcher">
+          <button class="mode-btn" data-target="personal">Personal</button>
+          <button class="mode-btn" data-target="pro">Professional</button>
+        </div>
+      </li>
     </ul>
 
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
@@ -49,201 +58,270 @@
 </nav>
 
 
-
-
-
-
 <!-- HERO -->
 <section class="hero">
   <div class="hero-text">
-    <h1>
-      AI · Data · Language · Business<br>
-      <span>Building and applying AI solutions to real-world problems.</span>
-    </h1>
 
-    <p>
-      I’m Michel Gonçalves. I work at the intersection of AI, data and language, focusing on
-      practical solutions that help organisations make better decisions and communicate more
-      effectively.
-    </p>
-
-    <div class="cta">
-      <a href="#projects" class="btn primary">View Projects</a>
-      <a href="#contact" class="btn secondary">Contact</a>
+    <div data-mode="personal">
+      <h1>
+        AI · Data · Language · Business<br>
+        <span>Building and applying AI solutions to real-world problems.</span>
+      </h1>
+      <p>
+        I'm Michel Gonçalves. I work at the intersection of AI, data and language, focusing on
+        practical solutions that help organisations make better decisions and communicate more
+        effectively.
+      </p>
+      <div class="cta">
+        <a href="#projects" class="btn primary">View Projects</a>
+        <a href="#contact" class="btn secondary">Contact</a>
+      </div>
     </div>
+
+    <div data-mode="pro">
+      <div class="pro-company-badge">
+        <img src="assets/logo_branco.png" alt="PROGEST">
+        Consultant
+      </div>
+      <h1>
+        Finance · AI · Automation · Consulting<br>
+        <span>Building AI-powered tools for financial consulting.</span>
+      </h1>
+      <p>
+        I'm Michel Gonçalves, consultant at PROGEST. I build AI dashboards, automated reporting
+        pipelines, and cloud solutions for financial consulting clients.
+      </p>
+      <div class="cta">
+        <a href="#projects" class="btn primary">View Projects</a>
+        <a href="#contact" class="btn secondary">Contact</a>
+      </div>
+    </div>
+
   </div>
 
   <div class="hero-image">
     <img src="assets/img/Michel.jpeg" alt="Michel Gonçalves">
   </div>
 
-<a href="#projects" class="scroll-indicator explore-indicator" aria-label="Scroll to explore">
-  <span>Scroll to explore</span>
-  <span class="arrow-indicator" aria-hidden="true">⌄</span>
-</a>
-
-
-
+  <a href="#projects" class="scroll-indicator explore-indicator" aria-label="Scroll to explore">
+    <span>Scroll to explore</span>
+    <span class="arrow-indicator" aria-hidden="true">⌄</span>
+  </a>
 </section>
+
 
 <!-- ABOUT -->
 <section class="about" id="about">
   <h2>About Me</h2>
   <div class="about-grid">
-    <div class="about-text">
+
+    <div class="about-text" data-mode="personal">
       <p>
-        I’m Michel Silva Gonçalves, a Cape Verdean professional based in Braga, Portugal. I work at the
+        I'm Michel Silva Gonçalves, a Cape Verdean professional based in Braga, Portugal. I work at the
         intersection of AI, data, language and business.
       </p>
       <p>
-        With a background in Applied Languages and a Master’s in Digital Humanities, I combine technical tools
+        With a background in Applied Languages and a Master's in Digital Humanities, I combine technical tools
         with a strong understanding of communication and information.
       </p>
       <p>
-        I’m currently applying these skills in a consulting context, exploring how AI can support real organisational
+        I'm currently applying these skills in a consulting context, exploring how AI can support real organisational
         needs.
       </p>
     </div>
+
+    <div class="about-text" data-mode="pro">
+      <p>
+        I'm Michel Silva Gonçalves, consultant at PROGEST — a financial and accounting consultancy firm
+        based in Portugal.
+      </p>
+      <p>
+        I build AI-powered tools and automation systems that support financial operations, reporting, and
+        decision-making for consulting clients — from multi-client dashboards to cloud infrastructure.
+      </p>
+      <p>
+        My background in Applied Languages and Digital Humanities gives me an edge in turning complex
+        financial data into clear, actionable outputs.
+      </p>
+    </div>
+
   </div>
 </section>
+
 
 <!-- WHAT I DO -->
 <section class="what-i-do" id="what-i-do">
   <h2>What I Do</h2>
 
-  <div class="what-grid">
-
-    <!-- CARD 1 -->
-    <div class="what-card">
-      <div class="what-icon" aria-hidden="true">
-        <i class="fa-solid fa-brain"></i>
+  <div data-mode="personal">
+    <div class="what-grid">
+      <div class="what-card">
+        <div class="what-icon" aria-hidden="true"><i class="fa-solid fa-brain"></i></div>
+        <h3>AI &amp; Digital Solutions</h3>
+        <p>I design and prototype AI-driven tools and workflows, from internal assistants to automation systems.</p>
       </div>
-      <h3>AI &amp; Digital Solutions</h3>
-      <p>
-        I design and prototype AI-driven tools and workflows, from internal assistants to
-        automation systems.
-      </p>
-    </div>
-
-    <!-- CARD 2 -->
-    <div class="what-card">
-      <div class="what-icon" aria-hidden="true">
-        <i class="fa-solid fa-chart-line"></i>
+      <div class="what-card">
+        <div class="what-icon" aria-hidden="true"><i class="fa-solid fa-chart-line"></i></div>
+        <h3>Data &amp; Insights</h3>
+        <p>I analyse data to extract meaningful insights and support real-world decision-making.</p>
       </div>
-      <h3>Data &amp; Insights</h3>
-      <p>
-        I analyse data to extract meaningful insights and support real-world decision-making.
-      </p>
-    </div>
-
-    <!-- CARD 3 -->
-    <div class="what-card">
-      <div class="what-icon" aria-hidden="true">
-        <i class="fa-regular fa-comments"></i>
+      <div class="what-card">
+        <div class="what-icon" aria-hidden="true"><i class="fa-regular fa-comments"></i></div>
+        <h3>Language &amp; Communication</h3>
+        <p>I work with language in digital systems, turning complex outputs into clear and usable information.</p>
       </div>
-      <h3>Language &amp; Communication</h3>
-      <p>
-        I work with language in digital systems, turning complex outputs into clear and usable
-        information.
-      </p>
     </div>
-
   </div>
+
+  <div data-mode="pro">
+    <div class="what-grid">
+      <div class="what-card">
+        <div class="what-icon" aria-hidden="true"><i class="fa-solid fa-brain"></i></div>
+        <h3>Financial AI Tools</h3>
+        <p>Design and build AI-powered financial assistants, multi-client dashboards, and LLM-based automation for consulting operations.</p>
+      </div>
+      <div class="what-card">
+        <div class="what-icon" aria-hidden="true"><i class="fa-solid fa-chart-line"></i></div>
+        <h3>Reporting &amp; Automation</h3>
+        <p>Automated reporting pipelines, PDF generation, and data processing for monthly financial deliverables.</p>
+      </div>
+      <div class="what-card">
+        <div class="what-icon" aria-hidden="true"><i class="fa-solid fa-cloud"></i></div>
+        <h3>Cloud &amp; Infrastructure</h3>
+        <p>Cloud migration architecture and containerised deployments for consulting firm operations.</p>
+      </div>
+    </div>
+  </div>
+
 </section>
+
 
 <!-- PROJECTS -->
 <section class="projects" id="projects">
   <h2>Projects</h2>
 
-  <div class="project-grid">
+  <div data-mode="personal">
+    <div class="project-grid">
 
-    <div class="project-card highlight">
-      <div class="project-header">
-        <span class="project-category">AI / NLP</span>
-        <span class="project-year">2025</span>
+      <div class="project-card highlight">
+        <div class="project-header">
+          <span class="project-category">AI / NLP</span>
+          <span class="project-year">2025</span>
+        </div>
+        <h3 class="project-title">ICVS Knowledge Assistant</h3>
+        <p class="project-tagline">Hybrid NLP chatbot for institutional document search using classical IR and RAG.</p>
+        <ul class="project-tech">
+          <li>Python</li><li>NLP</li><li>TF-IDF</li><li>RAG</li><li>Ollama</li><li>scikit-learn</li>
+        </ul>
+        <div class="project-actions">
+          <a href="https://github.com/Txelito/Chatbot_ICVS" class="btn-primary">Explore Project</a>
+        </div>
       </div>
 
-      <h3 class="project-title">ICVS Knowledge Assistant</h3>
-
-      <p class="project-tagline">
-        Hybrid NLP chatbot for institutional document search using classical IR and RAG.
-      </p>
-
-      <ul class="project-tech">
-        <li>Python</li>
-        <li>NLP</li>
-        <li>TF-IDF</li>
-        <li>RAG</li>
-        <li>Ollama</li>
-        <li>scikit-learn</li>
-      </ul>
-
-      <div class="project-actions">
-        <a href="https://github.com/Txelito/Chatbot_ICVS" class="btn-primary">Explore Project</a>
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-category">Academic / Entrepreneurial (TecMinho)</span>
+          <span class="project-year">2025</span>
+        </div>
+        <h3 class="project-title">WearU — Fashion Meets Digital Identity</h3>
+        <p class="project-tagline">Conceptual fashion-tech project exploring clothing, digital identity and ethical data-driven interaction.</p>
+        <ul class="project-tech">
+          <li>Product &amp; Interaction Design</li><li>Digital Identity</li><li>QR-based Systems</li><li>UX/UI (Figma)</li><li>WordPress</li><li>Data Ethics</li>
+        </ul>
+        <div class="project-actions">
+          <a href="https://drive.google.com/file/d/1j3vQxjR_cqNu-Y2ff9ltqqRYrkvsv0PT/view?usp=sharing" class="btn-primary">Project Overview</a>
+        </div>
       </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-category">Digital Humanities / Data Analysis</span>
+          <span class="project-year">2024</span>
+        </div>
+        <h3 class="project-title">AVD — Baú de Família</h3>
+        <p class="project-tagline">Interdisciplinary project applying NLP and data visualization to the analysis of oral family narratives and emotional patterns.</p>
+        <ul class="project-tech">
+          <li>Python</li><li>Digital Humanities</li><li>NLP</li><li>spaCy</li><li>Sentiment Analysis</li><li>Data Visualization</li>
+        </ul>
+        <div class="project-actions">
+          <a href="https://drive.google.com/file/d/1K3XCHgadMt-6OPhhFTQmmNilIl2UAyoQ/view?usp=sharing" class="btn-primary">Project Overview</a>
+        </div>
+      </div>
+
     </div>
+  </div>
 
-    <div class="project-card">
-      <div class="project-header">
-        <span class="project-category">Academic / Entrepreneurial Project (TecMinho)</span>
-        <span class="project-year">2025</span>
+  <div data-mode="pro">
+    <div class="project-grid">
+
+      <div class="project-card highlight">
+        <div class="project-header">
+          <span class="project-category">AI / Finance</span>
+          <span class="project-year">2025</span>
+        </div>
+        <h3 class="project-title">PROGEST Assistant</h3>
+        <p class="project-tagline">Multi-client AI financial dashboard with LLM routing and automated report generation.</p>
+        <ul class="project-tech">
+          <li>Python</li><li>Streamlit</li><li>Claude API</li><li>Ollama</li><li>Pandas</li>
+        </ul>
+        <div class="project-actions">
+          <span class="btn-primary btn-internal">Internal Project</span>
+        </div>
       </div>
 
-      <h3 class="project-title">WearU — Fashion Meets Digital Identity</h3>
-
-      <p class="project-tagline">
-        Conceptual fashion-tech project exploring clothing, digital identity and ethical data-driven interaction.
-      </p>
-
-      <ul class="project-tech">
-        <li>Product & Interaction Design</li>
-        <li>Digital Identity</li>
-        <li>QR-based Systems</li>
-        <li>UX/UI (Figma)</li>
-        <li>WordPress</li>
-        <li>Data Ethics</li>
-      </ul>
-
-      <div class="project-actions">
-        <a href="https://drive.google.com/file/d/1j3vQxjR_cqNu-Y2ff9ltqqRYrkvsv0PT/view?usp=sharing" class="btn-primary">Project Overview</a>
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-category">Automation / Finance</span>
+          <span class="project-year">2025</span>
+        </div>
+        <h3 class="project-title">Financial Report Automation</h3>
+        <p class="project-tagline">Automated monthly PDF report generation with dynamic charts and AI-assisted financial analysis.</p>
+        <ul class="project-tech">
+          <li>Python</li><li>ReportLab</li><li>Pandas</li><li>Matplotlib</li>
+        </ul>
+        <div class="project-actions">
+          <span class="btn-primary btn-internal">Internal Project</span>
+        </div>
       </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-category">Cloud / Infrastructure</span>
+          <span class="project-year">2025</span>
+        </div>
+        <h3 class="project-title">Cloud Migration Architecture</h3>
+        <p class="project-tagline">Azure cloud migration plan and Docker containerisation for internal consulting operations.</p>
+        <ul class="project-tech">
+          <li>Azure</li><li>Docker</li><li>Architecture Design</li>
+        </ul>
+        <div class="project-actions">
+          <span class="btn-primary btn-internal">Internal Project</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-category">Frontend / Finance</span>
+          <span class="project-year">2025</span>
+        </div>
+        <h3 class="project-title">HTML Executive Dashboards</h3>
+        <p class="project-tagline">Single-scroll interactive dashboards for presenting financial data to consulting clients.</p>
+        <ul class="project-tech">
+          <li>HTML/CSS/JS</li><li>Data Visualisation</li><li>Chart.js</li>
+        </ul>
+        <div class="project-actions">
+          <span class="btn-primary btn-internal">Internal Project</span>
+        </div>
+      </div>
+
     </div>
-
-<div class="project-card">
-  <div class="project-header">
-    <span class="project-category">Digital Humanities / Data Analysis</span>
-    <span class="project-year">2024</span>
   </div>
 
-  <h3 class="project-title">
-    AVD — Baú de Família
-  </h3>
-
- <p class="project-tagline">
-  Interdisciplinary project applying NLP and data visualization to the analysis of oral family narratives and emotional patterns.
-</p>
-
-  <ul class="project-tech">
-    <li>Python</li>
-    <li>Digital Humanities</li>
-    <li>NLP</li>
-    <li>spaCy</li>
-    <li>Sentiment Analysis</li>
-    <li>Data Visualization</li>
-  </ul>
-
-  <div class="project-actions">
-    <a href="https://drive.google.com/file/d/1K3XCHgadMt-6OPhhFTQmmNilIl2UAyoQ/view?usp=sharing" class="btn-primary">Project Overview</a>
-  </div>
-</div>
-
-
-    
-  </div>
 </section>
 
-<!-- ACADEMIC ACTIVITIES -->
-<section id="academic-activities" class="academic-section">
+
+<!-- ACADEMIC ACTIVITIES (personal mode only) -->
+<section id="academic-activities" class="academic-section" data-mode="personal">
   <h2 class="section-title">Academic Activities</h2>
 
   <div class="academic-grid">
@@ -252,94 +330,96 @@
         <span class="academic-category">Invited Lecture</span>
         <span class="academic-year">2024</span>
       </div>
-
-      <h3 class="academic-title">
-        The Portuguese Language in Cape Verde and Guinea-Bissau
-      </h3>
-
+      <h3 class="academic-title">The Portuguese Language in Cape Verde and Guinea-Bissau</h3>
       <p class="academic-description">
         Invited lecture addressing sociolinguistic dynamics, diglossia and language policy
         in Lusophone African contexts.
       </p>
-
       <ul class="academic-tags">
-        <li>Sociolinguistics</li>
-        <li>Bilingualism</li>
-        <li>Diglossia</li>
-        <li>Language Policy</li>
-        <li>Lusophone Studies</li>
+        <li>Sociolinguistics</li><li>Bilingualism</li><li>Diglossia</li><li>Language Policy</li><li>Lusophone Studies</li>
       </ul>
-
       <div class="academic-actions">
         <a href="https://www.youtube.com/watch?v=uzSXcdgYxqI" target="_blank" class="btn-primary insta-btn">Watch Lecture</a>
       </div>
     </div>
   </div>
 
-
-<div class="academic-card seaum-card">
-  <div class="academic-header">
-    <span class="academic-category">Student Association</span>
-    <span class="academic-year">2024–2026</span>
+  <div class="academic-card seaum-card">
+    <div class="academic-header">
+      <span class="academic-category">Student Association</span>
+      <span class="academic-year">2024–2026</span>
+    </div>
+    <h3 class="academic-title">SEAUM — Student Involvement</h3>
+    <p class="academic-description">
+      Participation in student-led initiatives, events, and community activities within the University of Minho.
+    </p>
+    <div class="seaum-media">
+      <img src="assets/img/seaum1.JPG" class="seaum-photo active" alt="SEAUM photo 1">
+      <img src="assets/img/seaum2.JPG" class="seaum-photo" alt="SEAUM photo 2">
+      <img src="assets/img/seaum3.JPG" class="seaum-photo" alt="SEAUM photo 3">
+    </div>
+    <div class="academic-actions">
+      <a href="https://www.instagram.com/seaaaum/" target="_blank" class="btn-primary insta-btn">Follow on Instagram</a>
+    </div>
   </div>
 
-  <h3 class="academic-title">SEAUM — Student Involvement</h3>
-
-  <p class="academic-description">
-    Participation in student-led initiatives, events, and community activities within the University of Minho.
-  </p>
-
-  <div class="seaum-media">
-    <img src="assets/img/seaum1.JPG" class="seaum-photo active" alt="SEAUM photo 1">
-    <img src="assets/img/seaum2.JPG" class="seaum-photo" alt="SEAUM photo 2">
-    <img src="assets/img/seaum3.JPG" class="seaum-photo" alt="SEAUM photo 3">
+  <div class="academic-card acfab-card">
+    <div class="academic-header">
+      <span class="academic-category">Academic Project</span>
+      <span class="academic-year">2025</span>
+    </div>
+    <h3 class="academic-title">ACFAB — Digital Presence &amp; Institutional Visibility</h3>
+    <p class="academic-description">
+      Digital restructuring of a local caregivers' association to improve institutional credibility,
+      accessibility and local discoverability after relocation.
+    </p>
+    <div class="acfab-media">
+      <img src="assets/img/acfab-logo.png" class="acfab-photo active" alt="ACFAB image 1">
+      <img src="assets/img/ACFAB.png" class="acfab-photo" alt="ACFAB image 2">
+    </div>
+    <ul class="academic-tags">
+      <li>Content Strategy</li><li>LinkedIn Setup</li><li>Instagram Redesign</li><li>Google Business Profile</li><li>Local SEO</li><li>Information Design</li>
+    </ul>
+    <div class="academic-actions">
+      <a href="https://www.linkedin.com/in/acfab-braga-44423b359/" target="_blank" class="btn-primary insta-btn">View LinkedIn</a>
+    </div>
   </div>
 
-  <div class="academic-actions">
-    <a href=https://www.instagram.com/seaaaum/" target="_blank" class="btn-primary insta-btn">
-      Follow on Instagram
-    </a>
-  </div>
-</div>
-
-<!-- ACFAB PROJECT -->
-    <div class="academic-card acfab-card">
-  <div class="academic-header">
-    <span class="academic-category">Academic Project</span>
-    <span class="academic-year">2025</span>
-  </div>
-
-  <h3 class="academic-title">ACFAB — Digital Presence & Institutional Visibility</h3>
-
-  <p class="academic-description">
-    Digital restructuring of a local caregivers’ association to improve institutional credibility,
-    accessibility and local discoverability after relocation.
-  </p>
-
-  <!-- IMAGEM NO CANTO (igual SEAUM) -->
-  <div class="acfab-media">
-    <img src="assets/img/acfab-logo.png" class="acfab-photo active" alt="ACFAB image 1">
-    <img src="assets/img/ACFAB.png" class="acfab-photo" alt="ACFAB image 2">
-  </div>
-
-  <ul class="academic-tags">
-    <li>Content Strategy</li>
-    <li>LinkedIn Setup</li>
-    <li>Instagram Redesign</li>
-    <li>Google Business Profile</li>
-    <li>Local SEO</li>
-    <li>Information Design</li>
-  </ul>
-
-  <div class="academic-actions">
-    <a href="https://www.linkedin.com/in/acfab-braga-44423b359/" target="_blank" class="btn-primary insta-btn">
-      View LinkedIn
-    </a>
-  </div>
-</div>
-
-  
 </section>
+
+
+<!-- EXPERIENCE (professional mode only) -->
+<section id="experience" class="experience-section" data-mode="pro">
+  <h2>Experience</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-meta">
+        <span class="timeline-period">2025 — Present</span>
+        <span class="timeline-location">Braga, Portugal</span>
+      </div>
+      <div class="timeline-content">
+        <h3 class="timeline-role">AI &amp; Automation Consultant</h3>
+        <div class="timeline-company-logo">
+          <img src="assets/logo_branco.png" alt="PROGEST">
+        </div>
+        <p class="timeline-desc">
+          Building AI-powered solutions for financial consulting — from multi-client dashboards and
+          LLM-based assistants to automated reporting pipelines and cloud infrastructure.
+        </p>
+        <ul class="timeline-highlights">
+          <li>Developed PROGEST Assistant — multi-client AI financial dashboard with LLM routing</li>
+          <li>Built automated monthly PDF report generation pipeline with Python and ReportLab</li>
+          <li>Designed Azure cloud migration architecture for internal operations</li>
+          <li>Created HTML executive dashboards for client-facing financial presentations</li>
+        </ul>
+        <ul class="timeline-tags">
+          <li>Claude API</li><li>Python</li><li>Streamlit</li><li>Azure</li><li>ReportLab</li><li>Docker</li><li>Pandas</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <!-- SKILLS -->
 <section class="skills" id="skills">
@@ -347,45 +427,72 @@
 
   <div class="skills-cards">
 
-    <div class="skill-card">
-  <h3>Technical</h3>
-
-  <div class="skill">
-    <div class="skill-top">
-      <span class="skill-name">Python</span>
-      <span class="skill-level advanced">Advanced</span>
+    <div class="skill-card" data-mode="personal">
+      <h3>Technical</h3>
+      <div class="skill">
+        <div class="skill-top">
+          <span class="skill-name">Python</span>
+          <span class="skill-level advanced">Advanced</span>
+        </div>
+        <div class="bar"><div class="fill advanced"></div></div>
+      </div>
+      <div class="skill">
+        <div class="skill-top">
+          <span class="skill-name">NLP &amp; AI</span>
+          <span class="skill-level intermediate">Intermediate</span>
+        </div>
+        <div class="bar"><div class="fill intermediate"></div></div>
+      </div>
+      <div class="skill">
+        <div class="skill-top">
+          <span class="skill-name">Data Analysis</span>
+          <span class="skill-level advanced">Advanced</span>
+        </div>
+        <div class="bar"><div class="fill advanced"></div></div>
+      </div>
+      <div class="skill">
+        <div class="skill-top">
+          <span class="skill-name">R · Tableau · GGPlot</span>
+          <span class="skill-level intermediate">Intermediate</span>
+        </div>
+        <div class="bar"><div class="fill intermediate"></div></div>
+      </div>
     </div>
-    <div class="bar"><div class="fill advanced"></div></div>
-  </div>
 
-  <div class="skill">
-    <div class="skill-top">
-      <span class="skill-name">NLP & AI</span>
-      <span class="skill-level intermediate">Intermediate</span>
+    <div class="skill-card" data-mode="pro">
+      <h3>Technical</h3>
+      <div class="skill">
+        <div class="skill-top">
+          <span class="skill-name">Python</span>
+          <span class="skill-level advanced">Advanced</span>
+        </div>
+        <div class="bar"><div class="fill advanced"></div></div>
+      </div>
+      <div class="skill">
+        <div class="skill-top">
+          <span class="skill-name">Claude API &amp; LLMs</span>
+          <span class="skill-level advanced">Advanced</span>
+        </div>
+        <div class="bar"><div class="fill advanced"></div></div>
+      </div>
+      <div class="skill">
+        <div class="skill-top">
+          <span class="skill-name">Streamlit &amp; Dashboards</span>
+          <span class="skill-level intermediate">Intermediate</span>
+        </div>
+        <div class="bar"><div class="fill intermediate"></div></div>
+      </div>
+      <div class="skill">
+        <div class="skill-top">
+          <span class="skill-name">Azure · Docker · Cloud</span>
+          <span class="skill-level intermediate">Intermediate</span>
+        </div>
+        <div class="bar"><div class="fill intermediate"></div></div>
+      </div>
     </div>
-    <div class="bar"><div class="fill intermediate"></div></div>
-  </div>
-
-  <div class="skill">
-    <div class="skill-top">
-      <span class="skill-name">Data Analysis</span>
-      <span class="skill-level advanced">Advanced</span>
-    </div>
-    <div class="bar"><div class="fill advanced"></div></div>
-  </div>
-
-  <div class="skill">
-    <div class="skill-top">
-      <span class="skill-name">R · Tableau · GGPlot</span>
-      <span class="skill-level intermediate">Intermediate</span>
-    </div>
-    <div class="bar"><div class="fill intermediate"></div></div>
-  </div>
-</div>
 
     <div class="skill-card">
       <h3>Languages</h3>
-
       <div class="language"><span>Portuguese</span><span class="stars">★★★★★</span></div>
       <div class="language"><span>English</span><span class="stars">★★★★★</span></div>
       <div class="language"><span>French</span><span class="stars">★★★★☆</span></div>
@@ -394,12 +501,12 @@
     </div>
 
     <div class="skill-card">
-      <h3>Human & Communication</h3>
+      <h3>Human &amp; Communication</h3>
       <ul class="human-skills">
         <li>Multicultural communication</li>
         <li>Human-centered AI thinking</li>
-        <li>UX & clarity-focused writing</li>
-        <li>Teaching & public speaking</li>
+        <li>UX &amp; clarity-focused writing</li>
+        <li>Teaching &amp; public speaking</li>
         <li>Critical and analytical mindset</li>
       </ul>
     </div>
@@ -407,22 +514,33 @@
   </div>
 </section>
 
+
 <!-- CONTACT -->
 <section class="contact" id="contact">
   <h2>Let's Connect</h2>
-  <p class="contact-subtitle">
- If you’d like to collaborate, discuss ideas or simply connect, feel free to reach out.
-  </p>
 
+  <p class="contact-subtitle" data-mode="personal">
+    If you'd like to collaborate, discuss ideas or simply connect, feel free to reach out.
+  </p>
+  <p class="contact-subtitle" data-mode="pro">
+    Interested in AI tools or automation for your consulting operations? Let's talk.
+  </p>
   <p class="contact-subtitle">
-    CV available on request. Just send a message and I’ll share it.
+    CV available on request. Just send a message and I'll share it.
   </p>
 
   <div class="contact-grid">
-    <a href="mailto:gonsalvesdjimi2@gmail.com" class="contact-card">
+
+    <a href="mailto:gonsalvesdjimi2@gmail.com" class="contact-card" data-mode="personal">
       <i class="fa-solid fa-envelope contact-icon"></i>
       <span class="contact-label">Email</span>
       <span class="contact-value">gonsalvesdjimi2@gmail.com</span>
+    </a>
+
+    <a href="mailto:tools@progest.com.pt" class="contact-card" data-mode="pro">
+      <i class="fa-solid fa-envelope contact-icon"></i>
+      <span class="contact-label">Email</span>
+      <span class="contact-value">tools@progest.com.pt</span>
     </a>
 
     <a href="https://github.com/Txelito" target="_blank" class="contact-card">
@@ -436,6 +554,7 @@
       <span class="contact-label">LinkedIn</span>
       <span class="contact-value">Michel Gonçalves</span>
     </a>
+
   </div>
 </section>
 
@@ -447,7 +566,6 @@
   </a>
 </div>
 
-<!-- Footer -->
 <footer class="footer">
   <p>&copy; 2026 Michel Gonçalves. Built with curiosity and care.</p>
 </footer>
@@ -477,10 +595,7 @@
   }
 
   window.addEventListener('scroll', setActiveNavLink, { passive: true });
-
-  window.addEventListener('load', () => {
-    setActiveNavLink();
-  });
+  window.addEventListener('load', setActiveNavLink);
 </script>
 
 </body>
