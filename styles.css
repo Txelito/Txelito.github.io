@@ -1340,6 +1340,10 @@ body.mode-pro [data-mode="personal"] { display: none !important; }
   filter: brightness(0) invert(1);
 }
 
+.timeline-company-logo .joy-logo {
+  height: 90px;
+}
+
 .timeline-desc {
   color: var(--text-secondary);
   font-size: 0.95rem;
