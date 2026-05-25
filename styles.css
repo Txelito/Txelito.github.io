@@ -1332,8 +1332,9 @@ body.mode-pro [data-mode="personal"] { display: none !important; }
 }
 
 .timeline-company-logo img {
-  height: 42px;
+  height: 56px;
   width: auto;
+  max-width: 200px;
   object-fit: contain;
   opacity: 0.9;
   filter: brightness(0) invert(1);
