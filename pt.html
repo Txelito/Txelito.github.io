@@ -32,8 +32,9 @@
       <li><a href="#what-i-do" class="nav-link">O Que Faço</a></li>
       <li><a href="#projects" class="nav-link">Projectos</a></li>
       <li><a href="#skills" class="nav-link">Competências</a></li>
-      <li data-mode="personal"><a href="#academic-activities" class="nav-link">Académico</a></li>
+      <li data-mode="academic"><a href="#academic-activities" class="nav-link">Académico</a></li>
       <li data-mode="pro"><a href="#experience" class="nav-link">Experiência</a></li>
+      <li data-mode="personal"><a href="#personal-vault" class="nav-link">Cofre</a></li>
       <li><a href="#contact" class="nav-link">Contacto</a></li>
 
       <li class="nav-lang">
@@ -44,8 +45,9 @@
 
       <li class="nav-mode">
         <div class="mode-switcher" id="modeSwitcher">
-          <button class="mode-btn" data-target="personal">Pessoal</button>
           <button class="mode-btn" data-target="pro">Profissional</button>
+          <button class="mode-btn" data-target="academic">Académico</button>
+          <button class="mode-btn" data-target="personal">Pessoal</button>
         </div>
       </li>
     </ul>
@@ -62,7 +64,7 @@
 <section class="hero">
   <div class="hero-text">
 
-    <div data-mode="personal">
+    <div data-mode="academic">
       <h1>
         IA · Dados · Linguagem · Negócios<br>
         <span>Desenvolvimento e aplicação de soluções de IA para problemas do dia a dia.</span>
@@ -115,7 +117,7 @@
   <h2>Sobre Mim</h2>
   <div class="about-grid">
 
-    <div class="about-text" data-mode="personal">
+    <div class="about-text" data-mode="academic">
       <p>
         Sou Michel Silva Gonçalves, cabo-verdiano, baseado em Braga, Portugal. Trabalho na
         intersecção entre IA, dados, linguagem e negócio.
@@ -153,7 +155,7 @@
 <section class="what-i-do" id="what-i-do">
   <h2>O Que Faço</h2>
 
-  <div data-mode="personal">
+  <div data-mode="academic">
     <div class="what-grid">
       <div class="what-card">
         <div class="what-icon" aria-hidden="true"><i class="fa-solid fa-brain"></i></div>
@@ -200,7 +202,7 @@
 <section class="projects" id="projects">
   <h2>Projectos</h2>
 
-  <div data-mode="personal">
+  <div data-mode="academic">
     <div class="project-grid">
 
       <div class="project-card highlight">
@@ -321,7 +323,7 @@
 
 
 <!-- ATIVIDADES ACADÉMICAS (modo pessoal) -->
-<section id="academic-activities" class="academic-section" data-mode="personal">
+<section id="academic-activities" class="academic-section" data-mode="academic">
   <h2 class="section-title">Atividades Académicas</h2>
 
   <div class="academic-grid">
@@ -457,7 +459,7 @@
 
   <div class="skills-cards">
 
-    <div class="skill-card" data-mode="personal">
+    <div class="skill-card" data-mode="academic">
       <h3>Técnicas</h3>
       <div class="skill">
         <div class="skill-top">
@@ -545,11 +547,45 @@
 </section>
 
 
+<!-- COFRE PESSOAL -->
+<section id="personal-vault" class="personal-vault-section" data-mode="personal">
+  <h2>Pessoal</h2>
+
+  <div id="vaultGate" class="vault-gate">
+    <div class="vault-icon" aria-hidden="true">🔒</div>
+    <h3>Esta parte é só minha para partilhar</h3>
+    <p>
+      Não está trancada por ser escandalosa, está trancada por ser minha. Se me conheces e queres
+      entrar, diz-me porquê e provavelmente digo que sim.
+    </p>
+    <div class="vault-actions">
+      <a
+        class="btn primary vault-request-btn"
+        href="mailto:gonsalvesdjimi2@gmail.com?subject=Quero%20entrar%20no%20cofre&body=Ol%C3%A1%20Michel%2C%0D%0A%0D%0ASou%20...%20e%20quero%20acesso%20ao%20teu%20espa%C3%A7o%20pessoal%20porque...%0D%0A"
+      >Pedir acesso</a>
+      <span class="vault-divider">Já tens a frase-chave?</span>
+      <form id="vaultUnlockForm" class="vault-unlock">
+        <input type="text" id="vaultPassphrase" placeholder="Frase-chave" autocomplete="off">
+        <button type="submit" class="btn secondary">Entrar</button>
+      </form>
+      <p id="vaultFeedback" class="vault-feedback" role="status"></p>
+    </div>
+  </div>
+
+  <div id="vaultContent" class="vault-content" hidden>
+    <p>
+      Bem-vindo. É aqui que fica a parte pessoal, a vida fora do trabalho e da academia.
+      Ainda a preencher.
+    </p>
+  </div>
+</section>
+
+
 <!-- CONTACTO -->
 <section class="contact" id="contact">
   <h2>Vamos Conectar</h2>
 
-  <p class="contact-subtitle" data-mode="personal">
+  <p class="contact-subtitle" data-mode="academic">
     Se quiser colaborar, trocar ideias ou simplesmente conectar, fica à vontade para contactar.
   </p>
   <p class="contact-subtitle" data-mode="pro">
@@ -561,7 +597,7 @@
 
   <div class="contact-grid">
 
-    <a href="mailto:gonsalvesdjimi2@gmail.com" class="contact-card" data-mode="personal">
+    <a href="mailto:gonsalvesdjimi2@gmail.com" class="contact-card" data-mode="academic">
       <i class="fa-solid fa-envelope contact-icon"></i>
       <span class="contact-label">Email</span>
       <span class="contact-value">gonsalvesdjimi2@gmail.com</span>
@@ -573,7 +609,7 @@
       <span class="contact-value">michel.goncalves@progest.com.pt</span>
     </a>
 
-    <a href="https://github.com/Txelito" target="_blank" class="contact-card" data-mode="personal">
+    <a href="https://github.com/Txelito" target="_blank" class="contact-card" data-mode="academic">
       <i class="fa-brands fa-github contact-icon"></i>
       <span class="contact-label">GitHub</span>
       <span class="contact-value">@Txelito</span>

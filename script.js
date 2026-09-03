@@ -44,12 +44,10 @@ if (navToggle && navMenu) {
 // MODE SWITCHER
 // =====================
 
+const VALID_MODES = ["pro", "academic", "personal"];
+
 function setMode(mode) {
-  if (mode === "pro") {
-    document.body.classList.add("mode-pro");
-  } else {
-    document.body.classList.remove("mode-pro");
-  }
+  document.body.setAttribute("data-view", mode);
   document.querySelectorAll(".mode-btn").forEach((btn) => {
     btn.classList.toggle("active", btn.dataset.target === mode);
   });
@@ -59,7 +57,7 @@ function setMode(mode) {
 (function initMode() {
   const urlParams = new URLSearchParams(window.location.search);
   const fromUrl = urlParams.get("v");
-  const saved = fromUrl === "pro" || fromUrl === "personal"
+  const saved = VALID_MODES.includes(fromUrl)
     ? fromUrl
     : (localStorage.getItem("portfolioMode") || "pro");
   setMode(saved);
@@ -68,3 +66,42 @@ function setMode(mode) {
 document.querySelectorAll(".mode-btn").forEach((btn) => {
   btn.addEventListener("click", () => setMode(btn.dataset.target));
 });
+
+// =====================
+// PERSONAL VAULT (gate)
+// =====================
+
+(function initVault() {
+  const gate = document.getElementById("vaultGate");
+  const content = document.getElementById("vaultContent");
+  const form = document.getElementById("vaultUnlockForm");
+  const input = document.getElementById("vaultPassphrase");
+  const feedback = document.getElementById("vaultFeedback");
+  if (!gate || !content || !form || !input) return;
+
+  // Change this word whenever you want to reset who has access.
+  const PASSPHRASE = "grogue";
+
+  function unlock() {
+    gate.hidden = true;
+    content.hidden = false;
+  }
+
+  if (localStorage.getItem("vaultUnlocked") === "true") {
+    unlock();
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const guess = input.value.trim().toLowerCase();
+    if (guess === PASSPHRASE) {
+      localStorage.setItem("vaultUnlocked", "true");
+      feedback.textContent = "";
+      feedback.className = "vault-feedback";
+      unlock();
+    } else {
+      feedback.textContent = "Não é essa. Tenta outra vez, ou pede acesso acima.";
+      feedback.className = "vault-feedback error";
+    }
+  });
+})();

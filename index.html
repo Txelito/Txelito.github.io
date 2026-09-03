@@ -32,8 +32,9 @@
       <li><a href="#what-i-do" class="nav-link">What I Do</a></li>
       <li><a href="#projects" class="nav-link">Projects</a></li>
       <li><a href="#skills" class="nav-link">Skills</a></li>
-      <li data-mode="personal"><a href="#academic-activities" class="nav-link">Academic</a></li>
+      <li data-mode="academic"><a href="#academic-activities" class="nav-link">Academic</a></li>
       <li data-mode="pro"><a href="#experience" class="nav-link">Experience</a></li>
+      <li data-mode="personal"><a href="#personal-vault" class="nav-link">Vault</a></li>
       <li><a href="#contact" class="nav-link">Contact</a></li>
 
       <li class="nav-lang">
@@ -44,8 +45,9 @@
 
       <li class="nav-mode">
         <div class="mode-switcher" id="modeSwitcher">
-          <button class="mode-btn" data-target="personal">Personal</button>
           <button class="mode-btn" data-target="pro">Professional</button>
+          <button class="mode-btn" data-target="academic">Academic</button>
+          <button class="mode-btn" data-target="personal">Personal</button>
         </div>
       </li>
     </ul>
@@ -62,7 +64,7 @@
 <section class="hero">
   <div class="hero-text">
 
-    <div data-mode="personal">
+    <div data-mode="academic">
       <h1>
         AI · Data · Language · Business<br>
         <span>Building and applying AI solutions to real-world problems.</span>
@@ -115,7 +117,7 @@
   <h2>About Me</h2>
   <div class="about-grid">
 
-    <div class="about-text" data-mode="personal">
+    <div class="about-text" data-mode="academic">
       <p>
         I'm Michel Silva Gonçalves, a Cape Verdean professional based in Braga, Portugal. I work at the
         intersection of AI, data, language and business.
@@ -153,7 +155,7 @@
 <section class="what-i-do" id="what-i-do">
   <h2>What I Do</h2>
 
-  <div data-mode="personal">
+  <div data-mode="academic">
     <div class="what-grid">
       <div class="what-card">
         <div class="what-icon" aria-hidden="true"><i class="fa-solid fa-brain"></i></div>
@@ -200,7 +202,7 @@
 <section class="projects" id="projects">
   <h2>Projects</h2>
 
-  <div data-mode="personal">
+  <div data-mode="academic">
     <div class="project-grid">
 
       <div class="project-card highlight">
@@ -321,7 +323,7 @@
 
 
 <!-- ACADEMIC ACTIVITIES (personal mode only) -->
-<section id="academic-activities" class="academic-section" data-mode="personal">
+<section id="academic-activities" class="academic-section" data-mode="academic">
   <h2 class="section-title">Academic Activities</h2>
 
   <div class="academic-grid">
@@ -457,7 +459,7 @@
 
   <div class="skills-cards">
 
-    <div class="skill-card" data-mode="personal">
+    <div class="skill-card" data-mode="academic">
       <h3>Technical</h3>
       <div class="skill">
         <div class="skill-top">
@@ -545,11 +547,45 @@
 </section>
 
 
+<!-- PERSONAL VAULT -->
+<section id="personal-vault" class="personal-vault-section" data-mode="personal">
+  <h2>Personal</h2>
+
+  <div id="vaultGate" class="vault-gate">
+    <div class="vault-icon" aria-hidden="true">🔒</div>
+    <h3>This part is just mine to share</h3>
+    <p>
+      Not locked because it's scandalous, locked because it's mine. If you know me and want in,
+      tell me why and I'll probably say yes.
+    </p>
+    <div class="vault-actions">
+      <a
+        class="btn primary vault-request-btn"
+        href="mailto:gonsalvesdjimi2@gmail.com?subject=Quero%20entrar%20no%20cofre&body=Ol%C3%A1%20Michel%2C%0D%0A%0D%0ASou%20...%20e%20quero%20acesso%20ao%20teu%20espa%C3%A7o%20pessoal%20porque...%0D%0A"
+      >Request access</a>
+      <span class="vault-divider">Already have the passphrase?</span>
+      <form id="vaultUnlockForm" class="vault-unlock">
+        <input type="text" id="vaultPassphrase" placeholder="Passphrase" autocomplete="off">
+        <button type="submit" class="btn secondary">Unlock</button>
+      </form>
+      <p id="vaultFeedback" class="vault-feedback" role="status"></p>
+    </div>
+  </div>
+
+  <div id="vaultContent" class="vault-content" hidden>
+    <p>
+      Welcome in. This is where the personal stuff goes, life outside work and academics.
+      Still filling this in.
+    </p>
+  </div>
+</section>
+
+
 <!-- CONTACT -->
 <section class="contact" id="contact">
   <h2>Let's Connect</h2>
 
-  <p class="contact-subtitle" data-mode="personal">
+  <p class="contact-subtitle" data-mode="academic">
     If you'd like to collaborate, discuss ideas or simply connect, feel free to reach out.
   </p>
   <p class="contact-subtitle" data-mode="pro">
@@ -561,7 +597,7 @@
 
   <div class="contact-grid">
 
-    <a href="mailto:gonsalvesdjimi2@gmail.com" class="contact-card" data-mode="personal">
+    <a href="mailto:gonsalvesdjimi2@gmail.com" class="contact-card" data-mode="academic">
       <i class="fa-solid fa-envelope contact-icon"></i>
       <span class="contact-label">Email</span>
       <span class="contact-value">gonsalvesdjimi2@gmail.com</span>
@@ -573,7 +609,7 @@
       <span class="contact-value">michel.goncalves@progest.com.pt</span>
     </a>
 
-    <a href="https://github.com/Txelito" target="_blank" class="contact-card" data-mode="personal">
+    <a href="https://github.com/Txelito" target="_blank" class="contact-card" data-mode="academic">
       <i class="fa-brands fa-github contact-icon"></i>
       <span class="contact-label">GitHub</span>
       <span class="contact-value">@Txelito</span>

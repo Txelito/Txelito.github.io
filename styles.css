@@ -1195,8 +1195,12 @@ body .page-back-to-top:hover {
    MODE SWITCHER
    ===================== */
 
-body:not(.mode-pro) [data-mode="pro"] { display: none !important; }
-body.mode-pro [data-mode="personal"] { display: none !important; }
+body[data-view="pro"] [data-mode="academic"],
+body[data-view="pro"] [data-mode="personal"] { display: none !important; }
+body[data-view="academic"] [data-mode="pro"],
+body[data-view="academic"] [data-mode="personal"] { display: none !important; }
+body[data-view="personal"] [data-mode="pro"],
+body[data-view="personal"] [data-mode="academic"] { display: none !important; }
 
 .nav-mode {
   margin-left: 12px;
@@ -1243,6 +1247,84 @@ body.mode-pro [data-mode="personal"] { display: none !important; }
     padding-top: 8px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
   }
+}
+
+/* =====================
+   PERSONAL VAULT (gate)
+   ===================== */
+
+.vault-gate {
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 48px 24px;
+}
+
+.vault-gate .vault-icon {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+}
+
+.vault-gate h2 {
+  margin-bottom: 12px;
+}
+
+.vault-gate p {
+  color: var(--text-muted, rgba(241, 245, 249, 0.65));
+  margin-bottom: 24px;
+}
+
+.vault-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+.vault-request-btn {
+  display: inline-block;
+}
+
+.vault-divider {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.5;
+}
+
+.vault-unlock {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.vault-unlock input {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.06);
+  color: inherit;
+  font-family: var(--font-family);
+  min-width: 220px;
+}
+
+.vault-unlock button {
+  cursor: pointer;
+}
+
+.vault-feedback {
+  min-height: 1.2em;
+  font-size: 0.85rem;
+  margin-top: 10px;
+}
+
+.vault-feedback.error { color: #f87171; }
+.vault-feedback.success { color: #4ade80; }
+
+.vault-content[hidden],
+.vault-gate[hidden] {
+  display: none !important;
 }
 
 /* =====================
