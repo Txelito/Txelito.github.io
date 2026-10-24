@@ -29,11 +29,12 @@
 
     <ul class="nav-menu" id="navMenu">
       <li><a href="#about" class="nav-link">Sobre</a></li>
-      <li><a href="#what-i-do" class="nav-link">O Que Faço</a></li>
-      <li><a href="#projects" class="nav-link">Projetos</a></li>
-      <li><a href="#skills" class="nav-link">Competências</a></li>
+      <li data-mode="pro academic"><a href="#what-i-do" class="nav-link">O Que Faço</a></li>
+      <li data-mode="pro academic"><a href="#projects" class="nav-link">Projetos</a></li>
       <li data-mode="academic"><a href="#academic-activities" class="nav-link">Académico</a></li>
       <li data-mode="pro"><a href="#experience" class="nav-link">Experiência</a></li>
+      <li data-mode="pro academic"><a href="#education" class="nav-link">Formação</a></li>
+      <li><a href="#skills" class="nav-link">Competências</a></li>
       <li data-mode="personal"><a href="#personal-vault" class="nav-link">Cofre</a></li>
       <li><a href="#contact" class="nav-link">Contacto</a></li>
 
@@ -100,6 +101,22 @@
       </div>
     </div>
 
+    <div data-mode="personal">
+      <h1>
+        Cabo Verde · Braga · Cinco Línguas<br>
+        <span>A pessoa por trás do trabalho.</span>
+      </h1>
+      <p>
+        Sou o Michel. Cabo-verdiano, a viver em Braga, a alternar entre português, crioulo, inglês,
+        francês e espanhol consoante quem está na sala. Este é o meu lado fora do trabalho e da
+        academia.
+      </p>
+      <div class="cta">
+        <a href="#personal-vault" class="btn primary">Entrar no Cofre</a>
+        <a href="#contact" class="btn secondary">Contacto</a>
+      </div>
+    </div>
+
   </div>
 
   <div class="hero-image">
@@ -108,7 +125,7 @@
     <img data-mode="personal" src="assets/img/Michel.jpeg" alt="Michel Gonçalves">
   </div>
 
-  <a href="#projects" class="scroll-indicator explore-indicator" aria-label="Explorar">
+  <a href="#about" class="scroll-indicator explore-indicator" aria-label="Explorar">
     <span>Explorar</span>
     <span class="arrow-indicator" aria-hidden="true">⌄</span>
   </a>
@@ -152,12 +169,26 @@
       </p>
     </div>
 
+    <div class="about-text" data-mode="personal">
+      <p>
+        Sou Michel Silva Gonçalves, nascido em Cabo Verde e em casa em Braga, Portugal.
+      </p>
+      <p>
+        As línguas sempre foram a minha forma de chegar às pessoas. Passei anos a guiar visitantes
+        por Braga e pelo Minho, e traduzo livros e teses por fora.
+      </p>
+      <p>
+        Estou também envolvido na SEAUM, a Associação de Estudantes Africanos da Universidade do
+        Minho, a organizar atividades e eventos que juntam a comunidade.
+      </p>
+    </div>
+
   </div>
 </section>
 
 
 <!-- WHAT I DO -->
-<section class="what-i-do" id="what-i-do">
+<section class="what-i-do" id="what-i-do" data-mode="pro academic">
   <h2>O Que Faço</h2>
 
   <div data-mode="academic">
@@ -204,7 +235,7 @@
 
 
 <!-- PROJECTS -->
-<section class="projects" id="projects">
+<section class="projects" id="projects" data-mode="pro academic">
   <h2>Projetos</h2>
 
   <div data-mode="academic">
@@ -405,7 +436,7 @@
         <span class="timeline-location">Braga, Portugal</span>
       </div>
       <div class="timeline-content">
-        <h3 class="timeline-role">Transformação Digital</h3>
+        <h3 class="timeline-role">Consultor de Transformação Digital</h3>
         <div class="timeline-company-logo">
           <img src="assets/logo_branco.png" alt="PROGEST">
         </div>
@@ -425,7 +456,7 @@
 
     <div class="timeline-item">
       <div class="timeline-meta">
-        <span class="timeline-period">junho de 2023 — setembro de 2025</span>
+        <span class="timeline-period">junho de 2022 — outubro de 2025</span>
         <span class="timeline-location">Braga, Portugal</span>
       </div>
       <div class="timeline-content">
@@ -454,13 +485,13 @@
 
     <div class="timeline-item">
       <div class="timeline-meta">
-        <span class="timeline-period">outubro de 2021 — Presente</span>
+        <span class="timeline-period">outubro de 2021 — março de 2026</span>
         <span class="timeline-location">Portugal</span>
       </div>
       <div class="timeline-content">
         <h3 class="timeline-role">Tradutor (Freelancer)</h3>
         <p class="timeline-desc">
-          Traduzo e localizo livros, teses e documentos técnicos e de marketing.
+          Traduzi e localizei textos técnicos, literários e comerciais, de livros e teses a documentos de marketing.
         </p>
         <ul class="timeline-tags">
           <li>Português</li><li>Inglês</li><li>Espanhol</li><li>Francês</li><li>Crioulo Cabo-Verdiano</li><li>Localização</li>
@@ -478,6 +509,82 @@
         <p class="timeline-desc">
           Guiei potenciais estudantes na escolha de curso e no processo de inscrição.
         </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- FORMAÇÃO E CERTIFICADOS -->
+<section id="education" class="education-section" data-mode="pro academic">
+  <h2>Formação e Certificados</h2>
+
+  <div class="education-grid">
+
+    <div>
+      <h3 class="education-subtitle">Formação</h3>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-meta">
+            <span class="timeline-period">setembro de 2024 — Presente</span>
+            <span class="timeline-location">Braga, Portugal</span>
+          </div>
+          <h4 class="timeline-role">Mestrado em Humanidades Digitais</h4>
+          <span class="timeline-institution">Universidade do Minho</span>
+          <p class="timeline-desc">Defesa do relatório final pendente.</p>
+          <ul class="timeline-tags">
+            <li>Nível 7 QNQ</li><li>NLP</li><li>Análise de Dados</li><li>Machine Learning</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-meta">
+            <span class="timeline-period">setembro de 2023 — janeiro de 2024</span>
+            <span class="timeline-location">Rennes, França</span>
+          </div>
+          <h4 class="timeline-role">Langues étrangères appliquées · Erasmus</h4>
+          <span class="timeline-institution">Université Rennes 2</span>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-meta">
+            <span class="timeline-period">outubro de 2021 — maio de 2024</span>
+            <span class="timeline-location">Braga, Portugal</span>
+          </div>
+          <h4 class="timeline-role">Licenciatura em Línguas Aplicadas</h4>
+          <span class="timeline-institution">Universidade do Minho</span>
+          <ul class="timeline-tags">
+            <li>Nível 6 QNQ</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h3 class="education-subtitle">Certificados</h3>
+      <div class="cert-list">
+        <article class="cert-card cncs">
+          <div class="cert-header">
+            <span>CNCS · C-Academy</span>
+            <span>2026</span>
+          </div>
+          <h4 class="cert-title">Roteiro NIS 2</h4>
+          <p class="cert-desc">
+            Formação do Centro Nacional de Cibersegurança sobre a diretiva europeia NIS 2 e o que ela
+            muda na forma como as organizações gerem o risco de cibersegurança.
+          </p>
+          <ul class="cert-meta">
+            <li><i class="fa-regular fa-clock"></i>7 horas</li>
+            <li><i class="fa-regular fa-calendar"></i>1 de julho de 2026</li>
+            <li><i class="fa-solid fa-location-dot"></i>IPCA</li>
+          </ul>
+          <div class="cert-footer">
+            <span class="cert-id">Certificado Nº 7966</span>
+            <a href="assets/certs/cncs-roteiro-nis2-7966.pdf" target="_blank" class="btn-primary cert-open"
+               data-title="Roteiro NIS 2 · CNCS">Ver certificado</a>
+          </div>
+        </article>
       </div>
     </div>
 
@@ -541,7 +648,7 @@
       </div>
       <div class="skill">
         <div class="skill-top">
-          <span class="skill-name">Docker · Azure · Cloud</span>
+          <span class="skill-name">Azure · Azure DevOps · Docker</span>
           <span class="skill-level intermediate">Intermédio</span>
         </div>
         <div class="bar"><div class="fill intermediate"></div></div>
@@ -553,15 +660,22 @@
         </div>
         <div class="bar"><div class="fill intermediate"></div></div>
       </div>
+      <div class="skill">
+        <div class="skill-top">
+          <span class="skill-name">SQL · Estruturação de Dados</span>
+          <span class="skill-level intermediate">Intermédio</span>
+        </div>
+        <div class="bar"><div class="fill intermediate"></div></div>
+      </div>
     </div>
 
     <div class="skill-card">
       <h3>Idiomas</h3>
-      <div class="language"><span>Português</span><span class="stars">★★★★★</span></div>
-      <div class="language"><span>Inglês</span><span class="stars">★★★★★</span></div>
-      <div class="language"><span>Francês</span><span class="stars">★★★★☆</span></div>
-      <div class="language"><span>Espanhol</span><span class="stars">★★★★☆</span></div>
-      <div class="language"><span>Crioulo Cabo-Verdiano</span><span class="stars">★★★★★</span></div>
+      <div class="language"><span>Português</span><span class="stars"><span class="cefr">Nativo</span>★★★★★</span></div>
+      <div class="language"><span>Inglês</span><span class="stars"><span class="cefr">C2</span>★★★★★</span></div>
+      <div class="language"><span>Francês</span><span class="stars"><span class="cefr">B2</span>★★★★☆</span></div>
+      <div class="language"><span>Espanhol</span><span class="stars"><span class="cefr">B2</span>★★★★☆</span></div>
+      <div class="language"><span>Crioulo Cabo-Verdiano</span><span class="stars"><span class="cefr">Nativo</span>★★★★★</span></div>
     </div>
 
     <div class="skill-card">
@@ -595,20 +709,20 @@
         class="btn primary vault-request-btn"
         href="mailto:gonsalvesdjimi2@gmail.com?subject=Quero%20entrar%20no%20cofre&body=Ol%C3%A1%20Michel%2C%0D%0A%0D%0ASou%20...%20e%20quero%20acesso%20ao%20teu%20espa%C3%A7o%20pessoal%20porque...%0D%0A"
       >Pedir acesso</a>
+      <span class="vault-email">ou escreve para gonsalvesdjimi2@gmail.com</span>
       <span class="vault-divider">Já tens a frase-chave?</span>
       <form id="vaultUnlockForm" class="vault-unlock">
-        <input type="text" id="vaultPassphrase" placeholder="Frase-chave" autocomplete="off">
+        <input type="password" id="vaultPassphrase" placeholder="Frase-chave" autocomplete="off">
         <button type="submit" class="btn secondary">Entrar</button>
       </form>
       <p id="vaultFeedback" class="vault-feedback" role="status"></p>
     </div>
   </div>
 
+  <!-- Preenchido pelo script.js depois de desencriptar assets/vault.json -->
   <div id="vaultContent" class="vault-content" hidden>
-    <p>
-      Bem-vindo. É aqui que fica a parte pessoal, a vida fora do trabalho e da academia.
-      Ainda a preencher.
-    </p>
+    <div id="vaultBody"></div>
+    <button type="button" class="vault-lock-btn" id="vaultLock">Trancar outra vez</button>
   </div>
 </section>
 
@@ -624,12 +738,14 @@
     Interessado em ferramentas de IA para o seu negócio? Vamos falar.
   </p>
   <p class="contact-subtitle">
-    CV disponível sob pedido. Envia uma mensagem e partilho contigo.
+    <a href="assets/CV_Michel_Goncalves.pdf" target="_blank" class="btn secondary cv-btn">
+      <i class="fa-solid fa-file-arrow-down"></i> Descarregar CV
+    </a>
   </p>
 
   <div class="contact-grid">
 
-    <a href="mailto:gonsalvesdjimi2@gmail.com" class="contact-card" data-mode="academic">
+    <a href="mailto:gonsalvesdjimi2@gmail.com" class="contact-card" data-mode="academic personal">
       <i class="fa-solid fa-envelope contact-icon"></i>
       <span class="contact-label">Email</span>
       <span class="contact-value">gonsalvesdjimi2@gmail.com</span>
@@ -638,7 +754,7 @@
     <a href="mailto:michel.goncalves@progest.com.pt" class="contact-card" data-mode="pro">
       <i class="fa-solid fa-envelope contact-icon"></i>
       <span class="contact-label">Email</span>
-      <span class="contact-value">michel.goncalves@progest.com.pt</span>
+      <span class="contact-value">michel.goncalves<wbr>@progest.com.pt</span>
     </a>
 
     <a href="https://github.com/Txelito" target="_blank" class="contact-card" data-mode="academic">
@@ -649,8 +765,14 @@
 
     <a href="tel:+351961384493" class="contact-card" data-mode="pro">
       <i class="fa-solid fa-phone contact-icon"></i>
-      <span class="contact-label">Telefone</span>
+      <span class="contact-label">Telefone de trabalho</span>
       <span class="contact-value">+351 961 384 493</span>
+    </a>
+
+    <a href="tel:+351935868388" class="contact-card">
+      <i class="fa-solid fa-mobile-screen contact-icon"></i>
+      <span class="contact-label">Telefone pessoal</span>
+      <span class="contact-value">+351 935 868 388</span>
     </a>
 
     <a href="https://www.linkedin.com/in/txelito" target="_blank" class="contact-card">
@@ -673,6 +795,15 @@
 <footer class="footer">
   <p>&copy; 2026 Michel Gonçalves. Desenvolvido com HTML, CSS e curiosidade.</p>
 </footer>
+
+<dialog class="cert-modal" id="certModal" aria-labelledby="certModalTitle">
+  <div class="cert-modal-bar">
+    <span id="certModalTitle"></span>
+    <a id="certModalOpen" href="#" target="_blank">Abrir noutro separador</a>
+    <button type="button" class="cert-modal-close" id="certModalClose" aria-label="Fechar">&times;</button>
+  </div>
+  <iframe id="certModalFrame" title="Certificado"></iframe>
+</dialog>
 
 <script src="script.js"></script>
 <script>

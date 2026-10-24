@@ -1195,12 +1195,10 @@ body .page-back-to-top:hover {
    MODE SWITCHER
    ===================== */
 
-body[data-view="pro"] [data-mode="academic"],
-body[data-view="pro"] [data-mode="personal"] { display: none !important; }
-body[data-view="academic"] [data-mode="pro"],
-body[data-view="academic"] [data-mode="personal"] { display: none !important; }
-body[data-view="personal"] [data-mode="pro"],
-body[data-view="personal"] [data-mode="academic"] { display: none !important; }
+/* data-mode accepts a space-separated list, e.g. data-mode="academic personal" */
+body[data-view="pro"] [data-mode]:not([data-mode~="pro"]),
+body[data-view="academic"] [data-mode]:not([data-mode~="academic"]),
+body[data-view="personal"] [data-mode]:not([data-mode~="personal"]) { display: none !important; }
 
 .nav-mode {
   margin-left: 12px;
@@ -1532,4 +1530,274 @@ body[data-view="personal"] [data-mode="academic"] { display: none !important; }
   object-fit: contain;
   filter: brightness(0) invert(1);
   opacity: 0.85;
+}
+
+/* =====================
+   EDUCATION & CERTIFICATIONS
+   ===================== */
+
+.education-section {
+  margin-top: 4rem;
+}
+
+.education-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+  gap: 48px;
+}
+
+.education-grid > div {
+  min-width: 0;
+}
+
+.education-subtitle {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+.education-section .timeline-item {
+  margin-bottom: 32px;
+}
+
+.education-section .timeline-role {
+  font-size: 1.1rem;
+}
+
+.timeline-institution {
+  display: block;
+  color: var(--accent-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.cert-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cert-card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px;
+  border-radius: 16px;
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-left: 3px solid var(--cert-accent, var(--accent-primary));
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.cert-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  background: var(--bg-card-hover);
+}
+
+/* colours taken from the CNCS / C-Academy certificate */
+.cert-card.cncs {
+  --cert-accent: #2ebdab;
+  background:
+    radial-gradient(circle at 110% -10%, rgba(46, 189, 171, 0.18) 0%, transparent 45%),
+    linear-gradient(135deg, rgba(79, 89, 168, 0.22) 0%, var(--bg-card) 70%);
+}
+
+.cert-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cert-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.cert-desc {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.cert-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+}
+
+.cert-meta li {
+  font-size: 0.7rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary);
+}
+
+.cert-meta i {
+  margin-right: 4px;
+  color: var(--cert-accent, var(--accent-secondary));
+}
+
+.cert-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.cert-id {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.cert-footer .btn-primary {
+  margin-top: 0;
+}
+
+/* certificate viewer */
+.cert-modal {
+  width: min(1000px, 94vw);
+  height: min(760px, 90vh);
+  margin: auto;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  overflow: hidden;
+}
+
+.cert-modal[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+.cert-modal::backdrop {
+  background: rgba(2, 6, 23, 0.75);
+  backdrop-filter: blur(4px);
+}
+
+.cert-modal-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.9rem;
+}
+
+.cert-modal-bar span {
+  flex: 1;
+  font-weight: 500;
+}
+
+.cert-modal-bar a {
+  color: var(--accent-secondary);
+  font-size: 0.82rem;
+  text-decoration: none;
+}
+
+.cert-modal-close {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.cert-modal iframe {
+  flex: 1;
+  width: 100%;
+  border: 0;
+  background: #fff;
+}
+
+/* =====================
+   PERSONAL VAULT (content)
+   ===================== */
+
+.vault-email {
+  font-size: 0.82rem;
+  opacity: 0.7;
+}
+
+.vault-content {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.vault-content h3 {
+  margin: 28px 0 10px;
+}
+
+.vault-content p,
+.vault-content li {
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.vault-content ul {
+  padding-left: 20px;
+}
+
+.vault-lock-btn {
+  margin-top: 32px;
+  background: transparent;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  color: var(--text-muted);
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: var(--font-family);
+}
+
+.cv-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.cefr {
+  display: inline-block;
+  margin-right: 8px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  vertical-align: middle;
+}
+
+.language .stars {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* 3–4 contact cards depending on the mode: auto-fit keeps them in one even row */
+.contact-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+  gap: 20px;
+}
+
+.contact-value {
+  overflow-wrap: break-word;
 }
