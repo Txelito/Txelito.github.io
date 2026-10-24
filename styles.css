@@ -1669,7 +1669,7 @@ body[data-view="personal"] [data-mode]:not([data-mode~="personal"]) { display: n
 }
 
 .vault-content {
-  max-width: 760px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -2133,4 +2133,210 @@ body.mode-enter .hero-image img {
   margin-right: 6px;
   border-radius: 50%;
   background: var(--accent-secondary);
+}
+
+/* =====================
+   TRAVEL MAP (vault)
+   ===================== */
+
+.travel {
+  margin-top: 40px;
+}
+
+.travel-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.vault-content .travel-head h3 {
+  margin: 0;
+}
+
+.travel-stats {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.travel-stats strong {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+}
+
+.travel-map {
+  margin-top: 16px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+.travel-map svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.travel-map .country {
+  fill: rgba(148, 163, 184, 0.14);
+  stroke: rgba(15, 23, 42, 0.9);
+  stroke-width: 0.5;
+}
+
+.travel-map .country.visited {
+  fill: rgba(99, 102, 241, 0.45);
+  cursor: pointer;
+  transition: fill 0.2s ease;
+}
+
+.travel-map .country.visited:hover,
+.travel-map .country.visited.is-active {
+  fill: rgba(129, 140, 248, 0.85);
+}
+
+.travel-map .pin {
+  cursor: pointer;
+}
+
+.travel-map .pin-dot {
+  fill: #f1f5f9;
+  stroke: var(--accent-primary);
+  stroke-width: 2;
+  transition: r 0.2s ease;
+}
+
+.travel-map .pin.is-active .pin-dot {
+  fill: #4ade80;
+  r: 6;
+}
+
+.travel-map .pin-pulse {
+  fill: rgba(241, 245, 249, 0.5);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pin-pulse 2.4s ease-out infinite;
+}
+
+@keyframes pin-pulse {
+  from { transform: scale(1); opacity: 0.7; }
+  to { transform: scale(3.2); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .travel-map .pin-pulse { animation: none; opacity: 0; }
+}
+
+.travel-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.travel-chip {
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-family);
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.travel-chip:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.travel-chip.is-active {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+  color: #fff;
+}
+
+.travel-hint {
+  margin-top: 14px;
+  font-size: 0.85rem;
+}
+
+.travel-panel {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 16px;
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  animation: mode-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.travel-panel h4 {
+  font-size: 1.15rem;
+  margin-bottom: 4px;
+}
+
+.travel-photos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.travel-photo {
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+  cursor: zoom-in;
+  max-height: 220px;
+}
+
+.travel-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.travel-photo:hover img {
+  transform: scale(1.04);
+}
+
+.travel-viewer {
+  max-width: 94vw;
+  max-height: 92vh;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  background: #000;
+  overflow: hidden;
+}
+
+.travel-viewer::backdrop {
+  background: rgba(2, 6, 23, 0.85);
+  backdrop-filter: blur(4px);
+}
+
+.travel-viewer img {
+  display: block;
+  max-width: 94vw;
+  max-height: 92vh;
+  object-fit: contain;
+}
+
+.travel-viewer-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.7);
+  color: #fff;
+  font-size: 1.4rem;
+  cursor: pointer;
 }

@@ -180,7 +180,8 @@ function relativeTime(date, lang) {
     return vaultPromise;
   }
 
-  // Returns the decrypted {en, pt} content, or null if no slot accepts the passphrase.
+  // Returns {data, key}: the decrypted {en, pt, travel} content and the key that also
+  // opens the photo files. Null if no slot accepts the passphrase.
   async function decrypt(passphrase, vault) {
     const baseKey = await crypto.subtle.importKey(
       "raw", new TextEncoder().encode(passphrase), "PBKDF2", false, ["deriveKey"]
@@ -198,7 +199,7 @@ function relativeTime(date, lang) {
         const plain = await crypto.subtle.decrypt(
           { name: "AES-GCM", iv: fromB64(vault.content.iv) }, key, fromB64(vault.content.data)
         );
-        return JSON.parse(new TextDecoder().decode(plain));
+        return { data: JSON.parse(new TextDecoder().decode(plain)), key };
       } catch {
         // wrong slot, try the next one
       }
@@ -206,14 +207,20 @@ function relativeTime(date, lang) {
     return null;
   }
 
-  function show(data) {
+  function show({ data, key }) {
     body.innerHTML = data[lang] || data.en || "";
+    if (data.travel) {
+      const travel = document.createElement("div");
+      body.append(travel);
+      renderTravelMap(travel, data.travel, key, lang).catch((err) => console.error(err));
+    }
     gate.hidden = true;
     content.hidden = false;
   }
 
   function lock() {
     try { localStorage.removeItem(STORAGE_KEY); } catch {}
+    releaseTravelPhotos();
     body.innerHTML = "";
     content.hidden = true;
     gate.hidden = false;
@@ -226,8 +233,8 @@ function relativeTime(date, lang) {
       feedback.className = "vault-feedback";
     }
     try {
-      const data = await decrypt(normalise(passphrase), await loadVault());
-      if (!data) {
+      const opened = await decrypt(normalise(passphrase), await loadVault());
+      if (!opened) {
         if (!silent) {
           feedback.textContent = MESSAGES.wrong;
           feedback.className = "vault-feedback error";
@@ -236,7 +243,7 @@ function relativeTime(date, lang) {
       }
       try { localStorage.setItem(STORAGE_KEY, normalise(passphrase)); } catch {}
       feedback.textContent = "";
-      show(data);
+      show(opened);
       return true;
     } catch (err) {
       console.error(err);
@@ -425,3 +432,191 @@ function relativeTime(date, lang) {
     })
     .catch(() => {});
 })();
+
+// =====================
+// TRAVEL MAP (inside the vault)
+// =====================
+// Countries and photos come from the decrypted vault. Photos are separate encrypted
+// files in assets/vault/, decrypted in the browser only when a country is opened.
+
+const MAP_LIBS = [
+  "https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js",
+  "https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js",
+];
+const WORLD_ATLAS = "https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-50m.json";
+const photoUrls = new Map(); // encrypted file name -> blob: URL
+
+function loadScript(src) {
+  if (document.querySelector(`script[src="${src}"]`)) return Promise.resolve();
+  return new Promise((resolve, reject) => {
+    const script = document.createElement("script");
+    script.src = src;
+    script.onload = resolve;
+    script.onerror = () => reject(new Error(`Could not load ${src}`));
+    document.head.append(script);
+  });
+}
+
+function releaseTravelPhotos() {
+  photoUrls.forEach((url) => URL.revokeObjectURL(url));
+  photoUrls.clear();
+}
+
+async function decryptPhoto(ref, key) {
+  if (photoUrls.has(ref.f)) return photoUrls.get(ref.f);
+  const res = await fetch(`assets/vault/${ref.f}`);
+  if (!res.ok) throw new Error(`${ref.f}: ${res.status}`);
+  const fromB64 = (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
+  const plain = await crypto.subtle.decrypt(
+    { name: "AES-GCM", iv: fromB64(ref.iv) }, key, await res.arrayBuffer()
+  );
+  const url = URL.createObjectURL(new Blob([plain], { type: "image/jpeg" }));
+  photoUrls.set(ref.f, url);
+  return url;
+}
+
+async function renderTravelMap(root, travel, key, lang) {
+  const T = {
+    en: {
+      title: "Places I've been", countries: "countries", continents: "continents",
+      hint: "Pick a country to see the photos.", soon: "Photos coming soon.",
+      close: "Close", photo: "Photo",
+    },
+    pt: {
+      title: "Por onde já passei", countries: "países", continents: "continentes",
+      hint: "Escolhe um país para ver as fotos.", soon: "Fotos em breve.",
+      close: "Fechar", photo: "Foto",
+    },
+  }[lang];
+  const countries = travel.countries || [];
+  const name = (c) => c.name[lang] || c.name.en;
+  const note = (c) => (c.note && (c.note[lang] || c.note.en)) || "";
+  const el = (tag, className, text) => {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text) node.textContent = text;
+    return node;
+  };
+
+  // --- skeleton -----------------------------------------------------------
+  root.className = "travel";
+  const head = el("div", "travel-head");
+  const stats = el("p", "travel-stats");
+  const continents = new Set(countries.map((c) => c.continent)).size;
+  stats.append(el("strong", "", String(countries.length)), ` ${T.countries} · `,
+               el("strong", "", String(continents)), ` ${T.continents}`);
+  head.append(el("h3", "", T.title), stats);
+
+  const mapBox = el("div", "travel-map");
+  const chips = el("div", "travel-chips");
+  const panel = el("div", "travel-panel");
+  const panelTitle = el("h4");
+  const panelNote = el("p", "travel-note");
+  const grid = el("div", "travel-photos");
+  panel.append(panelTitle, panelNote, grid);
+  panel.hidden = true;
+  const hint = el("p", "travel-hint", T.hint);
+
+  const viewer = el("dialog", "travel-viewer");
+  const viewerImg = el("img");
+  const viewerClose = el("button", "travel-viewer-close", "×");
+  viewerClose.type = "button";
+  viewerClose.setAttribute("aria-label", T.close);
+  viewer.append(viewerClose, viewerImg);
+  viewerClose.addEventListener("click", () => viewer.close());
+  viewer.addEventListener("click", (e) => { if (e.target === viewer) viewer.close(); });
+
+  root.replaceChildren(head, mapBox, chips, hint, panel, viewer);
+
+  // --- selection ----------------------------------------------------------
+  let current = null;
+
+  function select(country) {
+    current = country.slug;
+    root.querySelectorAll("[data-slug]").forEach((node) => {
+      node.classList.toggle("is-active", node.dataset.slug === current);
+    });
+    hint.hidden = true;
+    panel.hidden = false;
+    panelTitle.textContent = name(country);
+    panelNote.textContent = note(country);
+    panelNote.hidden = !note(country);
+    grid.replaceChildren();
+
+    if (!country.photos?.length) {
+      grid.append(el("p", "travel-soon", T.soon));
+      return;
+    }
+    country.photos.forEach((photo, i) => {
+      const button = el("button", "travel-photo");
+      button.type = "button";
+      button.style.aspectRatio = `${photo.w} / ${photo.h}`;
+      button.setAttribute("aria-label", `${T.photo} ${i + 1} · ${name(country)}`);
+      const img = el("img");
+      img.alt = "";
+      button.append(img);
+      grid.append(button);
+      decryptPhoto(photo.thumb, key).then((url) => {
+        if (current === country.slug) img.src = url;
+      }).catch((err) => console.error(err));
+      button.addEventListener("click", async () => {
+        viewerImg.src = img.src; // thumbnail first, then the full-size version
+        viewerImg.alt = `${name(country)} · ${T.photo} ${i + 1}`;
+        viewer.showModal();
+        try { viewerImg.src = await decryptPhoto(photo.full, key); } catch (err) { console.error(err); }
+      });
+    });
+  }
+
+  countries.forEach((country) => {
+    const chip = el("button", "travel-chip", name(country));
+    chip.type = "button";
+    chip.dataset.slug = country.slug;
+    chip.addEventListener("click", () => select(country));
+    chips.append(chip);
+  });
+
+  // --- map (if the libraries load; the chips work without it) -------------
+  await Promise.all(MAP_LIBS.map(loadScript));
+  const world = await fetch(WORLD_ATLAS).then((r) => r.json());
+  const { d3, topojson } = window;
+  const W = 960;
+  const H = 440;
+  // frame the region from the Americas to central Europe, Cape Verde included
+  const frame = { type: "MultiPoint", coordinates: [[-128, 8], [32, 8], [-128, 62], [32, 62]] };
+  const projection = d3.geoNaturalEarth1().fitExtent([[8, 8], [W - 8, H - 8]], frame);
+  const path = d3.geoPath(projection);
+  const byIso = new Map(countries.map((c) => [c.iso, c]));
+
+  const svg = d3.create("svg")
+    .attr("viewBox", `0 0 ${W} ${H}`)
+    .attr("role", "img")
+    .attr("aria-label", `${T.title}: ${countries.map(name).join(", ")}`);
+
+  svg.append("g")
+    .selectAll("path")
+    .data(topojson.feature(world, world.objects.countries).features)
+    .join("path")
+    .attr("d", path)
+    .attr("class", (f) => (byIso.has(f.id) ? "country visited" : "country"))
+    .attr("data-slug", (f) => byIso.get(f.id)?.slug ?? null)
+    .on("click", (_, f) => { if (byIso.has(f.id)) select(byIso.get(f.id)); })
+    .filter((f) => byIso.has(f.id))
+    .append("title")
+    .text((f) => name(byIso.get(f.id)));
+
+  const pins = svg.append("g")
+    .selectAll("g")
+    .data(countries)
+    .join("g")
+    .attr("class", "pin")
+    .attr("data-slug", (c) => c.slug)
+    .attr("transform", (c) => `translate(${projection(c.coords)})`)
+    .on("click", (_, c) => select(c));
+  pins.append("circle").attr("class", "pin-pulse").attr("r", 6);
+  pins.append("circle").attr("class", "pin-dot").attr("r", 4.5);
+  pins.append("title").text(name);
+
+  mapBox.append(svg.node());
+  if (current) root.querySelectorAll(`[data-slug="${current}"]`).forEach((n) => n.classList.add("is-active"));
+}
