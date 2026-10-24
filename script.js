@@ -156,12 +156,12 @@ function relativeTime(date, lang) {
   const lang = document.documentElement.lang === "pt" ? "pt" : "en";
   const MESSAGES = {
     en: {
-      wrong: "That's not it. Try again, or request access above.",
+      wrong: "That's not it. Try again, or request access below.",
       checking: "Checking…",
       unavailable: "The vault is unavailable right now. Try again later.",
     },
     pt: {
-      wrong: "Não é essa. Tenta outra vez, ou pede acesso acima.",
+      wrong: "Não é essa. Tenta outra vez, ou pede acesso abaixo.",
       checking: "A verificar…",
       unavailable: "O cofre não está disponível agora. Tenta mais tarde.",
     },
@@ -169,7 +169,10 @@ function relativeTime(date, lang) {
 
   const STORAGE_KEY = "vaultPass";
   const fromB64 = (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
-  const normalise = (s) => s.trim().toLowerCase();
+  // Same rule as tools/vault.py: case, accents, hyphens and extra spaces don't matter,
+  // so "Jean-Baptiste" and "jean  baptiste" are the same answer.
+  const normalise = (s) => s.normalize("NFD").replace(/[̀-ͯ]/g, "")
+    .toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
   let vaultPromise = null;
 
   function loadVault() {

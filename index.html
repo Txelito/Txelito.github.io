@@ -789,21 +789,21 @@
     <div class="vault-icon" aria-hidden="true">🔒</div>
     <h3>This part is just mine to share</h3>
     <p>
-      Not locked because it's scandalous, locked because it's mine. If you know me and want in,
-      tell me why and I'll probably say yes.
+      Not locked because it's scandalous, locked because it's mine. If you know me well, you know
+      the answer.
     </p>
     <div class="vault-actions">
-      <a
-        class="btn primary vault-request-btn"
-        href="mailto:gonsalvesdjimi2@gmail.com?subject=Quero%20entrar%20no%20cofre&body=Ol%C3%A1%20Michel%2C%0D%0A%0D%0ASou%20...%20e%20quero%20acesso%20ao%20teu%20espa%C3%A7o%20pessoal%20porque...%0D%0A"
-      >Request access</a>
-      <span class="vault-email">or write to gonsalvesdjimi2@gmail.com</span>
-      <span class="vault-divider">Already have the passphrase?</span>
       <form id="vaultUnlockForm" class="vault-unlock">
-        <input type="password" id="vaultPassphrase" placeholder="Passphrase" autocomplete="off">
-        <button type="submit" class="btn secondary">Unlock</button>
+        <label for="vaultPassphrase" class="vault-question">What's my cat's name?</label>
+        <div class="vault-unlock-row">
+          <input type="text" id="vaultPassphrase" placeholder="Your answer" autocomplete="off" spellcheck="false">
+          <button type="submit" class="btn primary">Unlock</button>
+        </div>
       </form>
       <p id="vaultFeedback" class="vault-feedback" role="status"></p>
+      <span class="vault-divider">Don't know?</span>
+      <a class="btn secondary vault-request-btn" href="mailto:gonsalvesdjimi2@gmail.com?subject=Quero%20entrar%20no%20cofre&body=Ol%C3%A1%20Michel%2C%0D%0A%0D%0ASou%20...%20e%20quero%20acesso%20ao%20teu%20espa%C3%A7o%20pessoal%20porque...%0D%0A">Request access</a>
+      <span class="vault-email">or write to gonsalvesdjimi2@gmail.com</span>
     </div>
   </div>
 

@@ -1223,6 +1223,19 @@ body[data-view="personal"] [data-mode]:not([data-mode~="personal"]) { display: n
 
 .vault-unlock {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.vault-question {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.vault-unlock-row {
+  display: flex;
   gap: 8px;
   flex-wrap: wrap;
   justify-content: center;

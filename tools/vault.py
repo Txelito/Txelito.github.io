@@ -22,8 +22,10 @@ import base64
 import io
 import json
 import os
+import re
 import secrets
 import sys
+import unicodedata
 from pathlib import Path
 
 from cryptography.hazmat.primitives import hashes
@@ -49,8 +51,11 @@ def b64(data: bytes) -> str:
 
 
 def normalise(passphrase: str) -> str:
-    # script.js applies the same trim + lowercase before deriving the key
-    return passphrase.strip().lower()
+    # script.js applies the same rule before deriving the key: ignore case, accents,
+    # hyphens and extra spaces, so "Jean-Baptiste" and "jean  baptiste" match.
+    decomposed = unicodedata.normalize("NFD", passphrase)
+    plain = "".join(ch for ch in decomposed if not unicodedata.combining(ch)).lower()
+    return re.sub(r"[^a-z0-9]+", " ", plain).strip()
 
 
 def read_passphrases() -> list[str]:
