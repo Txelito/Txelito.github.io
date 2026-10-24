@@ -11,7 +11,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
@@ -28,15 +28,18 @@
     </a>
 
     <ul class="nav-menu" id="navMenu">
-      <li><a href="#about" class="nav-link">About</a></li>
-      <li data-mode="pro academic"><a href="#what-i-do" class="nav-link">What I Do</a></li>
+      <li data-mode="pro"><a href="#about" class="nav-link">About</a></li>
+      <li data-mode="academic"><a href="#about" class="nav-link">Abstract</a></li>
+      <li data-mode="pro"><a href="#what-i-do" class="nav-link">What I Do</a></li>
+      <li data-mode="academic"><a href="#what-i-do" class="nav-link">Research</a></li>
       <li data-mode="pro academic"><a href="#projects" class="nav-link">Projects</a></li>
-      <li data-mode="academic"><a href="#academic-activities" class="nav-link">Academic</a></li>
+      <li data-mode="academic"><a href="#academic-activities" class="nav-link">Talks</a></li>
       <li data-mode="pro"><a href="#experience" class="nav-link">Experience</a></li>
       <li data-mode="pro academic"><a href="#education" class="nav-link">Education</a></li>
-      <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li data-mode="pro"><a href="#skills" class="nav-link">Skills</a></li>
+      <li data-mode="academic"><a href="#skills" class="nav-link">Languages</a></li>
       <li data-mode="personal"><a href="#personal-vault" class="nav-link">Vault</a></li>
-      <li><a href="#contact" class="nav-link">Contact</a></li>
+      <li data-mode="pro academic"><a href="#contact" class="nav-link">Contact</a></li>
 
       <li class="nav-lang">
         <a href="index.html" class="nav-link active-lang">EN</a>
@@ -62,7 +65,7 @@
 
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero" data-mode="pro academic">
   <div class="hero-text">
 
     <p class="hello" aria-hidden="true">
@@ -75,11 +78,13 @@
         AI · Data · Language · Business<br>
         <span>Building and applying AI solutions to real-world problems.</span>
       </h1>
+      <p class="paper-affil">University of Minho · School of Letters, Arts and Human Sciences (ELACH)</p>
       <p>
         I'm Michel Gonçalves. I work at the intersection of AI, data and language, focusing on
         practical solutions that help organisations make better decisions and communicate more
         effectively.
       </p>
+      <p class="paper-keywords"><span>Keywords</span> Natural Language Processing · Digital Humanities · Sociolinguistics · Data Analysis</p>
       <div class="cta">
         <a href="#projects" class="btn primary">View Projects</a>
         <a href="#contact" class="btn secondary">Contact</a>
@@ -106,28 +111,12 @@
       </div>
     </div>
 
-    <div data-mode="personal">
-      <h1>
-        Cape Verde · Braga · Five Languages<br>
-        <span>The person behind the work.</span>
-      </h1>
-      <p>
-        I'm Michel. Cape Verdean, living in Braga, switching between Portuguese, Creole, English,
-        French and Spanish depending on who's in the room. This is the side of me outside work
-        and academia.
-      </p>
-      <div class="cta">
-        <a href="#personal-vault" class="btn primary">Enter the Vault</a>
-        <a href="#contact" class="btn secondary">Contact</a>
-      </div>
-    </div>
 
   </div>
 
   <div class="hero-image">
     <img data-mode="pro" src="assets/img/Michel2.jpeg" alt="Michel Gonçalves">
     <img data-mode="academic" src="assets/img/Michel.jpeg" alt="Michel Gonçalves">
-    <img data-mode="personal" src="assets/img/Michel.jpeg" alt="Michel Gonçalves">
   </div>
 
   <a href="#about" class="scroll-indicator explore-indicator" aria-label="Scroll to explore">
@@ -138,22 +127,25 @@
 
 
 <!-- ABOUT -->
-<section class="about" id="about">
-  <h2>About Me</h2>
+<section class="about" id="about" data-mode="pro academic">
+  <h2 data-mode="pro">About Me</h2>
+  <h2 data-mode="academic">Abstract</h2>
   <div class="about-grid">
 
     <div class="about-text" data-mode="academic">
       <p>
-        I'm Michel Silva Gonçalves, a Cape Verdean professional based in Braga, Portugal. I work at the
-        intersection of AI, data, language and business.
+        I'm Michel Silva Gonçalves, a Master's student in Digital Humanities at the University of Minho,
+        with a first degree in Applied Languages. My work sits where language, data and artificial
+        intelligence meet: natural language processing, data analysis, and how people and
+        organisations actually adopt AI.
       </p>
       <p>
-        With a background in Applied Languages and a Master's in Digital Humanities, I combine technical tools
-        with a strong understanding of communication and information.
+        My internship report studies the implementation of AI in a business consultancy along three
+        axes: cybersecurity, automation and AI agents, and strategic market analysis.
       </p>
       <p>
-        I'm currently applying these skills in a consulting context, exploring how AI can support real organisational
-        needs.
+        I'm also interested in the sociolinguistics of languages in contact, in particular Portuguese
+        and Creole in Cape Verde and Guinea-Bissau.
       </p>
     </div>
 
@@ -175,19 +167,6 @@
       </p>
     </div>
 
-    <div class="about-text" data-mode="personal">
-      <p>
-        I'm Michel Silva Gonçalves, born in Cape Verde and at home in Braga, Portugal.
-      </p>
-      <p>
-        Languages have always been my way into people. I spent years guiding visitors around
-        Braga and the Minho region, and I translate books and theses on the side.
-      </p>
-      <p>
-        I'm also involved with SEAUM, the African Students Association at the University of Minho,
-        organising activities and events that bring the community together.
-      </p>
-    </div>
 
   </div>
 </section>
@@ -227,24 +206,25 @@
 
 <!-- WHAT I DO -->
 <section class="what-i-do" id="what-i-do" data-mode="pro academic">
-  <h2>What I Do</h2>
+  <h2 data-mode="pro">What I Do</h2>
+  <h2 data-mode="academic">Research Interests</h2>
 
   <div data-mode="academic">
     <div class="what-grid">
       <div class="what-card">
-        <div class="what-icon" aria-hidden="true"><i class="fa-solid fa-brain"></i></div>
-        <h3>AI &amp; Digital Solutions</h3>
-        <p>I design and prototype AI-driven tools and workflows, from internal assistants to automation systems.</p>
+        <div class="what-icon" aria-hidden="true"><i class="fa-solid fa-language"></i></div>
+        <h3>Natural Language Processing</h3>
+        <p>Information retrieval, RAG and text analysis, applied to institutional documents and oral narratives.</p>
       </div>
       <div class="what-card">
-        <div class="what-icon" aria-hidden="true"><i class="fa-solid fa-chart-line"></i></div>
-        <h3>Data &amp; Insights</h3>
-        <p>I analyse data to extract meaningful insights and support real-world decision-making.</p>
+        <div class="what-icon" aria-hidden="true"><i class="fa-solid fa-diagram-project"></i></div>
+        <h3>AI in Organisations</h3>
+        <p>AI adoption, human-in-the-loop agents and governance: the subject of my internship report.</p>
       </div>
       <div class="what-card">
         <div class="what-icon" aria-hidden="true"><i class="fa-regular fa-comments"></i></div>
-        <h3>Language &amp; Communication</h3>
-        <p>I work with language in digital systems, turning complex outputs into clear and usable information.</p>
+        <h3>Sociolinguistics</h3>
+        <p>Language contact, diglossia and language policy in Cape Verde and Guinea-Bissau.</p>
       </div>
     </div>
   </div>
@@ -274,12 +254,28 @@
 
 <!-- PROJECTS -->
 <section class="projects" id="projects" data-mode="pro academic">
-  <h2>Projects</h2>
+  <h2 data-mode="pro">Projects</h2>
+  <h2 data-mode="academic">Research &amp; Projects</h2>
 
   <div data-mode="academic">
     <div class="project-grid">
 
       <div class="project-card highlight">
+        <div class="project-header">
+          <span class="project-category">Internship Report · Master's</span>
+          <span class="project-year">2026</span>
+        </div>
+        <h3 class="project-title">AI in Business Consulting: The Progest Case</h3>
+        <p class="project-tagline">Case study on implementing AI in a consultancy, across cybersecurity, automation and AI agents, and market analysis.</p>
+        <ul class="project-tech">
+          <li>AI Agents</li><li>Process Automation</li><li>Cybersecurity</li><li>Digital Transformation</li><li>Case Study</li>
+        </ul>
+        <div class="project-actions">
+          <span class="btn-primary btn-internal">Defence pending</span>
+        </div>
+      </div>
+
+      <div class="project-card">
         <div class="project-header">
           <span class="project-category">AI / NLP</span>
           <span class="project-year">2025</span>
@@ -396,20 +392,9 @@
 </section>
 
 
-<!-- GITHUB ACTIVITY (filled in by script.js from the GitHub API) -->
-<section id="github-activity" class="github-section" data-mode="academic" hidden>
-  <div class="now-head">
-    <h2>Recently on GitHub</h2>
-    <a class="cert-link" href="https://github.com/Txelito" target="_blank" rel="noopener">See all on GitHub →</a>
-  </div>
-  <p class="github-sub">Public repositories, newest activity first.</p>
-  <div class="github-grid" id="githubRepos"></div>
-</section>
-
-
 <!-- ACADEMIC ACTIVITIES (personal mode only) -->
 <section id="academic-activities" class="academic-section" data-mode="academic">
-  <h2 class="section-title">Academic Activities</h2>
+  <h2 class="section-title">Talks &amp; Activities</h2>
 
   <div class="academic-grid">
     <div class="academic-card">
@@ -588,7 +573,7 @@
               <span class="edu-school">Escola de Letras, Artes e Ciências Humanas (ELACH)</span>
             </div>
           </div>
-          <p class="timeline-desc">Final report defence pending.</p>
+          <p class="timeline-desc">Internship report: <em>Implementação de Inteligência Artificial em Contexto de Consultoria Empresarial: o Caso da Progest</em>. Supervised by Prof. Sílvia Araújo and Prof. Hugo Peixoto. Defence pending.</p>
           <ul class="timeline-tags">
             <li>EQF Level 7</li><li>NLP</li><li>Data Analysis</li><li>Machine Learning</li>
           </ul>
@@ -681,41 +666,21 @@
 
 
 <!-- SKILLS -->
-<section class="skills" id="skills">
-  <h2>Skills</h2>
+<section class="skills" id="skills" data-mode="pro academic">
+  <h2 data-mode="pro">Skills</h2>
+  <h2 data-mode="academic">Languages &amp; Methods</h2>
 
   <div class="skills-cards">
 
     <div class="skill-card" data-mode="academic">
-      <h3>Technical</h3>
-      <div class="skill">
-        <div class="skill-top">
-          <span class="skill-name">Python</span>
-          <span class="skill-level advanced">Advanced</span>
-        </div>
-        <div class="bar"><div class="fill advanced"></div></div>
-      </div>
-      <div class="skill">
-        <div class="skill-top">
-          <span class="skill-name">NLP &amp; AI</span>
-          <span class="skill-level intermediate">Intermediate</span>
-        </div>
-        <div class="bar"><div class="fill intermediate"></div></div>
-      </div>
-      <div class="skill">
-        <div class="skill-top">
-          <span class="skill-name">Data Analysis</span>
-          <span class="skill-level advanced">Advanced</span>
-        </div>
-        <div class="bar"><div class="fill advanced"></div></div>
-      </div>
-      <div class="skill">
-        <div class="skill-top">
-          <span class="skill-name">R · Tableau · GGPlot</span>
-          <span class="skill-level intermediate">Intermediate</span>
-        </div>
-        <div class="bar"><div class="fill intermediate"></div></div>
-      </div>
+      <h3>Methods &amp; Tools</h3>
+      <ul class="human-skills">
+        <li>Python: pandas, scikit-learn, spaCy</li>
+        <li>NLP: TF-IDF, RAG, sentiment analysis</li>
+        <li>R, ggplot2 and Tableau</li>
+        <li>Case studies and qualitative analysis</li>
+        <li>Figma and WordPress</li>
+      </ul>
     </div>
 
     <div class="skill-card" data-mode="pro">
@@ -816,7 +781,7 @@
 
 
 <!-- CONTACT -->
-<section class="contact" id="contact">
+<section class="contact" id="contact" data-mode="pro academic">
   <h2>Let's Connect</h2>
 
   <p class="contact-subtitle" data-mode="academic">
@@ -833,7 +798,7 @@
 
   <div class="contact-grid">
 
-    <a href="mailto:gonsalvesdjimi2@gmail.com" class="contact-card" data-mode="academic personal">
+    <a href="mailto:gonsalvesdjimi2@gmail.com" class="contact-card" data-mode="academic">
       <i class="fa-solid fa-envelope contact-icon"></i>
       <span class="contact-label">Email</span>
       <span class="contact-value">gonsalvesdjimi2@gmail.com</span>
@@ -861,12 +826,6 @@
       <i class="fa-solid fa-mobile-screen contact-icon"></i>
       <span class="contact-label">Personal phone</span>
       <span class="contact-value">+351 935 868 388</span>
-    </a>
-
-    <a href="https://www.instagram.com/txelito09/" target="_blank" rel="noopener" class="contact-card" data-mode="personal">
-      <i class="fa-brands fa-instagram contact-icon"></i>
-      <span class="contact-label">Instagram</span>
-      <span class="contact-value">@Txelito09</span>
     </a>
 
     <a href="https://www.linkedin.com/in/txelito" target="_blank" class="contact-card">

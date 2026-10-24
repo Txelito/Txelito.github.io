@@ -94,7 +94,7 @@ window.addEventListener("resize", moveModePill);
 document.fonts?.ready.then(moveModePill);
 navToggle?.addEventListener("click", () => requestAnimationFrame(moveModePill));
 
-// Shared by the footer date and the GitHub activity list.
+// Used by the footer date.
 function relativeTime(date, lang) {
   const rtf = new Intl.RelativeTimeFormat(lang === "pt" ? "pt-PT" : "en", { numeric: "auto" });
   const days = Math.round((date - Date.now()) / 86400000);
@@ -214,7 +214,9 @@ function relativeTime(date, lang) {
     body.innerHTML = data[lang] || data.en || "";
     if (data.travel) {
       const travel = document.createElement("div");
-      body.append(travel);
+      const slot = body.querySelector("[data-travel]");
+      if (slot) slot.replaceWith(travel);
+      else body.append(travel);
       renderTravelMap(travel, data.travel, key, lang).catch((err) => console.error(err));
     }
     gate.hidden = true;
@@ -366,72 +368,6 @@ function relativeTime(date, lang) {
       if (!iso) return;
       try { sessionStorage.setItem(CACHE_KEY, iso); } catch {}
       render(iso);
-    })
-    .catch(() => {});
-})();
-
-// =====================
-// GITHUB ACTIVITY (academic mode)
-// =====================
-
-(function initGithubActivity() {
-  const section = document.getElementById("github-activity");
-  const list = document.getElementById("githubRepos");
-  if (!section || !list) return;
-
-  const lang = document.documentElement.lang === "pt" ? "pt" : "en";
-  const USER = "Txelito";
-  const CACHE_KEY = "githubRepos";
-  const UPDATED = { en: "Updated", pt: "Atualizado" }[lang];
-  const NO_DESC = { en: "No description yet.", pt: "Ainda sem descrição." }[lang];
-
-  function el(tag, className, text) {
-    const node = document.createElement(tag);
-    if (className) node.className = className;
-    if (text) node.textContent = text;
-    return node;
-  }
-
-  function render(repos) {
-    const shown = repos
-      .filter((r) => !r.fork && r.name.toLowerCase() !== USER.toLowerCase()) // skip the profile README repo
-      .slice(0, 4);
-    if (!shown.length) return;
-
-    list.replaceChildren(...shown.map((repo) => {
-      const card = el("a", "github-card");
-      card.href = repo.html_url;
-      card.target = "_blank";
-      card.rel = "noopener";
-
-      const head = el("div", "github-card-head");
-      head.append(el("i", "fa-brands fa-github"), el("span", "github-name", repo.name));
-      card.append(head, el("p", "github-desc", repo.description || NO_DESC));
-
-      const meta = el("div", "github-meta");
-      if (repo.language) meta.append(el("span", "github-lang", repo.language));
-      meta.append(el("span", "", `${UPDATED} ${relativeTime(new Date(repo.pushed_at), lang)}`));
-      card.append(meta);
-      return card;
-    }));
-    section.hidden = false;
-  }
-
-  let cached = null;
-  try { cached = JSON.parse(sessionStorage.getItem(CACHE_KEY)); } catch {}
-  if (cached) {
-    render(cached);
-    return;
-  }
-
-  fetch(`https://api.github.com/users/${USER}/repos?sort=pushed&per_page=10`)
-    .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
-    .then((repos) => {
-      // keep only what render() needs, so the cache stays small
-      const slim = repos.map(({ name, html_url, description, language, pushed_at, fork }) =>
-        ({ name, html_url, description, language, pushed_at, fork }));
-      try { sessionStorage.setItem(CACHE_KEY, JSON.stringify(slim)); } catch {}
-      render(slim);
     })
     .catch(() => {});
 })();
@@ -623,3 +559,15 @@ async function renderTravelMap(root, travel, key, lang) {
   mapBox.append(svg.node());
   if (current) root.querySelectorAll(`[data-slug="${current}"]`).forEach((n) => n.classList.add("is-active"));
 }
+
+// =====================
+// CURIOSITIES (flip cards)
+// =====================
+
+// Delegated: the cards live inside the vault, which is filled in after unlocking.
+document.addEventListener("click", (e) => {
+  const card = e.target.closest(".curio-card");
+  if (!card) return;
+  const flipped = card.classList.toggle("is-flipped");
+  card.setAttribute("aria-pressed", String(flipped));
+});

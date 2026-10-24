@@ -2078,77 +2078,6 @@ body.mode-enter .hero-image img {
 }
 
 /* =====================
-   GITHUB ACTIVITY
-   ===================== */
-
-.github-sub {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  margin: -8px 0 24px;
-}
-
-.github-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
-  gap: 20px;
-}
-
-.github-card {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 20px;
-  border-radius: 16px;
-  background: var(--bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  color: inherit;
-  text-decoration: none;
-  transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
-}
-
-.github-card:hover {
-  transform: translateY(-4px);
-  background: var(--bg-card-hover);
-  border-color: rgba(129, 140, 248, 0.35);
-}
-
-.github-card-head {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 600;
-}
-
-.github-name {
-  overflow-wrap: anywhere;
-}
-
-.github-desc {
-  color: var(--text-secondary);
-  font-size: 0.88rem;
-  line-height: 1.5;
-  flex: 1;
-}
-
-.github-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  font-size: 0.75rem;
-  color: var(--text-muted);
-}
-
-.github-lang::before {
-  content: "";
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  margin-right: 6px;
-  border-radius: 50%;
-  background: var(--accent-secondary);
-}
-
-/* =====================
    TRAVEL MAP (vault)
    ===================== */
 
@@ -2352,4 +2281,362 @@ body.mode-enter .hero-image img {
   color: #fff;
   font-size: 1.4rem;
   cursor: pointer;
+}
+
+/* =====================
+   DESIGN PER MODE
+   Same colours everywhere (the professional palette); academic and personal
+   only change typography and shapes.
+   ===================== */
+
+/* ---------- ACADEMIC: reads like a paper ---------- */
+
+body[data-view="academic"] {
+  --font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+  counter-reset: sec;
+}
+
+body[data-view="academic"] :is(h1, h2, h3, h4) {
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+
+/* numbered sections with a thin rule */
+body[data-view="academic"] section:not(.hero) h2 {
+  font-size: 1.7rem;
+  padding-bottom: 0.4em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body[data-view="academic"] section:not(.hero) h2::before {
+  counter-increment: sec;
+  content: counter(sec) ".";
+  margin-right: 0.45em;
+  color: var(--accent-secondary);
+}
+
+body[data-view="academic"] section .now-head {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 32px;
+}
+
+body[data-view="academic"] section .now-head h2 {
+  border: 0;
+  margin-bottom: 0;
+}
+
+/* hero = title block of a paper */
+body[data-view="academic"] .hero h1 span {
+  font-style: italic;
+}
+
+.paper-affil {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin: -8px 0 4px;
+}
+
+.paper-keywords {
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-top: 12px;
+  margin-top: 18px !important;
+}
+
+.paper-keywords span {
+  font-weight: 600;
+  font-style: italic;
+  margin-right: 6px;
+  color: var(--text-primary);
+}
+
+/* photo as a figure */
+body[data-view="academic"] .hero-image::after,
+body[data-view="academic"] .hero-image img {
+  border-radius: 6px;
+}
+
+body[data-view="academic"] .hero-image:hover img {
+  transform: none;
+}
+
+/* squarer cards, tags and buttons */
+body[data-view="academic"] :is(.what-card, .project-card, .academic-card, .skill-card, .contact-card, .now-item, .cert-card) {
+  border-radius: 6px;
+}
+
+body[data-view="academic"] :is(.what-card, .project-card, .academic-card, .skill-card, .contact-card, .cert-card):hover {
+  transform: none;
+  border-color: rgba(129, 140, 248, 0.35);
+}
+
+body[data-view="academic"] :is(.project-tech, .academic-tags, .timeline-tags, .cert-meta) li {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 3px;
+}
+
+body[data-view="academic"] .what-icon {
+  border-radius: 6px;
+}
+
+body[data-view="academic"] :is(.btn, .btn-primary) {
+  border-radius: 4px;
+}
+
+/* ---------- PERSONAL: softer, with a gradient ---------- */
+
+body[data-view="personal"] {
+  --font-display: "Fraunces", Georgia, serif;
+  --gradient-text: linear-gradient(120deg, #a5b4fc 0%, #f0abfc 50%, #fda4af 100%);
+}
+
+body[data-view="personal"]::before {
+  background:
+    radial-gradient(circle at 15% 10%, rgba(99, 102, 241, 0.18), transparent 50%),
+    radial-gradient(circle at 88% 12%, rgba(244, 114, 182, 0.12), transparent 50%),
+    radial-gradient(circle at 8% 75%, rgba(45, 212, 191, 0.07), transparent 55%);
+}
+
+body[data-view="personal"] :is(h1, h2, h3, h4) {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+body[data-view="personal"] .hero h1 {
+  font-size: 2.8rem;
+}
+
+body[data-view="personal"] :is(.contact-card, .travel-panel, .travel-map) {
+  border-radius: 22px;
+}
+
+body[data-view="personal"] .contact-card:hover {
+  transform: translateY(-6px) rotate(-1deg);
+}
+
+/* =====================
+   CURIOSITIES (flip cards, personal mode)
+   ===================== */
+
+.curio-sub {
+  color: var(--text-muted);
+  margin: -16px 0 28px;
+}
+
+.curio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr));
+  gap: 18px;
+}
+
+.curio-card {
+  --tint: #818cf8;
+  position: relative;
+  min-height: 190px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  perspective: 900px;
+}
+
+/* tints stay inside the site palette */
+.curio-card.tint-indigo { --tint: #818cf8; }
+.curio-card.tint-sky { --tint: #38bdf8; }
+.curio-card.tint-teal { --tint: #2dd4bf; }
+.curio-card.tint-rose { --tint: #f9a8d4; }
+.curio-card.tint-violet { --tint: #c4b5fd; }
+
+.curio-inner {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.curio-card.is-flipped .curio-inner {
+  transform: rotateY(180deg);
+}
+
+.curio-front,
+.curio-back {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 22px;
+  border-radius: 22px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.curio-front {
+  background:
+    radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--tint) 22%, transparent), transparent 60%),
+    var(--bg-card);
+  border: 1px solid color-mix(in srgb, var(--tint) 28%, transparent);
+  transition: border-color 0.2s ease;
+}
+
+.curio-back {
+  transform: rotateY(180deg);
+  justify-content: center;
+  background: var(--tint);
+  color: #0f172a;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.curio-emoji {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  font-size: 1.8rem;
+}
+
+.curio-big {
+  font-family: var(--font-display, inherit);
+  font-size: 3.2rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--tint);
+}
+
+.curio-label {
+  font-family: var(--font-display, inherit);
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.curio-card:hover .curio-front {
+  border-color: var(--tint);
+}
+
+.curio-card:focus-visible {
+  outline: 2px solid var(--tint);
+  outline-offset: 4px;
+  border-radius: 22px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .curio-inner { transition: none; }
+}
+
+/* =====================
+   PERSONAL MODE = THE VAULT
+   Everything personal is encrypted; the locked view is just the question.
+   ===================== */
+
+body[data-view="personal"] .personal-vault-section {
+  min-height: 78vh;
+  padding-top: 48px;
+}
+
+body[data-view="personal"] .personal-vault-section > h2 {
+  display: none;
+}
+
+body[data-view="personal"] .vault-gate {
+  padding-top: 12vh;
+}
+
+body[data-view="personal"] .vault-content {
+  max-width: 1000px;
+}
+
+.vault-hero {
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 56px;
+}
+
+.vault-hero h3 {
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  line-height: 1.15;
+  margin: 0 0 16px !important;
+}
+
+.vault-hero .vault-lead {
+  font-size: 1.05rem;
+}
+
+/* photo as a tilted polaroid */
+.polaroid {
+  width: min(100%, 260px);
+  justify-self: center;
+  border-radius: 4px;
+  border: 10px solid #f8fafc;
+  border-bottom-width: 42px;
+  transform: rotate(-4deg);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+  transition: transform 0.4s ease;
+}
+
+.polaroid:hover {
+  transform: rotate(-1deg) scale(1.02);
+}
+
+.vault-content > div > h3 {
+  font-size: 1.6rem;
+  margin: 56px 0 18px;
+}
+
+.vault-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.vault-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.vault-links a:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--accent-secondary);
+}
+
+.vault-links i {
+  color: var(--accent-secondary);
+}
+
+@media (max-width: 760px) {
+  .vault-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .polaroid {
+    order: -1;
+    width: min(70%, 240px);
+  }
+}
+
+.vault-content p + p {
+  margin-top: 12px;
+}
+
+body[data-view="personal"] .travel {
+  margin-top: 56px;
+}
+
+body[data-view="personal"] .vault-content .travel-head h3 {
+  font-size: 1.6rem;
 }
