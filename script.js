@@ -219,6 +219,8 @@ function relativeTime(date, lang) {
       else body.append(travel);
       renderTravelMap(travel, data.travel, key, lang).catch((err) => console.error(err));
     }
+    observeReveal(body);
+    observeCounters(body);
     gate.hidden = true;
     content.hidden = false;
   }
@@ -571,3 +573,395 @@ document.addEventListener("click", (e) => {
   const flipped = card.classList.toggle("is-flipped");
   card.setAttribute("aria-pressed", String(flipped));
 });
+
+// =====================
+// MOTION
+// =====================
+// Scroll reveals, drawn timelines, counters, the streaming hero subtitle, the
+// language network behind the hero, the journey map and the skills orbit.
+// Everything is skipped when the visitor prefers reduced motion.
+
+const motionOK = () => !prefersReducedMotion.matches && "IntersectionObserver" in window;
+
+// --- scroll reveal ---------------------------------------------------------
+
+const REVEAL_SELECTOR = [
+  "section:not(.hero) > h2", ".now-head", ".what-card", ".project-card", ".academic-card",
+  ".cert-card", ".now-item", ".skill-card", ".contact-card", ".orbit-wrap",
+  ".vault-hero", ".curio-card", ".travel",
+].join(", ");
+let revealObserver = null;
+
+function observeReveal(root = document) {
+  if (!motionOK()) return;
+  revealObserver ||= new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      revealObserver.unobserve(el);
+      el.classList.add("is-visible");
+      // drop the classes afterwards so hover transforms work again
+      const delay = parseInt(el.style.getPropertyValue("--reveal-delay"), 10) || 0;
+      setTimeout(() => el.classList.remove("reveal", "is-visible"), 700 + delay);
+    });
+  }, { rootMargin: "0px 0px -8% 0px", threshold: 0.12 });
+
+  root.querySelectorAll(REVEAL_SELECTOR).forEach((el) => {
+    if (el.classList.contains("reveal")) return;
+    const siblings = [...el.parentElement.children].filter((c) => c.matches(REVEAL_SELECTOR));
+    el.style.setProperty("--reveal-delay", `${Math.min(siblings.indexOf(el), 5) * 80}ms`);
+    el.classList.add("reveal");
+    revealObserver.observe(el);
+  });
+}
+
+// --- counters (5 languages, 8 countries, ...) -------------------------------
+
+let counterObserver = null;
+
+function countUp(el) {
+  const original = el.textContent.trim();
+  const target = parseFloat(original.replace(",", "."));
+  if (!Number.isFinite(target) || target === 0) return;
+  const decimals = (original.split(/[.,]/)[1] || "").length;
+  const comma = original.includes(",");
+  const start = performance.now();
+  const DURATION = 1100;
+  const tick = (now) => {
+    const t = Math.min(1, (now - start) / DURATION);
+    const value = target * (1 - Math.pow(1 - t, 3));
+    let text = value.toFixed(decimals);
+    if (comma) text = text.replace(".", ",");
+    el.textContent = t < 1 ? text : original;
+    if (t < 1) requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+}
+
+function observeCounters(root = document) {
+  if (!motionOK()) return;
+  counterObserver ||= new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      counterObserver.unobserve(entry.target);
+      countUp(entry.target);
+    });
+  }, { threshold: 0.6 });
+  root.querySelectorAll(".curio-big, .travel-stats strong").forEach((el) => counterObserver.observe(el));
+}
+
+// --- timelines draw themselves as you scroll --------------------------------
+
+(function initTimelines() {
+  if (!motionOK()) return;
+  const timelines = [...document.querySelectorAll(".timeline")];
+  timelines.forEach((t) => t.classList.add("is-drawing"));
+  let queued = false;
+
+  function update() {
+    queued = false;
+    const line = window.innerHeight * 0.7;
+    timelines.forEach((timeline) => {
+      const rect = timeline.getBoundingClientRect();
+      if (!rect.height) return; // hidden in this mode
+      const progress = Math.min(1, Math.max(0, (line - rect.top) / rect.height));
+      timeline.style.setProperty("--progress", progress.toFixed(3));
+      timeline.querySelectorAll(".timeline-item").forEach((item) => {
+        item.classList.toggle("is-reached", item.getBoundingClientRect().top < line);
+      });
+    });
+  }
+  const schedule = () => {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(update);
+  };
+  window.addEventListener("scroll", schedule, { passive: true });
+  window.addEventListener("resize", schedule);
+  new MutationObserver(schedule).observe(document.body, { attributes: true, attributeFilter: ["data-view"] });
+  update();
+})();
+
+// --- hero subtitle streams in like an LLM answer ----------------------------
+
+(function initStream() {
+  if (prefersReducedMotion.matches) return;
+  const timers = new WeakMap();
+
+  const spans = [...document.querySelectorAll(".hero h1 > span")].map((span) => {
+    const full = span.textContent.trim();
+    const out = document.createElement("span");
+    out.setAttribute("aria-hidden", "true");
+    const cursor = document.createElement("span");
+    cursor.className = "stream-cursor";
+    cursor.setAttribute("aria-hidden", "true");
+    const sr = document.createElement("span");
+    sr.className = "sr-only";
+    sr.textContent = full;
+    span.replaceChildren(sr, out, cursor);
+    return { span, full, out, cursor };
+  });
+
+  function play({ span, full, out, cursor }) {
+    clearInterval(timers.get(span));
+    const words = full.split(/\s+/);
+    let i = 0;
+    out.textContent = "";
+    cursor.classList.remove("is-done");
+    timers.set(span, setInterval(() => {
+      out.textContent += (i ? " " : "") + words[i++];
+      if (i >= words.length) {
+        clearInterval(timers.get(span));
+        cursor.classList.add("is-done");
+      }
+    }, 75));
+  }
+
+  const playVisible = () => spans.filter((s) => s.span.offsetParent).forEach(play);
+  setTimeout(playVisible, 350);
+  new MutationObserver(() => setTimeout(playVisible, 150))
+    .observe(document.body, { attributes: true, attributeFilter: ["data-view"] });
+})();
+
+// --- language network behind the hero ---------------------------------------
+
+(function initHeroNet() {
+  const hero = document.querySelector(".hero");
+  if (!hero || !motionOK()) return;
+
+  const canvas = document.createElement("canvas");
+  canvas.className = "hero-net";
+  canvas.setAttribute("aria-hidden", "true");
+  hero.prepend(canvas);
+  const ctx = canvas.getContext("2d");
+
+  // academic mode draws words in four of my languages instead of dots
+  const WORDS = ["língua", "language", "langue", "lengua", "dados", "data", "données", "datos",
+    "palavra", "word", "mot", "palabra", "saber", "knowledge", "savoir", "texto", "text",
+    "sentido", "meaning", "sens", "IA", "AI"];
+  const LINK = 130;
+  let nodes = [];
+  let width = 0;
+  let height = 0;
+  let running = false;
+  let frame = 0;
+  const mouse = { x: -1e4, y: -1e4 };
+
+  function resize() {
+    const rect = canvas.getBoundingClientRect();
+    if (!rect.width || !rect.height) return false;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    width = rect.width;
+    height = rect.height;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const count = Math.min(70, Math.round((width * height) / 22000));
+    nodes = Array.from({ length: count }, (_, i) => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      word: WORDS[i % WORDS.length],
+    }));
+    return true;
+  }
+
+  function draw() {
+    if (!running) return;
+    const words = document.body.dataset.view === "academic";
+    ctx.clearRect(0, 0, width, height);
+
+    for (const n of nodes) {
+      // drift, with a gentle pull towards the cursor
+      const dx = mouse.x - n.x;
+      const dy = mouse.y - n.y;
+      const dist = Math.hypot(dx, dy);
+      if (dist < 200) {
+        n.vx += (dx / dist) * 0.012;
+        n.vy += (dy / dist) * 0.012;
+      }
+      n.vx *= 0.99;
+      n.vy *= 0.99;
+      n.x += n.vx;
+      n.y += n.vy;
+      if (n.x < 0 || n.x > width) n.vx *= -1;
+      if (n.y < 0 || n.y > height) n.vy *= -1;
+    }
+
+    ctx.lineWidth = 1;
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const d = Math.hypot(nodes[i].x - nodes[j].x, nodes[i].y - nodes[j].y);
+        if (d > LINK) continue;
+        ctx.strokeStyle = `rgba(129, 140, 248, ${(1 - d / LINK) * 0.22})`;
+        ctx.beginPath();
+        ctx.moveTo(nodes[i].x, nodes[i].y);
+        ctx.lineTo(nodes[j].x, nodes[j].y);
+        ctx.stroke();
+      }
+    }
+
+    if (words) {
+      ctx.font = `12px ${getComputedStyle(document.body).fontFamily}`;
+      ctx.fillStyle = "rgba(199, 210, 254, 0.32)";
+      for (const n of nodes) ctx.fillText(n.word, n.x + 4, n.y - 4);
+    }
+    ctx.fillStyle = "rgba(165, 180, 252, 0.7)";
+    for (const n of nodes) {
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, 1.6, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    frame = requestAnimationFrame(draw);
+  }
+
+  function start() {
+    if (running || document.hidden) return;
+    if (!resize()) return;
+    running = true;
+    canvas.classList.add("is-on");
+    frame = requestAnimationFrame(draw);
+  }
+
+  function stop() {
+    running = false;
+    cancelAnimationFrame(frame);
+  }
+
+  let heroVisible = false;
+  new IntersectionObserver(([entry]) => {
+    heroVisible = entry.isIntersecting;
+    heroVisible ? start() : stop();
+  }).observe(hero);
+  document.addEventListener("visibilitychange", () => (document.hidden ? stop() : heroVisible && start()));
+  window.addEventListener("resize", () => { if (running) resize(); });
+  window.addEventListener("pointermove", (e) => {
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  }, { passive: true });
+})();
+
+// --- journey map --------------------------------------------------------------
+
+(function initJourney() {
+  const section = document.getElementById("journey");
+  if (!section) return;
+  const box = section.querySelector(".journey-map");
+  const steps = [...section.querySelectorAll(".journey-step")];
+  const points = steps.map((s) => [parseFloat(s.dataset.lon), parseFloat(s.dataset.lat)]);
+  const HOME = new Set(["132", "620", "250"]); // Cape Verde, Portugal, France
+  let arcs = [];
+  let stops = [];
+  let current = 0;
+
+  function apply() {
+    steps.forEach((step, i) => step.classList.toggle("is-active", i === current));
+    arcs.forEach((arc) => { arc.el.style.strokeDashoffset = arc.step <= current ? 0 : arc.length; });
+    stops.forEach((stop) => {
+      stop.g.classList.toggle("is-lit", stop.steps.some((i) => i <= current));
+      stop.g.classList.toggle("is-current", stop.steps.includes(current));
+    });
+  }
+
+  async function build() {
+    await Promise.all(MAP_LIBS.map(loadScript));
+    const world = await fetch(WORLD_ATLAS).then((r) => r.json());
+    const { d3, topojson } = window;
+    const W = 500;
+    const H = 600;
+    const frame = { type: "MultiPoint", coordinates: [[-27, 11], [7, 11], [-27, 52], [7, 52]] };
+    const projection = d3.geoNaturalEarth1().fitExtent([[20, 20], [W - 20, H - 20]], frame);
+    const path = d3.geoPath(projection);
+
+    const svg = d3.create("svg").attr("viewBox", `0 0 ${W} ${H}`).attr("preserveAspectRatio", "xMidYMid slice");
+    svg.append("g")
+      .selectAll("path")
+      .data(topojson.feature(world, world.objects.countries).features)
+      .join("path")
+      .attr("d", path)
+      .attr("class", (f) => (HOME.has(f.id) ? "country is-home" : "country"));
+
+    // one curved arc per move between different places
+    const arcLayer = svg.append("g");
+    points.forEach((to, i) => {
+      if (i === 0) return;
+      const from = points[i - 1];
+      if (from[0] === to[0] && from[1] === to[1]) return;
+      const [x0, y0] = projection(from);
+      const [x1, y1] = projection(to);
+      const mx = (x0 + x1) / 2;
+      const my = (y0 + y1) / 2;
+      const bend = Math.hypot(x1 - x0, y1 - y0) * 0.25;
+      const angle = Math.atan2(y1 - y0, x1 - x0) - Math.PI / 2;
+      const cx = mx + Math.cos(angle) * bend;
+      const cy = my + Math.sin(angle) * bend;
+      const el = arcLayer.append("path")
+        .attr("class", "arc")
+        .attr("d", `M${x0},${y0} Q${cx},${cy} ${x1},${y1}`)
+        .node();
+      const length = el.getTotalLength();
+      el.style.strokeDasharray = `${length}`;
+      el.style.strokeDashoffset = `${length}`;
+      arcs.push({ el, length, step: i });
+    });
+
+    // one marker per distinct place, lit by every step that happens there
+    const byPlace = new Map();
+    steps.forEach((step, i) => {
+      const key = points[i].join(",");
+      if (!byPlace.has(key)) byPlace.set(key, { coords: points[i], name: step.dataset.place, steps: [] });
+      byPlace.get(key).steps.push(i);
+    });
+    const stopLayer = svg.append("g");
+    stops = [...byPlace.values()].map((place) => {
+      const [x, y] = projection(place.coords);
+      const g = stopLayer.append("g").attr("class", "stop").attr("transform", `translate(${x},${y})`);
+      g.append("circle").attr("class", "stop-pulse").attr("r", 8);
+      g.append("circle").attr("r", 5);
+      g.append("text").attr("x", 12).attr("y", 5).text(place.name);
+      return { g: g.node(), steps: place.steps };
+    });
+
+    box.append(svg.node());
+    apply();
+  }
+
+  new IntersectionObserver((entries, observer) => {
+    if (!entries[0].isIntersecting) return;
+    observer.disconnect();
+    build().catch((err) => console.error(err));
+  }, { rootMargin: "400px 0px" }).observe(section);
+
+  const stepObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      current = steps.indexOf(entry.target);
+      apply();
+    });
+  }, { rootMargin: "-45% 0px -45% 0px" });
+  steps.forEach((step) => stepObserver.observe(step));
+  apply();
+})();
+
+// --- skills orbit -------------------------------------------------------------
+
+document.querySelectorAll(".orbit-wrap").forEach((wrap) => {
+  const title = wrap.querySelector(".orbit-note-title");
+  const text = wrap.querySelector(".orbit-note-text");
+
+  function show(chip) {
+    wrap.querySelectorAll(".orbit-chip.is-active").forEach((c) => c.classList.remove("is-active"));
+    chip.classList.add("is-active");
+    title.textContent = chip.textContent;
+    text.textContent = chip.dataset.note;
+  }
+
+  wrap.querySelectorAll(".orbit-chip").forEach((chip) => {
+    ["mouseenter", "focus", "click"].forEach((type) => chip.addEventListener(type, () => show(chip)));
+  });
+});
+
+observeReveal();
+observeCounters();

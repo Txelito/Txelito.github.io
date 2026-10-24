@@ -2654,3 +2654,429 @@ body[data-view="personal"] .vault-content .travel-head h3 {
   color: var(--text-muted);
   font-style: italic;
 }
+
+/* =====================
+   MOTION
+   Everything here is switched on by script.js and skipped with reduced motion.
+   ===================== */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --- scroll reveal --- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* skill bars fill in when their card appears */
+.fill {
+  transition: width 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+}
+
+.skill-card.reveal:not(.is-visible) .fill {
+  width: 0;
+}
+
+/* timeline line draws itself as you scroll (--progress set by script.js) */
+.timeline.is-drawing::before {
+  transform: scaleY(var(--progress, 0));
+  transform-origin: top;
+}
+
+.timeline.is-drawing .timeline-item::before {
+  transform: scale(0.4);
+  opacity: 0.4;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.timeline.is-drawing .timeline-item.is-reached::before {
+  transform: none;
+  opacity: 1;
+}
+
+/* --- hero: subtitle streams in like an LLM answer --- */
+
+.stream-cursor {
+  display: inline-block;
+  width: 0.5em;
+  height: 1em;
+  margin-left: 3px;
+  vertical-align: -0.12em;
+  border-radius: 2px;
+  background: var(--accent-secondary);
+  animation: cursor-blink 1s steps(1) infinite;
+}
+
+.stream-cursor.is-done {
+  animation: cursor-blink 1s steps(1) 3, cursor-out 0.4s ease 3s forwards;
+}
+
+@keyframes cursor-blink {
+  50% { opacity: 0; }
+}
+
+@keyframes cursor-out {
+  to { opacity: 0; width: 0; margin: 0; }
+}
+
+/* --- hero: language network in the background --- */
+
+.hero {
+  isolation: isolate;
+}
+
+.hero-net {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100vw;
+  height: 100%;
+  transform: translateX(-50%);
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  /* quieter behind the text column, fuller towards the photo */
+  -webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.25) 40%, #000 72%);
+  mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.25) 40%, #000 72%);
+}
+
+.hero-net.is-on {
+  opacity: 1;
+}
+
+.hero-text {
+  position: relative;
+}
+
+/* =====================
+   JOURNEY MAP
+   ===================== */
+
+.journey-sub {
+  color: var(--text-muted);
+  margin: -16px 0 24px;
+}
+
+.journey {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 48px;
+  align-items: start;
+}
+
+.journey-steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.journey-step {
+  min-height: 32vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 22px;
+  border-left: 2px solid rgba(255, 255, 255, 0.08);
+  opacity: 0.35;
+  transition: opacity 0.4s ease, border-color 0.4s ease;
+}
+
+.journey-step.is-active {
+  opacity: 1;
+  border-left-color: var(--accent-primary);
+}
+
+.journey-when {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--accent-secondary);
+}
+
+.journey-step h3 {
+  font-size: 1.4rem;
+  margin: 4px 0 6px;
+}
+
+.journey-step p {
+  color: var(--text-secondary);
+  max-width: 34ch;
+}
+
+.journey-map {
+  position: sticky;
+  top: 12vh;
+  aspect-ratio: 5 / 6;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background:
+    radial-gradient(circle at 70% 30%, rgba(99, 102, 241, 0.1), transparent 60%),
+    rgba(255, 255, 255, 0.02);
+  overflow: hidden;
+}
+
+.journey-map svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.journey-map .country {
+  fill: rgba(148, 163, 184, 0.12);
+  stroke: rgba(15, 23, 42, 0.9);
+  stroke-width: 0.6;
+}
+
+.journey-map .country.is-home {
+  fill: rgba(99, 102, 241, 0.28);
+}
+
+.journey-map .arc {
+  fill: none;
+  stroke: var(--accent-secondary);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1.2s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.journey-map .stop circle {
+  fill: rgba(241, 245, 249, 0.35);
+  transition: fill 0.4s ease, r 0.4s ease;
+}
+
+.journey-map .stop.is-lit circle {
+  fill: #f1f5f9;
+}
+
+.journey-map .stop.is-current circle {
+  fill: var(--accent-secondary);
+  r: 8;
+}
+
+.journey-map .stop-pulse {
+  fill: none;
+  stroke: var(--accent-secondary);
+  stroke-width: 2;
+  opacity: 0;
+}
+
+.journey-map .stop.is-current .stop-pulse {
+  animation: stop-pulse 2s ease-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes stop-pulse {
+  from { opacity: 0.8; transform: scale(1); }
+  to { opacity: 0; transform: scale(3); }
+}
+
+.journey-map .stop text {
+  fill: var(--text-secondary);
+  font-family: var(--font-family);
+  font-size: 15px;
+  font-weight: 600;
+  opacity: 0.5;
+  transition: opacity 0.4s ease;
+}
+
+.journey-map .stop.is-lit text {
+  opacity: 1;
+}
+
+@media (max-width: 860px) {
+  .journey {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .journey-map {
+    order: -1;
+    top: 8px;
+    z-index: 2;
+    aspect-ratio: auto;
+    height: 42vh;
+    background-color: var(--bg-primary);
+  }
+
+  .journey-step {
+    min-height: 40vh;
+  }
+}
+
+/* =====================
+   SKILLS ORBIT
+   ===================== */
+
+.orbit-wrap {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 56px;
+  align-items: center;
+  margin-bottom: 48px;
+}
+
+.orbit {
+  --size: min(460px, 84vw);
+  position: relative;
+  width: var(--size);
+  height: var(--size);
+}
+
+.orbit::before,
+.orbit::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  border: 1px dashed rgba(148, 163, 184, 0.18);
+}
+
+.orbit::before { inset: 26%; }
+.orbit::after { inset: 3%; }
+
+.orbit-core {
+  position: absolute;
+  inset: 38%;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, rgba(129, 140, 248, 0.45), rgba(99, 102, 241, 0.15) 70%);
+  box-shadow: 0 0 60px rgba(99, 102, 241, 0.35);
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.3;
+  padding: 8px;
+}
+
+.orbit-ring {
+  position: absolute;
+  inset: 0;
+  animation: orbit-spin var(--dur) linear infinite;
+}
+
+.orbit-ring.ring-1 { --r: calc(var(--size) * 0.24); --dur: 50s; }
+.orbit-ring.ring-2 { --r: calc(var(--size) * 0.47); --dur: 80s; animation-direction: reverse; }
+
+.orbit-item {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: rotate(var(--a)) translateX(var(--r)) rotate(calc(-1 * var(--a)));
+}
+
+/* counter-rotate so the labels stay upright */
+.orbit-upright {
+  display: block;
+  animation: orbit-spin var(--dur) linear infinite reverse;
+}
+
+.ring-2 .orbit-upright {
+  animation-direction: normal;
+}
+
+.orbit-chip {
+  display: block;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  background: rgba(30, 41, 59, 0.92);
+  border: 1px solid rgba(129, 140, 248, 0.3);
+  cursor: default;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.orbit-chip:hover,
+.orbit-chip:focus-visible,
+.orbit-chip.is-active {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+  color: #fff;
+  outline: none;
+}
+
+.orbit:hover :is(.orbit-ring, .orbit-upright),
+.orbit:focus-within :is(.orbit-ring, .orbit-upright) {
+  animation-play-state: paused;
+}
+
+@keyframes orbit-spin {
+  to { transform: rotate(360deg); }
+}
+
+.orbit-note {
+  padding: 24px;
+  border-radius: 16px;
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  min-height: 140px;
+}
+
+.orbit-note-title {
+  display: block;
+  font-size: 1.15rem;
+  margin-bottom: 8px;
+}
+
+.orbit-note-text {
+  color: var(--text-secondary);
+}
+
+body[data-view="academic"] .orbit-note,
+body[data-view="academic"] .orbit-chip {
+  border-radius: 6px;
+}
+
+@media (max-width: 900px) {
+  .orbit-wrap {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 24px;
+  }
+
+  .orbit-note {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit-ring,
+  .orbit-upright,
+  .journey-map .stop.is-current .stop-pulse {
+    animation: none;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .journey-map .arc {
+    transition: none;
+  }
+}

@@ -574,6 +574,43 @@
 </section>
 
 
+<!-- JOURNEY (map drawn by script.js as you scroll) -->
+<section id="journey" class="journey-section" data-mode="pro academic">
+  <h2>Journey</h2>
+  <p class="journey-sub">From Cape Verde to Braga, with a stop in France.</p>
+  <div class="journey">
+    <ol class="journey-steps">
+      <li class="journey-step" data-lon="-23.51" data-lat="14.93" data-place="Cape Verde">
+        <span class="journey-when">Origin</span>
+        <h3>Cape Verde</h3>
+        <p>Where it all started, between Portuguese and Creole.</p>
+      </li>
+      <li class="journey-step" data-lon="-8.42" data-lat="41.55" data-place="Braga">
+        <span class="journey-when">2021</span>
+        <h3>Braga</h3>
+        <p>BA in Applied Languages at the University of Minho.</p>
+      </li>
+      <li class="journey-step" data-lon="-1.68" data-lat="48.11" data-place="Rennes">
+        <span class="journey-when">2023</span>
+        <h3>Rennes</h3>
+        <p>Erasmus semester at Université Rennes 2.</p>
+      </li>
+      <li class="journey-step" data-lon="-8.42" data-lat="41.55" data-place="Braga">
+        <span class="journey-when">2024</span>
+        <h3>Braga</h3>
+        <p>Master's in Digital Humanities.</p>
+      </li>
+      <li class="journey-step" data-lon="-8.42" data-lat="41.55" data-place="Braga">
+        <span class="journey-when">2026</span>
+        <h3>Braga</h3>
+        <p>Digital Transformation Consultant at Progest, where I stayed after my internship.</p>
+      </li>
+    </ol>
+    <div class="journey-map" aria-hidden="true"></div>
+  </div>
+</section>
+
+
 <!-- EDUCATION & CERTIFICATIONS -->
 <section id="education" class="education-section" data-mode="pro academic">
   <h2>Education &amp; Certifications</h2>
@@ -692,6 +729,54 @@
 <section class="skills" id="skills" data-mode="pro academic">
   <h2 data-mode="pro">Skills</h2>
   <h2 data-mode="academic">Languages &amp; Methods</h2>
+
+  <div class="orbit-wrap" data-mode="pro">
+    <div class="orbit">
+      <div class="orbit-core"><span>AI · Automation · Data</span></div>
+      <div class="orbit-ring ring-1">
+        <span class="orbit-item" style="--a: 0deg"><span class="orbit-upright"><span class="orbit-chip" tabindex="0" data-note="My main language: automation, data pipelines and LLM tools.">Python</span></span></span>
+        <span class="orbit-item" style="--a: 90deg"><span class="orbit-upright"><span class="orbit-chip" tabindex="0" data-note="Assistants and agents built on language models, with a human in the loop.">LLMs</span></span></span>
+        <span class="orbit-item" style="--a: 180deg"><span class="orbit-upright"><span class="orbit-chip" tabindex="0" data-note="Answers grounded in internal documents instead of made-up ones.">RAG</span></span></span>
+        <span class="orbit-item" style="--a: 270deg"><span class="orbit-upright"><span class="orbit-chip" tabindex="0" data-note="Machine Learning: models that classify, predict and extract information from real data.">ML</span></span></span>
+      </div>
+      <div class="orbit-ring ring-2">
+        <span class="orbit-item" style="--a: 26deg"><span class="orbit-upright"><span class="orbit-chip" tabindex="0" data-note="Cloud infrastructure and security practices to put tools into production.">Azure</span></span></span>
+        <span class="orbit-item" style="--a: 77deg"><span class="orbit-upright"><span class="orbit-chip" tabindex="0" data-note="Code, tasks and delivery pipelines in one place.">Azure DevOps</span></span></span>
+        <span class="orbit-item" style="--a: 129deg"><span class="orbit-upright"><span class="orbit-chip" tabindex="0" data-note="Containers, so tools run the same everywhere.">Docker</span></span></span>
+        <span class="orbit-item" style="--a: 180deg"><span class="orbit-upright"><span class="orbit-chip" tabindex="0" data-note="Lightweight APIs that connect models and automations to other systems.">FastAPI</span></span></span>
+        <span class="orbit-item" style="--a: 231deg"><span class="orbit-upright"><span class="orbit-chip" tabindex="0" data-note="Querying and structuring business data.">SQL</span></span></span>
+        <span class="orbit-item" style="--a: 283deg"><span class="orbit-upright"><span class="orbit-chip" tabindex="0" data-note="Quick interfaces that put AI tools in the team's hands.">Streamlit</span></span></span>
+        <span class="orbit-item" style="--a: 334deg"><span class="orbit-upright"><span class="orbit-chip" tabindex="0" data-note="Cleaning and analysing data, from spreadsheets to automated reports.">Pandas</span></span></span>
+      </div>
+    </div>
+    <div class="orbit-note" aria-live="polite">
+      <strong class="orbit-note-title">AI · Automation · Data</strong>
+      <p class="orbit-note-text" data-default="Hover or tap a technology.">Hover or tap a technology.</p>
+    </div>
+  </div>
+  <div class="orbit-wrap" data-mode="academic">
+    <div class="orbit">
+      <div class="orbit-core"><span>Language · Data · AI</span></div>
+      <div class="orbit-ring ring-1">
+        <span class="orbit-item" style="--a: 0deg"><span class="orbit-upright"><span class="orbit-chip" tabindex="0" data-note="The base of almost all my research projects.">Python</span></span></span>
+        <span class="orbit-item" style="--a: 90deg"><span class="orbit-upright"><span class="orbit-chip" tabindex="0" data-note="Text processing: tokens, entities and linguistic analysis (AVD project).">spaCy</span></span></span>
+        <span class="orbit-item" style="--a: 180deg"><span class="orbit-upright"><span class="orbit-chip" tabindex="0" data-note="Classical models and TF-IDF in the ICVS assistant.">scikit-learn</span></span></span>
+        <span class="orbit-item" style="--a: 270deg"><span class="orbit-upright"><span class="orbit-chip" tabindex="0" data-note="Retrieval-augmented generation with local LLMs to search institutional documents.">RAG</span></span></span>
+      </div>
+      <div class="orbit-ring ring-2">
+        <span class="orbit-item" style="--a: 30deg"><span class="orbit-upright"><span class="orbit-chip" tabindex="0" data-note="Statistical analysis and visualisation.">R</span></span></span>
+        <span class="orbit-item" style="--a: 90deg"><span class="orbit-upright"><span class="orbit-chip" tabindex="0" data-note="Charts for research data.">ggplot2</span></span></span>
+        <span class="orbit-item" style="--a: 150deg"><span class="orbit-upright"><span class="orbit-chip" tabindex="0" data-note="Dashboards and data visualisation.">Tableau</span></span></span>
+        <span class="orbit-item" style="--a: 210deg"><span class="orbit-upright"><span class="orbit-chip" tabindex="0" data-note="Classical information retrieval, the core of the ICVS assistant.">TF-IDF</span></span></span>
+        <span class="orbit-item" style="--a: 270deg"><span class="orbit-upright"><span class="orbit-chip" tabindex="0" data-note="Language models running locally, without sending data out.">Ollama</span></span></span>
+        <span class="orbit-item" style="--a: 330deg"><span class="orbit-upright"><span class="orbit-chip" tabindex="0" data-note="Interface prototyping (WearU project).">Figma</span></span></span>
+      </div>
+    </div>
+    <div class="orbit-note" aria-live="polite">
+      <strong class="orbit-note-title">Language · Data · AI</strong>
+      <p class="orbit-note-text" data-default="Hover or tap a technology.">Hover or tap a technology.</p>
+    </div>
+  </div>
 
   <div class="skills-cards">
 
