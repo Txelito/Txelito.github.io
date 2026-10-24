@@ -65,6 +65,11 @@
 <section class="hero">
   <div class="hero-text">
 
+    <p class="hello" aria-hidden="true">
+      <span class="hello-word" id="helloWord">Olá</span>
+      <span class="hello-lang" id="helloLang">Português</span>
+    </p>
+
     <div data-mode="academic">
       <h1>
         AI · Data · Language · Business<br>
@@ -184,6 +189,38 @@
       </p>
     </div>
 
+  </div>
+</section>
+
+
+<!-- NOW (edit this by hand every month or so) -->
+<section class="now-section" id="now" data-mode="pro academic">
+  <div class="now-head">
+    <h2>Now</h2>
+    <span class="now-updated"><span class="now-dot" aria-hidden="true"></span>Updated October 2026</span>
+  </div>
+  <div class="now-grid">
+    <div class="now-item">
+      <i class="fa-solid fa-gears now-icon" aria-hidden="true"></i>
+      <div>
+        <span class="now-label">Building</span>
+        <p>AI and automation tools as a Digital Transformation Consultant at Progest.</p>
+      </div>
+    </div>
+    <div class="now-item">
+      <i class="fa-solid fa-graduation-cap now-icon" aria-hidden="true"></i>
+      <div>
+        <span class="now-label">Finishing</span>
+        <p>My Master's in Digital Humanities, with the final report defence coming up.</p>
+      </div>
+    </div>
+    <div class="now-item">
+      <i class="fa-solid fa-shield-halved now-icon" aria-hidden="true"></i>
+      <div>
+        <span class="now-label">Recently</span>
+        <p>Completed the CNCS Roteiro NIS 2 cybersecurity training (July 2026).</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -359,6 +396,17 @@
 </section>
 
 
+<!-- GITHUB ACTIVITY (filled in by script.js from the GitHub API) -->
+<section id="github-activity" class="github-section" data-mode="academic" hidden>
+  <div class="now-head">
+    <h2>Recently on GitHub</h2>
+    <a class="cert-link" href="https://github.com/Txelito" target="_blank" rel="noopener">See all on GitHub →</a>
+  </div>
+  <p class="github-sub">Public repositories, newest activity first.</p>
+  <div class="github-grid" id="githubRepos"></div>
+</section>
+
+
 <!-- ACADEMIC ACTIVITIES (personal mode only) -->
 <section id="academic-activities" class="academic-section" data-mode="academic">
   <h2 class="section-title">Academic Activities</h2>
@@ -379,6 +427,7 @@
       </ul>
       <div class="academic-actions">
         <a href="https://www.youtube.com/watch?v=uzSXcdgYxqI" target="_blank" class="btn-primary insta-btn">Watch Lecture</a>
+        <a href="assets/certs/gevar-palestrante-2024.pdf" target="_blank" class="btn-primary btn-outline cert-open" data-title="Speaker certificate · GEVAR">Certificate</a>
       </div>
     </div>
   </div>
@@ -532,7 +581,13 @@
             <span class="timeline-location">Braga, Portugal</span>
           </div>
           <h4 class="timeline-role">Master's in Digital Humanities</h4>
-          <span class="timeline-institution">University of Minho</span>
+          <div class="edu-institution">
+            <img src="assets/elach-mark.png" alt="" width="48" height="24">
+            <div>
+              <span class="timeline-institution">University of Minho</span>
+              <span class="edu-school">Escola de Letras, Artes e Ciências Humanas (ELACH)</span>
+            </div>
+          </div>
           <p class="timeline-desc">Final report defence pending.</p>
           <ul class="timeline-tags">
             <li>EQF Level 7</li><li>NLP</li><li>Data Analysis</li><li>Machine Learning</li>
@@ -545,7 +600,11 @@
             <span class="timeline-location">Rennes, France</span>
           </div>
           <h4 class="timeline-role">Langues étrangères appliquées · Erasmus</h4>
-          <span class="timeline-institution">Université Rennes 2</span>
+          <div class="edu-institution">
+            <img src="assets/rennes2-mark.png" alt="" width="38" height="24">
+            <span class="timeline-institution">Université Rennes 2</span>
+          </div>
+          <div class="timeline-actions"><a href="assets/certs/erasmus-rennes2-2023.pdf" target="_blank" class="btn-primary btn-outline cert-open" data-title="Erasmus · Université Rennes 2">Certificate of attendance</a></div>
         </div>
 
         <div class="timeline-item">
@@ -554,7 +613,13 @@
             <span class="timeline-location">Braga, Portugal</span>
           </div>
           <h4 class="timeline-role">BA in Applied Languages</h4>
-          <span class="timeline-institution">University of Minho</span>
+          <div class="edu-institution">
+            <img src="assets/elach-mark.png" alt="" width="48" height="24">
+            <div>
+              <span class="timeline-institution">University of Minho</span>
+              <span class="edu-school">Escola de Letras, Artes e Ciências Humanas (ELACH)</span>
+            </div>
+          </div>
           <ul class="timeline-tags">
             <li>EQF Level 6</li>
           </ul>
@@ -584,6 +649,28 @@
             <span class="cert-id">Certificate No. 7966</span>
             <a href="assets/certs/cncs-roteiro-nis2-7966.pdf" target="_blank" class="btn-primary cert-open"
                data-title="Roteiro NIS 2 · CNCS">View certificate</a>
+          </div>
+        </article>
+
+        <article class="cert-card gevar">
+          <div class="cert-header">
+            <span>GEVAR · UFTM / UFU</span>
+            <span>2024</span>
+          </div>
+          <h4 class="cert-title">Invited Speaker</h4>
+          <p class="cert-desc">
+            Speaker at the live session "The Portuguese language in Cape Verde and Guinea-Bissau",
+            hosted by the Variationist Studies Group of two Brazilian federal universities.
+          </p>
+          <ul class="cert-meta">
+            <li><i class="fa-regular fa-clock"></i>4 hours</li>
+            <li><i class="fa-regular fa-calendar"></i>26 November 2024</li>
+            <li><i class="fa-brands fa-youtube"></i>Online</li>
+          </ul>
+          <div class="cert-footer">
+            <a href="https://www.youtube.com/watch?v=uzSXcdgYxqI" target="_blank" class="cert-link">Watch the session</a>
+            <a href="assets/certs/gevar-palestrante-2024.pdf" target="_blank" class="btn-primary cert-open"
+               data-title="Speaker certificate · GEVAR">View certificate</a>
           </div>
         </article>
       </div>
@@ -795,6 +882,7 @@
 
 <footer class="footer">
   <p>&copy; 2026 Michel Gonçalves. Built with curiosity and care.</p>
+  <p class="footer-updated" id="lastUpdated" hidden></p>
 </footer>
 
 <dialog class="cert-modal" id="certModal" aria-labelledby="certModalTitle">
