@@ -2640,3 +2640,17 @@ body[data-view="personal"] .travel {
 body[data-view="personal"] .vault-content .travel-head h3 {
   font-size: 1.6rem;
 }
+
+/* =====================
+   WRITING
+   ===================== */
+
+.writing-section .project-grid {
+  grid-template-columns: minmax(0, 720px);
+}
+
+.writing-byline {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
