@@ -1747,92 +1747,6 @@ body[data-view="personal"] [data-mode]:not([data-mode~="personal"]) { display: n
 }
 
 /* =====================
-   NOW
-   ===================== */
-
-.now-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.now-updated {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.8rem;
-  color: var(--text-muted);
-}
-
-.now-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #4ade80;
-  box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6);
-  animation: now-pulse 2.4s ease-out infinite;
-}
-
-@keyframes now-pulse {
-  0% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.55); }
-  70% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .now-dot { animation: none; }
-}
-
-.now-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
-  gap: 20px;
-}
-
-.now-item {
-  display: flex;
-  gap: 14px;
-  padding: 20px;
-  border-radius: 16px;
-  background: var(--bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.now-icon {
-  color: var(--accent-secondary);
-  font-size: 1.1rem;
-  margin-top: 3px;
-}
-
-.now-label {
-  display: block;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.6px;
-  color: var(--text-muted);
-  margin-bottom: 4px;
-}
-
-.now-item p {
-  color: var(--text-secondary);
-  font-size: 0.92rem;
-  line-height: 1.55;
-}
-
-.footer-updated {
-  margin-top: 6px;
-  font-size: 0.78rem;
-  opacity: 0.8;
-}
-
-.footer-updated a {
-  color: inherit;
-}
-
-/* =====================
    LANGUAGE + MODE CONTROLS
    ===================== */
 
@@ -2315,15 +2229,6 @@ body[data-view="academic"] section:not(.hero) h2::before {
   color: var(--accent-secondary);
 }
 
-body[data-view="academic"] section .now-head {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  margin-bottom: 32px;
-}
-
-body[data-view="academic"] section .now-head h2 {
-  border: 0;
-  margin-bottom: 0;
-}
 
 /* hero = title block of a paper */
 body[data-view="academic"] .hero h1 span {
@@ -2361,7 +2266,7 @@ body[data-view="academic"] .hero-image:hover img {
 }
 
 /* squarer cards, tags and buttons */
-body[data-view="academic"] :is(.what-card, .project-card, .academic-card, .skill-card, .contact-card, .now-item, .cert-card) {
+body[data-view="academic"] :is(.what-card, .project-card, .academic-card, .skill-card, .contact-card, .cert-card) {
   border-radius: 6px;
 }
 
@@ -2713,7 +2618,16 @@ body[data-view="personal"] .vault-content .travel-head h3 {
   opacity: 1;
 }
 
-/* --- hero: subtitle streams in like an LLM answer --- */
+/* --- hero: text streams in like an LLM answer --- */
+
+.tok {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.tok.on {
+  opacity: 1;
+}
 
 .stream-cursor {
   display: inline-block;
@@ -2925,147 +2839,7 @@ body[data-view="personal"] .vault-content .travel-head h3 {
   }
 }
 
-/* =====================
-   SKILLS ORBIT
-   ===================== */
-
-.orbit-wrap {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 56px;
-  align-items: center;
-  margin-bottom: 48px;
-}
-
-.orbit {
-  --size: min(460px, 84vw);
-  position: relative;
-  width: var(--size);
-  height: var(--size);
-}
-
-.orbit::before,
-.orbit::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  border: 1px dashed rgba(148, 163, 184, 0.18);
-}
-
-.orbit::before { inset: 26%; }
-.orbit::after { inset: 3%; }
-
-.orbit-core {
-  position: absolute;
-  inset: 38%;
-  display: grid;
-  place-items: center;
-  text-align: center;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, rgba(129, 140, 248, 0.45), rgba(99, 102, 241, 0.15) 70%);
-  box-shadow: 0 0 60px rgba(99, 102, 241, 0.35);
-  font-size: 0.78rem;
-  font-weight: 600;
-  line-height: 1.3;
-  padding: 8px;
-}
-
-.orbit-ring {
-  position: absolute;
-  inset: 0;
-  animation: orbit-spin var(--dur) linear infinite;
-}
-
-.orbit-ring.ring-1 { --r: calc(var(--size) * 0.24); --dur: 50s; }
-.orbit-ring.ring-2 { --r: calc(var(--size) * 0.47); --dur: 80s; animation-direction: reverse; }
-
-.orbit-item {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: rotate(var(--a)) translateX(var(--r)) rotate(calc(-1 * var(--a)));
-}
-
-/* counter-rotate so the labels stay upright */
-.orbit-upright {
-  display: block;
-  animation: orbit-spin var(--dur) linear infinite reverse;
-}
-
-.ring-2 .orbit-upright {
-  animation-direction: normal;
-}
-
-.orbit-chip {
-  display: block;
-  transform: translate(-50%, -50%);
-  white-space: nowrap;
-  padding: 6px 12px;
-  border-radius: 999px;
-  font-size: 0.78rem;
-  font-weight: 500;
-  background: rgba(30, 41, 59, 0.92);
-  border: 1px solid rgba(129, 140, 248, 0.3);
-  cursor: default;
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-}
-
-.orbit-chip:hover,
-.orbit-chip:focus-visible,
-.orbit-chip.is-active {
-  background: var(--accent-primary);
-  border-color: var(--accent-primary);
-  color: #fff;
-  outline: none;
-}
-
-.orbit:hover :is(.orbit-ring, .orbit-upright),
-.orbit:focus-within :is(.orbit-ring, .orbit-upright) {
-  animation-play-state: paused;
-}
-
-@keyframes orbit-spin {
-  to { transform: rotate(360deg); }
-}
-
-.orbit-note {
-  padding: 24px;
-  border-radius: 16px;
-  background: var(--bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  min-height: 140px;
-}
-
-.orbit-note-title {
-  display: block;
-  font-size: 1.15rem;
-  margin-bottom: 8px;
-}
-
-.orbit-note-text {
-  color: var(--text-secondary);
-}
-
-body[data-view="academic"] .orbit-note,
-body[data-view="academic"] .orbit-chip {
-  border-radius: 6px;
-}
-
-@media (max-width: 900px) {
-  .orbit-wrap {
-    grid-template-columns: 1fr;
-    justify-items: center;
-    gap: 24px;
-  }
-
-  .orbit-note {
-    width: 100%;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .orbit-ring,
-  .orbit-upright,
   .journey-map .stop.is-current .stop-pulse {
     animation: none;
   }
@@ -3079,4 +2853,44 @@ body[data-view="academic"] .orbit-chip {
   .journey-map .arc {
     transition: none;
   }
+}
+
+/* streamed words must not pick up the ".hero h1 span" subtitle styles */
+.hero h1 span.tok {
+  display: inline;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  margin: 0;
+  line-height: inherit;
+}
+
+.hero h1 span.stream-cursor {
+  display: inline-block;
+  font-size: inherit;
+  margin-top: 0;
+}
+
+/* colours taken from the TAIKAI / SpaceXAI badge */
+.cert-card.taikai {
+  --cert-accent: #c6f432;
+  background:
+    radial-gradient(circle at 110% -10%, rgba(198, 244, 50, 0.12) 0%, transparent 45%),
+    linear-gradient(135deg, rgba(107, 63, 160, 0.3) 0%, var(--bg-card) 70%);
+}
+
+.cert-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.cert-badge {
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
 }

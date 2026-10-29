@@ -577,8 +577,8 @@ document.addEventListener("click", (e) => {
 // =====================
 // MOTION
 // =====================
-// Scroll reveals, drawn timelines, counters, the streaming hero subtitle, the
-// language network behind the hero, the journey map and the skills orbit.
+// Scroll reveals, drawn timelines, counters, the streaming hero text, the
+// language network behind the hero and the journey map.
 // Everything is skipped when the visitor prefers reduced motion.
 
 const motionOK = () => !prefersReducedMotion.matches && "IntersectionObserver" in window;
@@ -586,8 +586,8 @@ const motionOK = () => !prefersReducedMotion.matches && "IntersectionObserver" i
 // --- scroll reveal ---------------------------------------------------------
 
 const REVEAL_SELECTOR = [
-  "section:not(.hero) > h2", ".now-head", ".what-card", ".project-card", ".academic-card",
-  ".cert-card", ".now-item", ".skill-card", ".contact-card", ".orbit-wrap",
+  "section:not(.hero) > h2", ".what-card", ".project-card", ".academic-card",
+  ".cert-card", ".skill-card", ".contact-card", ".journey-step",
   ".vault-hero", ".curio-card", ".travel",
 ].join(", ");
 let revealObserver = null;
@@ -682,44 +682,64 @@ function observeCounters(root = document) {
   update();
 })();
 
-// --- hero subtitle streams in like an LLM answer ----------------------------
+// --- hero text streams in like an LLM answer -----------------------------
+// Words are wrapped in spans that start transparent, so the layout never jumps
+// and screen readers still get the full text.
 
 (function initStream() {
   if (prefersReducedMotion.matches) return;
-  const timers = new WeakMap();
+  const STREAMED = ".hero-text > [data-mode] > :is(h1, p)";
+  const cursor = document.createElement("span");
+  cursor.className = "stream-cursor";
+  cursor.setAttribute("aria-hidden", "true");
+  let timer = 0;
 
-  const spans = [...document.querySelectorAll(".hero h1 > span")].map((span) => {
-    const full = span.textContent.trim();
-    const out = document.createElement("span");
-    out.setAttribute("aria-hidden", "true");
-    const cursor = document.createElement("span");
-    cursor.className = "stream-cursor";
-    cursor.setAttribute("aria-hidden", "true");
-    const sr = document.createElement("span");
-    sr.className = "sr-only";
-    sr.textContent = full;
-    span.replaceChildren(sr, out, cursor);
-    return { span, full, out, cursor };
-  });
-
-  function play({ span, full, out, cursor }) {
-    clearInterval(timers.get(span));
-    const words = full.split(/\s+/);
-    let i = 0;
-    out.textContent = "";
-    cursor.classList.remove("is-done");
-    timers.set(span, setInterval(() => {
-      out.textContent += (i ? " " : "") + words[i++];
-      if (i >= words.length) {
-        clearInterval(timers.get(span));
-        cursor.classList.add("is-done");
+  function tokenize(node) {
+    [...node.childNodes].forEach((child) => {
+      if (child.nodeType === Node.ELEMENT_NODE) {
+        tokenize(child);
+        return;
       }
-    }, 75));
+      if (child.nodeType !== Node.TEXT_NODE || !child.textContent.trim()) return;
+      const frag = document.createDocumentFragment();
+      child.textContent.split(/(\s+)/).forEach((part) => {
+        if (!part) return;
+        if (/^\s+$/.test(part)) {
+          frag.append(part);
+        } else {
+          const tok = document.createElement("span");
+          tok.className = "tok";
+          tok.textContent = part;
+          frag.append(tok);
+        }
+      });
+      child.replaceWith(frag);
+    });
+  }
+  document.querySelectorAll(STREAMED).forEach(tokenize);
+
+  function play() {
+    clearInterval(timer);
+    const block = [...document.querySelectorAll(".hero-text > [data-mode]")].find((b) => b.offsetParent);
+    if (!block) return;
+    const toks = [...block.querySelectorAll(".tok")];
+    toks.forEach((t) => t.classList.remove("on"));
+    cursor.classList.remove("is-done");
+    let i = 0;
+    timer = setInterval(() => {
+      const tok = toks[i++];
+      if (!tok) {
+        clearInterval(timer);
+        cursor.classList.add("is-done");
+        return;
+      }
+      tok.classList.add("on");
+      tok.after(cursor);
+    }, 45);
   }
 
-  const playVisible = () => spans.filter((s) => s.span.offsetParent).forEach(play);
-  setTimeout(playVisible, 350);
-  new MutationObserver(() => setTimeout(playVisible, 150))
+  setTimeout(play, 300);
+  new MutationObserver(() => setTimeout(play, 150))
     .observe(document.body, { attributes: true, attributeFilter: ["data-view"] });
 })();
 
@@ -944,24 +964,6 @@ function observeCounters(root = document) {
   steps.forEach((step) => stepObserver.observe(step));
   apply();
 })();
-
-// --- skills orbit -------------------------------------------------------------
-
-document.querySelectorAll(".orbit-wrap").forEach((wrap) => {
-  const title = wrap.querySelector(".orbit-note-title");
-  const text = wrap.querySelector(".orbit-note-text");
-
-  function show(chip) {
-    wrap.querySelectorAll(".orbit-chip.is-active").forEach((c) => c.classList.remove("is-active"));
-    chip.classList.add("is-active");
-    title.textContent = chip.textContent;
-    text.textContent = chip.dataset.note;
-  }
-
-  wrap.querySelectorAll(".orbit-chip").forEach((chip) => {
-    ["mouseenter", "focus", "click"].forEach((type) => chip.addEventListener(type, () => show(chip)));
-  });
-});
 
 observeReveal();
 observeCounters();
