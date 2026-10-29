@@ -2622,7 +2622,7 @@ body[data-view="personal"] .vault-content .travel-head h3 {
 
 .tok {
   opacity: 0;
-  transition: opacity 0.25s ease;
+  transition: opacity 0.35s ease;
 }
 
 .tok.on {

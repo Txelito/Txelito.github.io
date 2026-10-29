@@ -692,6 +692,9 @@ function observeCounters(root = document) {
   const cursor = document.createElement("span");
   cursor.className = "stream-cursor";
   cursor.setAttribute("aria-hidden", "true");
+  const WORD_MS = 110;
+  // the title, its subtitle and each paragraph count as separate blocks
+  const blockOf = (tok) => tok.parentElement.closest("p, h1 > span, h1");
   let timer = 0;
 
   function tokenize(node) {
@@ -719,23 +722,30 @@ function observeCounters(root = document) {
   document.querySelectorAll(STREAMED).forEach(tokenize);
 
   function play() {
-    clearInterval(timer);
+    clearTimeout(timer);
     const block = [...document.querySelectorAll(".hero-text > [data-mode]")].find((b) => b.offsetParent);
     if (!block) return;
     const toks = [...block.querySelectorAll(".tok")];
     toks.forEach((t) => t.classList.remove("on"));
     cursor.classList.remove("is-done");
     let i = 0;
-    timer = setInterval(() => {
+    const next = () => {
       const tok = toks[i++];
       if (!tok) {
-        clearInterval(timer);
         cursor.classList.add("is-done");
         return;
       }
       tok.classList.add("on");
       tok.after(cursor);
-    }, 45);
+      // a little "thinking" after punctuation and between title, subtitle and paragraph
+      const nextTok = toks[i];
+      let delay = WORD_MS;
+      if (/[.:;!?]$/.test(tok.textContent)) delay += 280;
+      else if (/,$/.test(tok.textContent)) delay += 120;
+      if (nextTok && blockOf(nextTok) !== blockOf(tok)) delay += 350;
+      timer = setTimeout(next, delay);
+    };
+    next();
   }
 
   setTimeout(play, 300);
