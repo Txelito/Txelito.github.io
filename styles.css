@@ -2894,3 +2894,70 @@ body[data-view="personal"] .vault-content .travel-head h3 {
   object-fit: cover;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
 }
+
+/* =====================
+   PROJECTS UNDER MAINTENANCE (professional mode)
+   ===================== */
+
+.maintenance-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  max-width: 720px;
+  padding: 32px;
+  border-radius: 16px;
+  border: 1px dashed rgba(148, 163, 184, 0.35);
+  background:
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.015) 0 12px, transparent 12px 24px),
+    var(--bg-card);
+}
+
+.maintenance-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.maintenance-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #fbbf24;
+  animation: maintenance-blink 1.6s ease-in-out infinite;
+}
+
+@keyframes maintenance-blink {
+  50% { opacity: 0.25; }
+}
+
+.maintenance-icon {
+  position: absolute;
+  top: 28px;
+  right: 32px;
+  font-size: 1.6rem;
+  color: rgba(148, 163, 184, 0.35);
+}
+
+.maintenance-card h3 {
+  font-size: 1.25rem;
+}
+
+.maintenance-card p {
+  color: var(--text-secondary);
+  max-width: 56ch;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .maintenance-dot { animation: none; }
+}
