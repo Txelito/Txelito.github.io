@@ -5,26 +5,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Michel Gonçalves | Portfólio</title>
 
-<!-- FAVICON -->
-  <link rel="icon" type="image/png" sizes="96x96" href="assets/LOGO.png">
+  <meta name="description" content="Michel Gonçalves, Consultor de Transformação Digital na Progest. Construo ferramentas práticas de IA, automação e dados, com formação em Línguas Aplicadas e Humanidades Digitais." />
+  <meta name="author" content="Michel Gonçalves" />
+  <meta name="theme-color" content="#02070a" />
+  <link rel="canonical" href="https://txelito.github.io/pt.html" />
+  <link rel="alternate" hreflang="en" href="https://txelito.github.io/" />
+  <link rel="alternate" hreflang="pt-PT" href="https://txelito.github.io/pt.html" />
+  <link rel="alternate" hreflang="x-default" href="https://txelito.github.io/" />
+
+  <!-- Link previews (LinkedIn, WhatsApp, X) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Michel Gonçalves" />
+  <meta property="og:title" content="Michel Gonçalves | IA, Automação, Dados e Linguagem" />
+  <meta property="og:description" content="Michel Gonçalves, Consultor de Transformação Digital na Progest. Construo ferramentas práticas de IA, automação e dados, com formação em Línguas Aplicadas e Humanidades Digitais." />
+  <meta property="og:url" content="https://txelito.github.io/pt.html" />
+  <meta property="og:image" content="https://txelito.github.io/assets/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="pt_PT" />
+  <meta property="og:locale:alternate" content="en_GB" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Icons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&text=txelio.&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
 
 <body id="top">
+<script>
+  // Pick the mode before the first paint, so the other modes never flash.
+  (function () {
+    var modes = ["pro", "academic", "personal"], mode = null;
+    try { mode = new URLSearchParams(location.search).get("v"); } catch (e) {}
+    if (modes.indexOf(mode) < 0) { try { mode = localStorage.getItem("portfolioMode"); } catch (e) {} }
+    document.body.setAttribute("data-view", modes.indexOf(mode) < 0 ? "pro" : mode);
+  })();
+</script>
 
 <!-- NAVIGATION -->
 <nav class="nav" id="nav">
   <div class="nav-container">
 
-    <a href="pt.html" class="nav-logo">
-      <img src="assets/LOGO.png" alt="MG Logo">
+    <a href="pt.html" class="nav-logo" aria-label="Txelito · Michel Gonçalves">
+      <span class="wordmark" aria-hidden="true">txelito<b>.</b></span>
     </a>
 
     <ul class="nav-menu" id="navMenu">
@@ -38,7 +71,6 @@
       <li data-mode="pro academic"><a href="#education" class="nav-link">Formação</a></li>
       <li data-mode="pro"><a href="#skills" class="nav-link">Competências</a></li>
       <li data-mode="academic"><a href="#skills" class="nav-link">Línguas</a></li>
-      <li data-mode="personal"><a href="#personal-vault" class="nav-link">Cofre</a></li>
       <li data-mode="pro academic"><a href="#contact" class="nav-link">Contacto</a></li>
 
       <li class="nav-lang">
@@ -49,14 +81,14 @@
 
       <li class="nav-mode">
         <div class="mode-switcher" id="modeSwitcher">
-          <button class="mode-btn" data-target="pro">Profissional</button>
-          <button class="mode-btn" data-target="academic">Académico</button>
-          <button class="mode-btn" data-target="personal">Pessoal</button>
+          <button type="button" class="mode-btn" aria-pressed="false" data-target="pro">Profissional</button>
+          <button type="button" class="mode-btn" aria-pressed="false" data-target="academic">Académico</button>
+          <button type="button" class="mode-btn" aria-pressed="false" data-target="personal">Pessoal</button>
         </div>
       </li>
     </ul>
 
-    <button class="nav-toggle" id="navToggle" aria-label="Alternar menu">
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Alternar menu">
       <span></span><span></span><span></span>
     </button>
 
@@ -93,7 +125,7 @@
 
     <div data-mode="pro">
       <div class="pro-company-badge">
-        <img src="assets/logo_branco.png" alt="PROGEST">
+        <img src="assets/progest-logo.webp" alt="PROGEST" width="640" height="124">
         Transformação Digital
       </div>
       <h1>
@@ -115,8 +147,8 @@
   </div>
 
   <div class="hero-image">
-    <img data-mode="pro" src="assets/img/Michel2.jpeg" alt="Michel Gonçalves">
-    <img data-mode="academic" src="assets/img/Michel.jpeg" alt="Michel Gonçalves">
+    <img data-mode="pro" src="assets/img/michel-pro.webp" width="600" height="800" loading="lazy" decoding="async" alt="Michel Gonçalves">
+    <img data-mode="academic" src="assets/img/michel-academic.webp" width="600" height="800" loading="lazy" decoding="async" alt="Michel Gonçalves">
   </div>
 
   <a href="#about" class="scroll-indicator explore-indicator" aria-label="Explorar">
@@ -326,7 +358,7 @@
 </section>
 
 
-<!-- ATIVIDADES ACADÉMICAS (modo pessoal) -->
+<!-- TALKS & ACTIVITIES (academic mode only) -->
 <section id="academic-activities" class="academic-section" data-mode="academic">
   <h2 class="section-title">Comunicações e Atividades</h2>
 
@@ -345,8 +377,8 @@
         <li>Sociolinguística</li><li>Bilinguismo</li><li>Diglossia</li><li>Política Linguística</li><li>Estudos Lusófonos</li>
       </ul>
       <div class="academic-actions">
-        <a href="https://www.youtube.com/watch?v=uzSXcdgYxqI" target="_blank" class="btn-primary insta-btn">Ver Palestra</a>
-        <a href="assets/certs/gevar-palestrante-2024.pdf" target="_blank" class="btn-primary btn-outline cert-open" data-title="Certificado de palestrante · GEVAR">Certificado</a>
+        <a href="https://www.youtube.com/watch?v=uzSXcdgYxqI" target="_blank" rel="noopener" class="btn-primary insta-btn">Ver Palestra</a>
+        <a href="assets/certs/gevar-palestrante-2024.pdf" target="_blank" rel="noopener" class="btn-primary btn-outline cert-open" data-title="Certificado de palestrante · GEVAR">Certificado</a>
       </div>
     </div>
   </div>
@@ -361,12 +393,12 @@
       Participação em iniciativas lideradas por estudantes, eventos e atividades comunitárias na Universidade do Minho.
     </p>
     <div class="seaum-media">
-      <img src="assets/img/seaum1.JPG" class="seaum-photo active" alt="SEAUM foto 1">
-      <img src="assets/img/seaum2.JPG" class="seaum-photo" alt="SEAUM foto 2">
-      <img src="assets/img/seaum3.JPG" class="seaum-photo" alt="SEAUM foto 3">
+      <img src="assets/img/seaum1.webp" width="480" height="320" loading="lazy" decoding="async" class="seaum-photo active" alt="SEAUM foto 1">
+      <img src="assets/img/seaum2.webp" width="480" height="320" loading="lazy" decoding="async" class="seaum-photo" alt="SEAUM foto 2">
+      <img src="assets/img/seaum3.webp" width="480" height="320" loading="lazy" decoding="async" class="seaum-photo" alt="SEAUM foto 3">
     </div>
     <div class="academic-actions">
-      <a href="https://www.instagram.com/seaaaum/" target="_blank" class="btn-primary insta-btn">Seguir no Instagram</a>
+      <a href="https://www.instagram.com/seaaaum/" target="_blank" rel="noopener" class="btn-primary insta-btn">Seguir no Instagram</a>
     </div>
   </div>
 
@@ -381,14 +413,14 @@
       institucional, a acessibilidade e a visibilidade local após relocalização.
     </p>
     <div class="acfab-media">
-      <img src="assets/img/acfab-logo.png" class="acfab-photo active" alt="Imagem ACFAB 1">
-      <img src="assets/img/ACFAB.png" class="acfab-photo" alt="Imagem ACFAB 2">
+      <img src="assets/img/acfab-logo.webp" width="320" height="320" loading="lazy" decoding="async" class="acfab-photo active" alt="Imagem ACFAB 1">
+      <img src="assets/img/acfab-cover.webp" width="480" height="270" loading="lazy" decoding="async" class="acfab-photo" alt="Imagem ACFAB 2">
     </div>
     <ul class="academic-tags">
       <li>Estratégia de Conteúdo</li><li>Configuração de LinkedIn</li><li>Redesign de Instagram</li><li>Perfil Google Business</li><li>Local SEO</li><li>Design de Informação</li>
     </ul>
     <div class="academic-actions">
-      <a href="https://www.linkedin.com/in/acfab-braga-44423b359/" target="_blank" class="btn-primary insta-btn">Ver LinkedIn</a>
+      <a href="https://www.linkedin.com/in/acfab-braga-44423b359/" target="_blank" rel="noopener" class="btn-primary insta-btn">Ver LinkedIn</a>
     </div>
   </div>
 
@@ -407,7 +439,7 @@
       <div class="timeline-content">
         <h3 class="timeline-role">Consultor de Transformação Digital</h3>
         <div class="timeline-company-logo">
-          <img src="assets/logo_branco.png" alt="PROGEST">
+          <img src="assets/progest-logo.webp" alt="PROGEST" width="640" height="124" loading="lazy" decoding="async">
         </div>
         <p class="timeline-desc">
           Entrei como estagiário curricular de mestrado e fiquei com contrato sem termo, no
@@ -431,7 +463,7 @@
       <div class="timeline-content">
         <h3 class="timeline-role">Guia Turístico</h3>
         <div class="timeline-company-logo">
-          <img src="assets/joy4fun-logo.png" alt="Joy4Fun" class="joy-logo">
+          <img src="assets/joy4fun-logo.png" width="241" height="190" loading="lazy" decoding="async" alt="Joy4Fun" class="joy-logo">
         </div>
         <p class="timeline-desc">
           Trabalhei como guia turístico multilíngue na Joy4Fun — atração #1 em Braga no TripAdvisor
@@ -444,7 +476,7 @@
           <li>Guiei tours culturais, provas de vinho e excursões pela região do Minho</li>
         </ul>
         <div class="timeline-actions">
-          <a href="https://www.tripadvisor.com.br/Attraction_Review-g189171-d20158682-Reviews-Joy4fun_Joy_Fun_For_You-Braga_Braga_District_Northern_Portugal.html" target="_blank" class="btn-primary insta-btn">Ver Avaliações</a>
+          <a href="https://www.tripadvisor.com.br/Attraction_Review-g189171-d20158682-Reviews-Joy4fun_Joy_Fun_For_You-Braga_Braga_District_Northern_Portugal.html" target="_blank" rel="noopener" class="btn-primary insta-btn">Ver Avaliações</a>
         </div>
         <ul class="timeline-tags">
           <li>Guia Turístico</li><li>Português</li><li>Inglês</li><li>Francês</li><li>Espanhol</li><li>Fala em Público</li><li>Mediação Cultural</li>
@@ -538,7 +570,7 @@
           </div>
           <h4 class="timeline-role">Mestrado em Humanidades Digitais</h4>
           <div class="edu-institution">
-            <img src="assets/elach-mark.png" alt="" width="48" height="24">
+            <img src="assets/elach-mark.png" alt="" width="48" height="24" loading="lazy" decoding="async">
             <div>
               <span class="timeline-institution">Universidade do Minho</span>
               <span class="edu-school">Escola de Letras, Artes e Ciências Humanas (ELACH)</span>
@@ -557,10 +589,10 @@
           </div>
           <h4 class="timeline-role">Langues étrangères appliquées · Erasmus</h4>
           <div class="edu-institution">
-            <img src="assets/rennes2-mark.png" alt="" width="38" height="24">
+            <img src="assets/rennes2-mark.png" alt="" width="38" height="24" loading="lazy" decoding="async">
             <span class="timeline-institution">Université Rennes 2</span>
           </div>
-          <div class="timeline-actions"><a href="assets/certs/erasmus-rennes2-2023.pdf" target="_blank" class="btn-primary btn-outline cert-open" data-title="Erasmus · Université Rennes 2">Certificado de estadia</a></div>
+          <div class="timeline-actions"><a href="assets/certs/erasmus-rennes2-2023.pdf" target="_blank" rel="noopener" class="btn-primary btn-outline cert-open" data-title="Erasmus · Université Rennes 2">Certificado de estadia</a></div>
         </div>
 
         <div class="timeline-item">
@@ -570,7 +602,7 @@
           </div>
           <h4 class="timeline-role">Licenciatura em Línguas Aplicadas</h4>
           <div class="edu-institution">
-            <img src="assets/elach-mark.png" alt="" width="48" height="24">
+            <img src="assets/elach-mark.png" alt="" width="48" height="24" loading="lazy" decoding="async">
             <div>
               <span class="timeline-institution">Universidade do Minho</span>
               <span class="edu-school">Escola de Letras, Artes e Ciências Humanas (ELACH)</span>
@@ -626,7 +658,7 @@
           </ul>
           <div class="cert-footer">
             <span class="cert-id">Certificado Nº 7966</span>
-            <a href="assets/certs/cncs-roteiro-nis2-7966.pdf" target="_blank" class="btn-primary cert-open"
+            <a href="assets/certs/cncs-roteiro-nis2-7966.pdf" target="_blank" rel="noopener" class="btn-primary cert-open"
                data-title="Roteiro NIS 2 · CNCS">Ver certificado</a>
           </div>
         </article>
@@ -647,8 +679,8 @@
             <li><i class="fa-brands fa-youtube"></i>Online</li>
           </ul>
           <div class="cert-footer">
-            <a href="https://www.youtube.com/watch?v=uzSXcdgYxqI" target="_blank" class="cert-link">Ver a sessão</a>
-            <a href="assets/certs/gevar-palestrante-2024.pdf" target="_blank" class="btn-primary cert-open"
+            <a href="https://www.youtube.com/watch?v=uzSXcdgYxqI" target="_blank" rel="noopener" class="cert-link">Ver a sessão</a>
+            <a href="assets/certs/gevar-palestrante-2024.pdf" target="_blank" rel="noopener" class="btn-primary cert-open"
                data-title="Certificado de palestrante · GEVAR">Ver certificado</a>
           </div>
         </article>
@@ -744,32 +776,43 @@
 <section id="personal-vault" class="personal-vault-section" data-mode="personal">
   <h2>Pessoal</h2>
 
-  <div id="vaultGate" class="vault-gate">
-    <div class="vault-icon" aria-hidden="true">🔒</div>
-    <h3>Esta parte é só minha para partilhar</h3>
-    <p>
-      Não está trancada por ser escandalosa, está trancada por ser minha. Se me conheces bem,
-      sabes a resposta.
-    </p>
-    <div class="vault-actions">
-      <form id="vaultUnlockForm" class="vault-unlock">
-        <label for="vaultPassphrase" class="vault-question">Qual é o nome do meu gato?</label>
-        <div class="vault-unlock-row">
-          <input type="text" id="vaultPassphrase" placeholder="A tua resposta" autocomplete="off" spellcheck="false">
-          <button type="submit" class="btn primary">Entrar</button>
-        </div>
-      </form>
-      <p id="vaultFeedback" class="vault-feedback" role="status"></p>
-      <span class="vault-divider">Não sabes?</span>
-      <a class="btn secondary vault-request-btn" href="mailto:gonsalvesdjimi2@gmail.com?subject=Quero%20entrar%20no%20cofre&body=Ol%C3%A1%20Michel%2C%0D%0A%0D%0ASou%20...%20e%20quero%20acesso%20ao%20teu%20espa%C3%A7o%20pessoal%20porque...%0D%0A">Pedir acesso</a>
-      <span class="vault-email">ou escreve para gonsalvesdjimi2@gmail.com</span>
-    </div>
-  </div>
-
-  <!-- Preenchido pelo script.js depois de desencriptar assets/vault.json -->
-  <div id="vaultContent" class="vault-content" hidden>
-    <div id="vaultBody"></div>
-    <button type="button" class="vault-lock-btn" id="vaultLock">Trancar outra vez</button>
+  <div class="closed">
+    <svg class="closed-art" viewBox="0 0 480 300" role="img" aria-label="Uma grua a pousar um ponto laranja numa página ainda por construir">
+      <g class="art-stars">
+        <circle cx="52" cy="48" r="2"/><circle cx="118" cy="26" r="1.5"/><circle cx="402" cy="40" r="2"/>
+        <circle cx="446" cy="96" r="1.5"/><circle cx="30" cy="128" r="1.5"/><circle cx="356" cy="18" r="1.5"/>
+      </g>
+      <!-- crane -->
+      <g class="art-line">
+        <path d="M352 232V58M338 232h28M352 58l-34 22M352 58l46 22M352 96l-14 18 14 18-14 18 14 18-14 18 14 18"/>
+        <path d="M168 80h262M398 80v26h30V80M352 58V40l-150 40M352 40l78 40"/>
+      </g>
+      <rect class="art-solid" x="398" y="84" width="30" height="22" rx="3"/>
+      <!-- the full stop on the hook -->
+      <g class="art-swing">
+        <path class="art-line" d="M206 80v62"/>
+        <path class="art-line" d="M198 150a8 8 0 1 0 8-8"/>
+        <circle class="art-dot" cx="206" cy="176" r="19"/>
+      </g>
+      <!-- the page as a blueprint: one block built, the rest still dashed -->
+      <g class="art-plan">
+        <rect x="58" y="168" width="96" height="64" rx="9"/>
+        <rect x="170" y="204" width="72" height="28" rx="7"/>
+        <path d="M74 188h46M74 204h64M74 218h30"/>
+      </g>
+      <rect class="art-built" x="258" y="190" width="66" height="42" rx="8"/>
+      <path class="art-built-line" d="M272 206h30M272 218h20"/>
+      <!-- ground and sea -->
+      <path class="art-ground" d="M24 232h432"/>
+      <g class="art-wave">
+        <path d="M40 258c12-9 24-9 36 0s24 9 36 0 24-9 36 0 24 9 36 0 24-9 36 0 24 9 36 0 24-9 36 0 24 9 36 0 24-9 36 0 24 9 36 0"/>
+        <path d="M88 280c12-9 24-9 36 0s24 9 36 0 24-9 36 0 24 9 36 0 24-9 36 0 24 9 36 0 24-9 36 0"/>
+      </g>
+    </svg>
+    <span class="maintenance-badge"><span class="maintenance-dot" aria-hidden="true"></span>Em construção</span>
+    <h3>Este meu lado está em obras</h3>
+    <p>O espaço pessoal está fechado enquanto decido o que quero mostrar aqui. Volta em breve.</p>
+    <button type="button" class="btn secondary js-set-mode" data-target="pro">Voltar ao modo profissional</button>
   </div>
 </section>
 
@@ -785,7 +828,7 @@
     Interessado em ferramentas de IA para o seu negócio? Vamos falar.
   </p>
   <p class="contact-subtitle">
-    <a href="assets/CV_Michel_Goncalves.pdf" target="_blank" class="btn secondary cv-btn">
+    <a href="assets/CV_Michel_Goncalves.pdf" target="_blank" rel="noopener" class="btn secondary cv-btn">
       <i class="fa-solid fa-file-arrow-down"></i> Descarregar CV
     </a>
   </p>
@@ -804,25 +847,13 @@
       <span class="contact-value">michel.goncalves<wbr>@progest.com.pt</span>
     </a>
 
-    <a href="https://github.com/Txelito" target="_blank" class="contact-card" data-mode="academic">
+    <a href="https://github.com/Txelito" target="_blank" rel="noopener" class="contact-card">
       <i class="fa-brands fa-github contact-icon"></i>
       <span class="contact-label">GitHub</span>
       <span class="contact-value">@Txelito</span>
     </a>
 
-    <a href="tel:+351961384493" class="contact-card" data-mode="pro">
-      <i class="fa-solid fa-phone contact-icon"></i>
-      <span class="contact-label">Telefone de trabalho</span>
-      <span class="contact-value">+351 961 384 493</span>
-    </a>
-
-    <a href="tel:+351935868388" class="contact-card">
-      <i class="fa-solid fa-mobile-screen contact-icon"></i>
-      <span class="contact-label">Telefone pessoal</span>
-      <span class="contact-value">+351 935 868 388</span>
-    </a>
-
-    <a href="https://www.linkedin.com/in/txelito" target="_blank" class="contact-card">
+    <a href="https://www.linkedin.com/in/txelito" target="_blank" rel="noopener" class="contact-card">
       <i class="fa-brands fa-linkedin-in contact-icon"></i>
       <span class="contact-label">LinkedIn</span>
       <span class="contact-value">Michel Gonçalves</span>
@@ -847,39 +878,13 @@
 <dialog class="cert-modal" id="certModal" aria-labelledby="certModalTitle">
   <div class="cert-modal-bar">
     <span id="certModalTitle"></span>
-    <a id="certModalOpen" href="#" target="_blank">Abrir noutro separador</a>
+    <a id="certModalOpen" href="#" target="_blank" rel="noopener">Abrir noutro separador</a>
     <button type="button" class="cert-modal-close" id="certModalClose" aria-label="Fechar">&times;</button>
   </div>
   <iframe id="certModalFrame" title="Certificado"></iframe>
 </dialog>
 
-<script src="script.js"></script>
-<script>
-  const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
-  const sections = Array.from(navLinks)
-    .map((link) => document.querySelector(link.getAttribute('href')))
-    .filter(Boolean);
-
-  function setActiveNavLink() {
-    let currentId = sections[0]?.id || "";
-    const offset = window.innerHeight * 0.35;
-
-    sections.forEach((section) => {
-      const rect = section.getBoundingClientRect();
-      if (rect.top <= offset && rect.bottom > offset) {
-        currentId = section.id;
-      }
-    });
-
-    navLinks.forEach((link) => {
-      const isActive = link.getAttribute('href') === `#${currentId}`;
-      link.classList.toggle('is-active', isActive);
-    });
-  }
-
-  window.addEventListener('scroll', setActiveNavLink, { passive: true });
-  window.addEventListener('load', setActiveNavLink);
-</script>
+<script src="script.js" defer></script>
 
 </body>
 </html>

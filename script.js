@@ -1,14 +1,14 @@
-document.querySelectorAll(".project-card").forEach((card) => {
-  card.addEventListener("mousemove", (e) => {
-    const rect = card.getBoundingClientRect();
-    card.style.setProperty("--x", `${e.clientX - rect.left}px`);
-    card.style.setProperty("--y", `${e.clientY - rect.top}px`);
-  });
-});
-
-if (window.lucide && typeof window.lucide.createIcons === "function") {
-  window.lucide.createIcons();
-}
+// Cards get a soft glow that follows the mouse (drawn by .glow-card::before in styles.css).
+const GLOW_CARDS = ".what-card, .project-card, .academic-card, .skill-card, .cert-card, .contact-card, .maintenance-card";
+document.querySelectorAll(GLOW_CARDS).forEach((card) => card.classList.add("glow-card"));
+document.addEventListener("pointermove", (e) => {
+  if (e.pointerType !== "mouse") return;
+  const card = e.target.closest?.(".glow-card");
+  if (!card) return;
+  const rect = card.getBoundingClientRect();
+  card.style.setProperty("--x", `${e.clientX - rect.left}px`);
+  card.style.setProperty("--y", `${e.clientY - rect.top}px`);
+}, { passive: true });
 
 const initPhotoSlider = (selector, delay = 2500) => {
   const photos = document.querySelectorAll(selector);
@@ -29,16 +29,67 @@ initPhotoSlider(".acfab-photo");
 const navToggle = document.getElementById("navToggle");
 const navMenu = document.getElementById("navMenu");
 
-if (navToggle && navMenu) {
-  navToggle.addEventListener("click", () => {
-    navMenu.classList.toggle("open");
-  });
+function setMenuOpen(open) {
+  if (!navToggle || !navMenu) return;
+  navMenu.classList.toggle("open", open);
+  navToggle.classList.toggle("is-open", open);
+  navToggle.setAttribute("aria-expanded", String(open));
+}
 
-  // fecha ao clicar num link (mobile)
+if (navToggle && navMenu) {
+  navToggle.addEventListener("click", () => setMenuOpen(!navMenu.classList.contains("open")));
+
+  // on phones the menu closes after picking a link, tapping outside or pressing Escape
   document.querySelectorAll(".nav-link").forEach((link) => {
-    link.addEventListener("click", () => navMenu.classList.remove("open"));
+    link.addEventListener("click", () => setMenuOpen(false));
+  });
+  document.addEventListener("click", (e) => {
+    if (!navMenu.classList.contains("open")) return;
+    if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) setMenuOpen(false);
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && navMenu.classList.contains("open")) {
+      setMenuOpen(false);
+      navToggle.focus();
+    }
   });
 }
+
+// =====================
+// ACTIVE NAV LINK
+// =====================
+// Underlines the link of the section on screen. Only links of the current mode count.
+
+(function initActiveNavLink() {
+  const links = [...document.querySelectorAll('.nav-link[href^="#"]')];
+  if (!links.length) return;
+  let queued = false;
+
+  function update() {
+    queued = false;
+    const offset = window.innerHeight * 0.35;
+    let currentId = "";
+    links.forEach((link) => {
+      const section = document.querySelector(link.getAttribute("href"));
+      if (!section || !section.offsetParent) return; // hidden in this mode
+      const rect = section.getBoundingClientRect();
+      if (rect.top <= offset && rect.bottom > offset) currentId = section.id;
+    });
+    links.forEach((link) => {
+      link.classList.toggle("is-active", Boolean(currentId) && link.getAttribute("href") === `#${currentId}`);
+    });
+  }
+  const schedule = () => {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(update);
+  };
+  window.addEventListener("scroll", schedule, { passive: true });
+  window.addEventListener("resize", schedule);
+  window.addEventListener("load", schedule);
+  new MutationObserver(schedule).observe(document.body, { attributes: true, attributeFilter: ["data-view"] });
+  update();
+})();
 
 // =====================
 // MODE SWITCHER
@@ -57,21 +108,33 @@ function moveModePill() {
   switcher.classList.add("has-pill");
 }
 
-function setMode(mode, { animate = false } = {}) {
-  const changed = document.body.getAttribute("data-view") !== mode;
+function applyMode(mode) {
   document.body.setAttribute("data-view", mode);
   document.querySelectorAll(".mode-btn").forEach((btn) => {
     btn.classList.toggle("active", btn.dataset.target === mode);
+    btn.setAttribute("aria-pressed", String(btn.dataset.target === mode));
   });
   moveModePill();
+}
+
+function setMode(mode, { animate = false } = {}) {
+  const changed = document.body.getAttribute("data-view") !== mode;
   try { localStorage.setItem("portfolioMode", mode); } catch {}
 
-  if (animate && changed && !prefersReducedMotion.matches) {
-    // restart the CSS entrance animation
-    document.body.classList.remove("mode-enter");
-    void document.body.offsetWidth;
-    document.body.classList.add("mode-enter");
+  if (!animate || !changed || prefersReducedMotion.matches) {
+    applyMode(mode);
+    return;
   }
+  if (document.startViewTransition) {
+    // the old page fades out while the new one fades in (see ::view-transition in styles.css)
+    document.startViewTransition(() => applyMode(mode));
+    return;
+  }
+  // older browsers: the CSS entrance animation
+  applyMode(mode);
+  document.body.classList.remove("mode-enter");
+  void document.body.offsetWidth;
+  document.body.classList.add("mode-enter");
 }
 
 document.body.addEventListener("animationend", (e) => {
@@ -90,9 +153,80 @@ document.querySelectorAll(".mode-btn").forEach((btn) => {
   btn.addEventListener("click", () => setMode(btn.dataset.target, { animate: true }));
 });
 
+// buttons outside the switcher that change mode ("Back to the professional view")
+document.querySelectorAll(".js-set-mode").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    setMode(btn.dataset.target, { animate: true });
+    window.scrollTo({ top: 0 });
+  });
+});
+
 window.addEventListener("resize", moveModePill);
 document.fonts?.ready.then(moveModePill);
 navToggle?.addEventListener("click", () => requestAnimationFrame(moveModePill));
+
+// =====================
+// READING PROGRESS
+// =====================
+// Thin line at the top of the window that fills as the page is scrolled.
+
+(function initScrollProgress() {
+  const bar = document.createElement("div");
+  bar.className = "scroll-progress";
+  bar.setAttribute("aria-hidden", "true");
+  document.body.append(bar);
+  let queued = false;
+
+  function update() {
+    queued = false;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+    bar.style.transform = `scaleX(${progress.toFixed(4)})`;
+  }
+  const schedule = () => {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(update);
+  };
+  window.addEventListener("scroll", schedule, { passive: true });
+  window.addEventListener("resize", schedule);
+  new MutationObserver(schedule).observe(document.body, { attributes: true, attributeFilter: ["data-view"] });
+  update();
+})();
+
+// =====================
+// PHOTO IN THE BAR (phones)
+// =====================
+// When the hero photo scrolls away, a small copy of it appears in the sticky bar.
+
+(function initNavAvatar() {
+  const frame = document.querySelector(".hero-image");
+  const logo = document.querySelector(".nav-logo");
+  if (!frame || !logo || !("IntersectionObserver" in window)) return;
+
+  const avatar = document.createElement("img");
+  avatar.className = "nav-avatar";
+  avatar.alt = "";
+  avatar.width = 34;
+  avatar.height = 34;
+  avatar.setAttribute("aria-hidden", "true");
+  logo.after(avatar);
+  let heroOut = false;
+
+  function sync() {
+    const photo = [...frame.querySelectorAll("img")].find((img) => img.offsetParent);
+    if (photo && avatar.getAttribute("src") !== photo.getAttribute("src")) avatar.src = photo.getAttribute("src");
+    // no hero in this mode (personal): no avatar either
+    avatar.classList.toggle("is-visible", heroOut && Boolean(photo));
+  }
+
+  new IntersectionObserver(([entry]) => {
+    heroOut = !entry.isIntersecting;
+    sync();
+  }, { rootMargin: "-56px 0px 0px 0px" }).observe(frame);
+  new MutationObserver(sync).observe(document.body, { attributes: true, attributeFilter: ["data-view"] });
+  sync();
+})();
 
 // Used by the footer date.
 function relativeTime(date, lang) {
@@ -692,7 +826,9 @@ function observeCounters(root = document) {
   const cursor = document.createElement("span");
   cursor.className = "stream-cursor";
   cursor.setAttribute("aria-hidden", "true");
-  const WORD_MS = 110;
+  // phones get the text about twice as fast: nobody wants to wait on a small screen
+  const SPEED = window.matchMedia("(max-width: 640px)").matches ? 0.5 : 1;
+  const WORD_MS = 110 * SPEED;
   // the title, its subtitle and each paragraph count as separate blocks
   const blockOf = (tok) => tok.parentElement.closest("p, h1 > span, h1");
   let timer = 0;
@@ -740,9 +876,9 @@ function observeCounters(root = document) {
       // a little "thinking" after punctuation and between title, subtitle and paragraph
       const nextTok = toks[i];
       let delay = WORD_MS;
-      if (/[.:;!?]$/.test(tok.textContent)) delay += 280;
-      else if (/,$/.test(tok.textContent)) delay += 120;
-      if (nextTok && blockOf(nextTok) !== blockOf(tok)) delay += 350;
+      if (/[.:;!?]$/.test(tok.textContent)) delay += 280 * SPEED;
+      else if (/,$/.test(tok.textContent)) delay += 120 * SPEED;
+      if (nextTok && blockOf(nextTok) !== blockOf(tok)) delay += 350 * SPEED;
       timer = setTimeout(next, delay);
     };
     next();
@@ -786,7 +922,10 @@ function observeCounters(root = document) {
     canvas.width = width * dpr;
     canvas.height = height * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const count = Math.min(70, Math.round((width * height) / 22000));
+    // fewer points on phones: lighter on the battery and less noise behind the text
+    const count = width < 700
+      ? Math.min(22, Math.round((width * height) / 30000))
+      : Math.min(70, Math.round((width * height) / 22000));
     nodes = Array.from({ length: count }, (_, i) => ({
       x: Math.random() * width,
       y: Math.random() * height,
@@ -824,7 +963,7 @@ function observeCounters(root = document) {
       for (let j = i + 1; j < nodes.length; j++) {
         const d = Math.hypot(nodes[i].x - nodes[j].x, nodes[i].y - nodes[j].y);
         if (d > LINK) continue;
-        ctx.strokeStyle = `rgba(129, 140, 248, ${(1 - d / LINK) * 0.22})`;
+        ctx.strokeStyle = `rgba(77, 184, 240, ${(1 - d / LINK) * 0.22})`;
         ctx.beginPath();
         ctx.moveTo(nodes[i].x, nodes[i].y);
         ctx.lineTo(nodes[j].x, nodes[j].y);
@@ -834,10 +973,10 @@ function observeCounters(root = document) {
 
     if (words) {
       ctx.font = `12px ${getComputedStyle(document.body).fontFamily}`;
-      ctx.fillStyle = "rgba(199, 210, 254, 0.32)";
+      ctx.fillStyle = "rgba(190, 228, 250, 0.32)";
       for (const n of nodes) ctx.fillText(n.word, n.x + 4, n.y - 4);
     }
-    ctx.fillStyle = "rgba(165, 180, 252, 0.7)";
+    ctx.fillStyle = "rgba(140, 208, 245, 0.7)";
     for (const n of nodes) {
       ctx.beginPath();
       ctx.arc(n.x, n.y, 1.6, 0, Math.PI * 2);
